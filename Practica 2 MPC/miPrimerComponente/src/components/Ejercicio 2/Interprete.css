@@ -1,0 +1,7 @@
+.interprete_alerta{
+    border-style: solid;
+    border-width: 3px;
+    border-color: green;
+    color: green;
+    width: 500px;
+}
