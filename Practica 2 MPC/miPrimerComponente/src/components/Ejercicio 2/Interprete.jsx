@@ -5,7 +5,7 @@ const Interprete = (props) => {
     return(
         <>
         <div className='interprete_alerta'>
-            <img src={props.foto} alt="Foto"></img>
+            <div className='imagen'><img src={props.foto} alt="Foto"></img></div>
             <h2>{props.nombre}</h2>
             <p>{props.children}</p>
         </div>

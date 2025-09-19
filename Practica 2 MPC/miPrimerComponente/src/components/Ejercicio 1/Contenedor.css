@@ -1,7 +1,7 @@
 .contenedor_alerta {
-    border-style: solid;
-    border-width: 3px;
-    border-color: orangered;
+    border: 2px solid orangered;
+    padding: 15px;
+    width: 550px;
     color: orangered;
-    width: 500px;
+    text-align: left;
 }

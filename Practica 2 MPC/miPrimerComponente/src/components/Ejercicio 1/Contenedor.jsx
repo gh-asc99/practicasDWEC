@@ -5,7 +5,8 @@ const Contenedor = (props) => {
     return(
         <>
         <div className='contenedor_alerta'>
-            <p>Contenedor</p>
+            <h2>Contenedor</h2>
+            {props.children}
         </div>
         </>
     );
