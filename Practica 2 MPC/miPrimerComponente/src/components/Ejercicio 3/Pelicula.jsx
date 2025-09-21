@@ -8,6 +8,8 @@ const Pelicula = (props) => {
         <>
             <Contenedor className='peliculaContenedor_alert'>
                 <Interprete tipo="pelicula" nombre={props.titulo} foto={props.portada}>
+                    <p>Dirigida por: {props.director}</p>
+
                     <p>{props.children}</p>
                     <Interprete tipo="elenco" className='peliculaElenco_alert' nombre={props.actor1} foto={props.fotoActor1}>
                         <p>{props.descripcionActor1}</p>

@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <Pelicula 
-      titulo="Los piratas del Caribe 2" portada="https://www.mubis.es/media/movies/966/66037/piratas-del-caribe-2-el-cofre-del-hombre-muerto-original.jpg"
+      titulo="Los piratas del Caribe 2" director="Gore Verbinski" portada="https://www.mubis.es/media/movies/966/66037/piratas-del-caribe-2-el-cofre-del-hombre-muerto-original.jpg"
       actor1="Johnny Depp" fotoActor1="https://m.media-amazon.com/images/M/MV5BZjA3NzZiZDktZjc2My00MzY2LThhOWMtZGFjYzg4ZDI2ZWVmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" descripcionActor1="En la piel del Capitán Jack Sparrow."
       actor2="Orlando Bloom" fotoActor2="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Orlando_Bloom_Cannes_2013.jpg/250px-Orlando_Bloom_Cannes_2013.jpg" descripcionActor2="En la piel del joven bucanero William Turner."
       actor3="Keira Knightley" fotoActor3="https://es.web.img3.acsta.net/c_310_420/medias/nmedia/18/35/37/27/19587090.jpg" descripcionActor3="En la piel de Elizabeth Swann, la hija del gobernador.">
