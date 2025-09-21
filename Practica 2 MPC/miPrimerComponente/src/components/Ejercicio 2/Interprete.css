@@ -1,15 +1,17 @@
-.interprete_alerta{
+.interprete_alert{
     border: 2px solid green;
     padding: 10px;
-    width: 95%;
-    height: 150px;
+    padding-bottom: 40px;
     color: green;
+    background-color: rgb(178, 255, 193);
+    margin: 10px;
 }
 
-.imagen{
-    border: 2px solid green;
-    width: 15%;
-    height: 100%;
-    float: left;
-    margin-right: 10px;
+.interprete_alert .imagen {
+  float: left;
+  margin-right: 20px;
+}
+
+.interprete_alert .imagen img {
+  border-radius: 8px;
 }

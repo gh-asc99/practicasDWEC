@@ -1,0 +1,37 @@
+.peliculaContenedor_alert {
+  border: 2px solid rgb(88, 86, 0);
+  padding: 15px;
+  width: 550px;
+  color: rgb(214, 153, 0);
+  text-align: left;
+  background-color: rgb(255, 255, 161);
+}
+
+/* Contenedor del Interprete principal (la película) */
+.peliculaInterprete_alert {
+  background-color: rgb(240, 255, 200);
+  padding: 5px;
+}
+
+/* Contenedor de cada Interprete del elenco */
+.peliculaElenco_alert {
+  background-color: brown;
+  padding: 8px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+/* Imagen de la portada */
+.peliculaInterprete_alert .imagen img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  padding: 10px;
+}
+
+/* Imagen de cada actor */
+.peliculaElenco_alert .imagen img {
+  width: 80px;
+  height: auto;
+
+}
