@@ -7,13 +7,11 @@
   background-color: rgb(255, 255, 161);
 }
 
-/* Contenedor del Interprete principal (la película) */
 .peliculaInterprete_alert {
   background-color: rgb(240, 255, 200);
   padding: 5px;
 }
 
-/* Contenedor de cada Interprete del elenco */
 .peliculaElenco_alert {
   background-color: brown;
   padding: 8px;
@@ -21,7 +19,6 @@
   color: white;
 }
 
-/* Imagen de la portada */
 .peliculaInterprete_alert .imagen img {
   width: 100%;
   max-width: 200px;
@@ -29,9 +26,7 @@
   padding: 10px;
 }
 
-/* Imagen de cada actor */
 .peliculaElenco_alert .imagen img {
   width: 80px;
   height: auto;
-
 }
