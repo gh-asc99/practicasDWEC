@@ -1,12 +1,15 @@
 "use strict";
 
-let constructor = (nom, fecha, descrip, alum) => {
-    const alumnadoCurso = [...alum];
+let constructor = (nom, fecha, descrip) => {
     return {
         nombre: nom,
         any: fecha,
         descripcion: descrip,
-        alumnado: alumnadoCurso
+        alumnado: [], 
+        //esto forma parte del ejercicio 4
+        matricular: function(discente){
+            this.alumnado = [...this.alumnado, discente];
+        }
     }
 };
 
