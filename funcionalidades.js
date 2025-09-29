@@ -6,4 +6,11 @@ let imprimirArray = (array) => {
     }
 };
 
-export { imprimirArray };
+let getNumeroDecimalES = (numero) => {
+    let numeroDosDecimales = numero.toFixed(2);
+    let castingNumero = Number(numeroDosDecimales);
+    let valorES = castingNumero.toLocaleString("es-ES");
+    return valorES;
+}
+
+export { imprimirArray, getNumeroDecimalES };

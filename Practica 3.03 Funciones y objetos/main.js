@@ -39,6 +39,8 @@ let discente = {
 console.log(calcularMedia(discente));
 console.log(imprimirAficiones(discente));
 console.log(imprimirInforme(discente));
+
+console.log(typeof discente.notas.primera);
 */
 
 /*
@@ -69,10 +71,10 @@ let discenteGuapo = {
 cursoDWEC.matricular(discenteFeo);
 cursoDWEC.matricular(discenteGuapo);
 
-console.log(mostrador(cursoDWEC));
+mostrador(cursoDWEC);
 */
 
-/*
+
 //Ejercicio 5
 let discenteGuapo = {
     id: 3,
@@ -88,7 +90,6 @@ let discenteGuapo = {
 
 let cursoDWEC = constructor("Desarrollo Web en Entorno Cliente", 2025, "Modulo de DWEC, impartido por Juan Carlos");
 
-console.log(imprimir(discenteGuapo));
+imprimir(discenteGuapo);
 cursoDWEC.matricular(discenteGuapo);
 console.log(imprimir(cursoDWEC));
-*/
