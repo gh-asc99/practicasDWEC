@@ -1,0 +1,15 @@
+body {
+  background: url("/img/fondoLogin.png") no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spacer {
+  height: 180px;
+}
+
+.login-card {
+  width: 500px;
+}
