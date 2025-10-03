@@ -1,6 +1,6 @@
 import React from "react";
-import Contenedor from "../Ejercicio1/Contenedor.jsx";
-import Interprete from "../Ejercicio2/Interprete.jsx";
+import Contenedor from "../Lista/Contenedor.jsx";
+import Interprete from "../Lista/Interprete.jsx";
 import './Pelicula.css';
 
 const Pelicula = (props) => {

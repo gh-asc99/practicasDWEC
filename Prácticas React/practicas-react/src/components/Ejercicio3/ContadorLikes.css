@@ -1,0 +1,22 @@
+.cajaLikesDislikes_alert {
+    width: 150px;
+    border: 5px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    margin: 10px;
+}
+
+.cajaLikesDislikes_alert .likes {
+    background-color: rgb(39, 201, 66);
+    color: white;
+    margin: 5px;
+    border: solid 5px rgb(19, 112, 35);
+}
+
+.cajaLikesDislikes_alert .dislikes {
+    background-color: rgb(255, 55, 55);
+    color: white;
+    margin: 5px;
+    border: solid 5px rgb(121, 18, 18);
+}
