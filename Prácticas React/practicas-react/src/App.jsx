@@ -11,6 +11,7 @@ function App() {
 
   return (
     <>
+      <h2>Estado con array</h2>
       <Listado>Texto de ejemplo</Listado>
     </>
   )

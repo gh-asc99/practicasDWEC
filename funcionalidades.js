@@ -13,4 +13,6 @@ let getNumeroDecimalES = (numero) => {
     return valorES;
 }
 
+
+
 export { imprimirArray, getNumeroDecimalES };
