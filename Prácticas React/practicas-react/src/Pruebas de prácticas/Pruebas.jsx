@@ -7,3 +7,11 @@
         Will Turner y Elizabeth Swann se ven arrastrados a la peligrosa aventura.
         Traiciones, monstruos marinos y batallas navales marcan la carrera por sobrevivir y dominar los mares.
       </Pelicula> */}
+{/* <h2>Estado con array</h2>
+      <Listado>Pulsa "Generar" para empezar a construir tu lista de números aleatorios.</Listado>
+
+      <h2>Contador con límites</h2>
+      <ContadorLimite/>
+
+      <h2>Contador de "likes" (y "dislikes")</h2>
+      <ContadorLikes/>*/}
