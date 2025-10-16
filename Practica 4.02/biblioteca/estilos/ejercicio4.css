@@ -1,0 +1,10 @@
+.carrusel {
+    width: 400px;
+    background-color: crimson;
+}
+
+.imagenesCarrusel {
+    margin: 10px;
+    border: solid 2px black;
+    width: 94%;
+}
