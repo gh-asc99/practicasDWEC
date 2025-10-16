@@ -18,21 +18,12 @@ const ContadorLikes = () => {
   return (
     <>
       <div className="cajaLikesDislikes_alert">
-        <h2>Contador de likes.</h2>
-        <p>
-          Cantidad: {valorLike}
-        </p>
+        <h2>Feo.</h2>
         <button className="likes" onClick={incrementarLikes}>
-          Like
+          Like {valorLike}
         </button>
-      </div>
-      <div className="cajaLikesDislikes_alert">
-        <h2>Contador de dislikes.</h2>
-        <p>
-          Cantidad: {valorDislike}
-        </p>
         <button className="dislikes" onClick={incrementarDislikes}>
-          Dislike
+          Dislike {valorDislike}
         </button>
       </div>
     </>
