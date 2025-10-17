@@ -1,6 +1,6 @@
 "use strict";
 /*
-Este main3.js únicamente ha sido creado para el ejercicio 3 y así poder observar con mayor claridad su ejecución.
+Este main2.js únicamente ha sido creado para los ejercicios 3 y 4 para así poder observar con mayor claridad su ejecución.
 */
 import variarEstilo from "./biblioteca/ejercicio3.js";
 import mostrarCarrusel from "./biblioteca/ejercicio4.js";

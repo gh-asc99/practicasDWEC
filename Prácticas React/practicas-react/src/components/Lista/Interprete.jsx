@@ -12,8 +12,8 @@ const Interprete = (props) => {
     return(
         <>
         <div className={`interprete_alert ${claseExtra}`}>
-            <div className='imagen'><img src={props.foto} alt="Foto"></img></div>
             <h2>{props.nombre}</h2>
+            <div className='imagen'><img src={props.foto} alt="Foto"></img></div>
             <p>{props.children}</p>
         </div>
         </>

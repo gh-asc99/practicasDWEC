@@ -4,7 +4,7 @@ const mostrarCarrusel = () => {
   const imagenes = [
     "https://i.blogs.es/13b8c5/piratascaribe/1366_2000.jpg",
     "https://media.revistagq.com/photos/5eb13e411c7a78d7f484ced3/16:9/w_2560%2Cc_limit/harry-potter.png",
-    "https://sm.ign.com/t/ign_es/lists/h/how-to-wat/how-to-watch-the-hunger-games-movies-in-chronological-order_kmmc.1200.jpg",
+    "https://wallpapers.com/images/hd/katniss-everdeen-the-hunger-games-0cq9mfo35sg8q13b.jpg",
     "https://occ-0-8407-2219.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABSZXwuHFW4tcSobMXbzXe6MNSH5cbY-EqywV6Pd4_GtA3jLShHVR1skBNy4Casgza8hL4liyCLP7rdSQD99iVbByt-gdeg0Tdf4M.jpg?r=f03",
   ];
 
