@@ -3,7 +3,6 @@
   padding: 15px;
   width: 550px;
   color: rgb(214, 153, 0);
-  text-align: left;
   background-color: rgb(255, 255, 161);
 }
 
@@ -17,13 +16,14 @@
   padding: 8px;
   margin-bottom: 10px;
   color: white;
+  height: 210px;
 }
 
 .peliculaInterprete_alert .imagen img {
   width: 100%;
-  max-width: 180px;
+  max-width: 150px;
   height: auto;
-  padding: 5px;
+  padding: 10px;
 }
 
 .peliculaElenco_alert .imagen img {
