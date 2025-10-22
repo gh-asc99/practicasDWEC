@@ -1,22 +1,30 @@
 import { useState } from "react";
 import "./App.css";
-import PeliculaUseRef from "./components/Ejercicio1/PeliculaUseRef.jsx";
-import Referencias from "./components/Ejercicio1/Referencias.jsx";
+import Rutas from "./Routes/Rutas.jsx";
+import Menu from "./Menu/Menu.jsx";
+import Contenedor from "./components/Lista/Contenedor.jsx";
 
 function App() {
   return (
     <>
-      <PeliculaUseRef
-        titulo="Los piratas del Caribe 2"
-        director="Gore Verbinski"
-        portada="https://www.mubis.es/media/movies/966/66037/piratas-del-caribe-2-el-cofre-del-hombre-muerto-original.jpg"
-      >
-        Jack Sparrow descubre que le debe su alma a Davy Jones y busca el
-        legendario cofre que guarda su corazón. Will Turner y Elizabeth Swann se
-        ven arrastrados a la peligrosa aventura. Traiciones, monstruos marinos y
-        batallas navales marcan la carrera por sobrevivir y dominar los mares.
-        <Referencias />
-      </PeliculaUseRef>
+      <Contenedor>
+        <h2>GAMEcity</h2>
+        <p>Tu tienda gamer online de confianza.</p>
+      </Contenedor>
+      <Contenedor>
+        <Menu />
+      </Contenedor>
+      <Contenedor>
+        <Rutas />
+      </Contenedor>
+      <Contenedor>
+        <div className="footer">
+          <h3>Datos de la página web</h3>
+          <p><strong>Nombre: </strong>GAMEcity</p>
+          <p><strong>Desarrollador: </strong>Alejandro Soler Cruz</p>
+          <p><strong>Localidad: </strong>Elda (Alicante)</p>
+        </div>
+      </Contenedor>
     </>
   );
 }

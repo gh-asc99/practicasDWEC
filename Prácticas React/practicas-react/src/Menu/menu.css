@@ -1,0 +1,7 @@
+.botonMenu {
+    border: solid 2px black;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    background-color: white;
+}

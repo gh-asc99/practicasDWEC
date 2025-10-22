@@ -1,8 +1,8 @@
 .contenedor_alerta {
-    border: 2px solid orangered;
+    border: 2px solid rgb(0, 55, 255);
     padding: 15px;
-    width: 550px;
-    color: orangered;
+    width: 1000px;
+    color: rgb(0, 55, 255);
     text-align: left;
-    background-color: rgb(255, 255, 161);
+    background-color: rgb(183, 185, 255)
 }
