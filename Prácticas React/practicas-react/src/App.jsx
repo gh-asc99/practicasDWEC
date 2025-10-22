@@ -1,13 +1,10 @@
 import { useState } from "react";
 import "./App.css";
 import PeliculaUseRef from "./components/Ejercicio1/PeliculaUseRef.jsx";
-import Rutas from "./components/Ejercicio1/routes/Rutas.jsx";
-import Menu from "./components/Ejercicio1/menu/Menu.jsx";
 import Referencias from "./components/Ejercicio1/Referencias.jsx";
 
 function App() {
   return (
-    //La cifra pasada como parámetro en "precio" hace referencia a la recaudación a nivel mundial de la película en dólares
     <>
       <PeliculaUseRef
         titulo="Los piratas del Caribe 2"
