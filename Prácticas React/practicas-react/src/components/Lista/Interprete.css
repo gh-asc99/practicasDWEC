@@ -7,11 +7,15 @@
     margin: 10px;
 }
 
-.interprete_alert .imagen {
-  float: left;
-  margin-right: 20px;
-}
-
 h2 {
   margin-left: 10px;
+}
+
+.peliculaElenco_alert img {
+  width: 70px;
+}
+
+.peliculaElenco_alert {
+  height: 150px;
+  align-items: center;
 }

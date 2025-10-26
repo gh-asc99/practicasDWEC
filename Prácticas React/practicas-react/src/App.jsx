@@ -3,27 +3,21 @@ import "./App.css";
 import Rutas from "./Routes/Rutas.jsx";
 import Menu from "./Menu/Menu.jsx";
 import Contenedor from "./components/Lista/Contenedor.jsx";
-
+import Cabecera from "./template/Cabecera.jsx";
 function App() {
   return (
     <>
-      <Contenedor>
-        <h2>GAMEcity</h2>
-        <p>Tu tienda gamer online de confianza.</p>
-      </Contenedor>
-      <Contenedor>
-        <Menu />
-      </Contenedor>
-      <Contenedor>
+      <Cabecera titulo="Películas Online">
+        <Menu></Menu>
+      </Cabecera>
+      <Contenedor tipo="cuerpo">
         <Rutas />
       </Contenedor>
-      <Contenedor>
-        <div className="footer">
-          <h3>Datos de la página web</h3>
-          <p><strong>Nombre: </strong>GAMEcity</p>
-          <p><strong>Desarrollador: </strong>Alejandro Soler Cruz</p>
-          <p><strong>Localidad: </strong>Elda (Alicante)</p>
-        </div>
+      <Contenedor tipo="pie">
+        <h3>Información de la aplicación web:</h3>
+        <strong>Programador:</strong> <i>Alejandro Soler Cruz.</i><br />
+        <strong>Asignatura:</strong> <i>Desarrollo Web en Entorno Cliente.</i><br />
+        <strong>Módulo:</strong> <i>2º DAW.</i>
       </Contenedor>
     </>
   );

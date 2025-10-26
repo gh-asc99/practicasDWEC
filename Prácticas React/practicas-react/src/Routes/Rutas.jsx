@@ -1,19 +1,21 @@
 "use strict";
 import { Routes, Route } from "react-router-dom";
 import Inicio from "../pages/Inicio.jsx";
-import Contacto from "../pages/Contacto.jsx";
 import AcercaDe from "../pages/AcercaDe.jsx";
-import Productos from "../pages/Productos.jsx";
 import Error from "../pages/Error.jsx";
+import Peliculas from "../pages/Peliculas.jsx";
+import Galeria from "../pages/Galeria.jsx";
+import Interpretes from "../pages/Interpretes.jsx";
 
 const Rutas = () => {
   return (
     <>
       <Routes>
         <Route path='/' element={<Inicio />} />
-        <Route path='/contacto' element={<Contacto />} />
-        <Route path='/acercaDe' element={<AcercaDe />} />
-        <Route path='/productos' element={<Productos />} />
+        <Route path='/peliculas' element={<Peliculas />} />
+        <Route path='/interpretes' element={<Interpretes />} />
+        <Route path='/galeria' element={<Galeria />} />
+        <Route path='/acerca_de' element={<AcercaDe />} />
         <Route path='*' element={<Error />} />
       </Routes>
     </>

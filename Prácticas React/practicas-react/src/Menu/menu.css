@@ -1,7 +1,18 @@
 .botonMenu {
     border: solid 2px black;
     border-radius: 5px;
-    padding: 5px;
-    margin: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
     background-color: white;
+}
+
+.barra_navegacion {
+    background-color: rgb(71, 71, 255);
+    width: 100%;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
