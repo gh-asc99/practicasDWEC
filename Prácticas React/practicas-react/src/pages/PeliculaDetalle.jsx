@@ -1,20 +1,36 @@
 "use strict";
+import { useParams } from "react-router-dom";
 import "./estiloPaginas.css";
+import peliculas from "../assets/json/peliculas.json";
+import Interprete from "../components/Lista/Interprete.jsx";
 
-const PeliculaDetalle = ({ pelicula, onVolver }) => {
+const PeliculaDetalle = () => {
+    const {id} = useParams();
+    const listaPeliculas = peliculas;
+
+    let peliculaSeleccionada = listaPeliculas.find(pelicula => pelicula.id === parseInt(id));
+
+    if (!peliculaSeleccionada) {
+        return <p>Película no encontrada.</p>;
+    }
     return (
-        <div className="detalle-pelicula">
-            <h2>{pelicula.titulo}</h2>
-            <img src={pelicula.cartel} alt={pelicula.titulo} />
-            <p><strong>Director:</strong> {pelicula.director}</p>
-            <p><strong>Año:</strong> {pelicula.anio}</p>
-            <p><strong>Género:</strong> {pelicula.genero}</p>
-            <p><strong>Duración:</strong> {pelicula.duracion}</p>
-            <p><strong>Intérpretes:</strong> {pelicula.interpretes.join(", ")}</p>
-            <p><strong>Sinopsis:</strong> {pelicula.sinopsis}</p>
-
-            {/* Botón para volver al listado */}
-            <button onClick={onVolver}>Volver al listado</button>
+        <div className="detalles_pelicula">
+            <p><strong>Director:</strong> {peliculaSeleccionada.director}</p>
+            <p><strong>Género:</strong> {peliculaSeleccionada.genero}</p>
+            <p><strong>Duración:</strong> {peliculaSeleccionada.duracion}</p>
+            <h3>Reparto principal</h3>
+      <div className="elenco">
+        {peliculaSeleccionada.interpretes.map((interprete, index) => (
+          <Interprete
+            key={index}
+            tipo="elenco"
+            nombre={interprete.nombre}
+            foto={interprete.foto}
+            descripcion={interprete.descripcion}
+          />
+        ))}
+      </div>
+            <p><strong>Sinopsis:</strong> {peliculaSeleccionada.sinopsis}</p>
         </div>
     );
 };

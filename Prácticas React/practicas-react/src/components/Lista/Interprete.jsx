@@ -14,7 +14,7 @@ const Interprete = (props) => {
         <div className={`interprete_alert ${claseExtra}`}>
             <h2>{props.nombre}</h2>
             <div className='imagen'><img src={props.foto} alt="Foto"></img></div>
-            <div>{props.children}</div>
+            <div>{props.descripcion}</div>
         </div>
         </>
         

@@ -26,3 +26,13 @@ img{
     margin: 10px;
     color: black;
 }
+
+.detalles_pelicula{
+    background-color: wheat;
+    padding: 10px;
+
+}
+
+.boton_detalles{
+    margin: 25px;
+}
