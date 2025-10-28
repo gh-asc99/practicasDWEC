@@ -18,7 +18,7 @@ const Peliculas = () => {
               <h3>{pelicula.titulo}</h3>
               <p>({pelicula.anio})</p>
               <nav className="boton_detalles">
-                <Link className="botonMenu" to={`/peliculas/${pelicula.id}`}>
+                <Link className="botonMenu" to={`/pelicula/${pelicula.id}`}>
                   Ver detalles
                 </Link>
               </nav>

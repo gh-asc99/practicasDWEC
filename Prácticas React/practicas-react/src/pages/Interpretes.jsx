@@ -2,7 +2,6 @@
 import "./estiloPaginas.css";
 import Interprete from "../components/Lista/Interprete.jsx";
 import peliculas from "../assets/json/peliculas.json";
-import actores from "../assets/json/actores.json";
 import { useNavigate } from "react-router-dom";
 
 const Interpretes = () => {
@@ -18,13 +17,6 @@ const Interpretes = () => {
     });
 
     todosLosInterpretes.sort();
-
-    const imagenGenerica = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
-
-    const obtenerFoto = (nombre) => {
-        const actorEncontrado = actores.find((actor) => actor.nombre === nombre);
-        return actorEncontrado ? actorEncontrado.foto : imagenGenerica;
-    };
 
     return (
         <>
