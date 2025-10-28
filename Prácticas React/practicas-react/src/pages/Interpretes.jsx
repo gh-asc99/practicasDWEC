@@ -3,8 +3,10 @@ import "./estiloPaginas.css";
 import Interprete from "../components/Lista/Interprete.jsx";
 import peliculas from "../assets/json/peliculas.json";
 import actores from "../assets/json/actores.json";
+import { useNavigate } from "react-router-dom";
 
 const Interpretes = () => {
+    const navegar = useNavigate();
     const todosLosInterpretes = [];
     
     peliculas.forEach((pelicula) => {
@@ -25,22 +27,32 @@ const Interpretes = () => {
     };
 
     return (
-        <section className="pagina">
+        <>
+        <div>
             <h2>Intérpretes</h2>
             <p>Listado de actores y actrices que aparecen en las películas:</p>
 
             <div className="contenedor-interpretes">
-                {todosLosInterpretes.map((nombre, index) => (
+                {todosLosInterpretes.map((actor, index) => (
                     <Interprete
                         key={index}
-                        nombre={nombre}
-                        foto={obtenerFoto(nombre)}
+                        nombre={actor.nombre}
+                        foto={actor.foto}
+                        descripcion={actor.descripcion}
                         tipo="elenco"
                     >
                     </Interprete>
                 ))}
             </div>
-        </section>
+        </div>
+        <button
+        onClick={() => {
+          navegar("/");
+        }}
+      >
+        Volver a Inicio
+      </button>
+      </>
     );
 };
 
