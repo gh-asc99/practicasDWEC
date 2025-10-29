@@ -1,0 +1,22 @@
+.titulo_acordeon{
+    font-weight: bold;
+    padding: 10px;
+}
+
+.contenido_acordeon {
+    padding: 10px;
+}
+
+.oculto {
+    display: none;
+}
+
+.caja_titulo_acordeon{
+    background-color: rgb(179, 179, 179);
+    border-radius: 5px;
+}
+
+.caja_contenido_acordeon{
+    background-color: rgb(238, 238, 238);
+    border-radius: 5px;
+}
