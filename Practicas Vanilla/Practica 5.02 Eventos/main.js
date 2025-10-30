@@ -1,15 +1,18 @@
 "use strict";
-import mostrarOcultar from "./mostrarOcultar.js";
 
 window.onload = () => {
 
-let contenidoDeElementos = document.getElementsByClassName('caja_titulo_acordeon');
+    const seccion = document.body.firstElementChild;
 
-for (let elemento of contenidoDeElementos){
-    elemento.addEventListener('click', (evento) => {
-        const elementoSeleccionado = evento.currentTarget;
-        mostrarOcultar(elementoSeleccionado);
-    })
-}
+seccion.addEventListener('click', (evento) => {
+    if (!evento.target.classList.contains('oculto')){ //Si no tiene la clase oculto.
+        let contenido = evento.target.nextElementSibling; //Guardo siguiente elemento html en una constante.
+        if (contenido.classList.contains('oculto')){ //Si este elemento tiene la clase oculto.
+            contenido.classList.remove('oculto'); //Se lo quito.
+        } else {
+            contenido.classList.add('oculto'); //Se lo añado.
+        }
+    }
+});
 
 }; //Fin del window.onload
