@@ -1,0 +1,19 @@
+.nombre {
+    background-color: rgb(89, 228, 58);
+    display: inline-block;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 2px black;
+}
+
+.contenidos {
+    background-color: rgb(210, 255, 200);
+    padding: 10px;
+    width: 400px;
+    border-radius: 5px;
+    border: solid 2px black;
+}
+
+.oculto {
+    display: none;
+}
