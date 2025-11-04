@@ -1,0 +1,30 @@
+img {
+    width: 110px;
+}
+
+#expositor_imagenes {
+    display: block;
+    align-items: center;
+    width: 500px;
+    border: solid 2px black;
+}
+
+#expositor_imagenes img {
+    margin: 5px;
+}
+
+#tablero_puzzle {
+    margin-top: 10px;
+    display: inline-block;
+    align-items: center;
+    width: 1100px;
+    border: solid 2px black;
+    padding: 5px;
+    width: 340px;
+}
+
+td {
+    width: 110px;
+    height: 62px;
+    background-color: gray;
+}
