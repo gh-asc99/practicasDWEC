@@ -5,7 +5,7 @@ let desordenarArray = (lista) => {
   let nuevaLista = [];
   let selector = 0;
   for (let i = 0; i < arrayImagenes.length; i++) {
-    selector = Math.floor(Math.random() * arrayImagenes.length); // Genero número aleatorio para seleccionar una imagen random del array..
+    selector = Math.floor(Math.random() * arrayImagenes.length); // Genero número aleatorio para seleccionar una imagen random del array.
     if(nuevaLista.includes(arrayImagenes[selector])){
         do {
             selector = Math.floor(Math.random() * arrayImagenes.length); // Genero el número aleatorio nuevamente

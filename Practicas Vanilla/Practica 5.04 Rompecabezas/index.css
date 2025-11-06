@@ -1,30 +1,50 @@
 img {
-    width: 110px;
+    width: 160px;
 }
 
 #expositor_imagenes {
-    display: block;
-    align-items: center;
-    width: 500px;
+    width: 1530px;
+    height: 100px;
     border: solid 2px black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
 }
 
 #expositor_imagenes img {
+    display: inline-block;
     margin: 5px;
 }
 
 #tablero_puzzle {
     margin-top: 10px;
-    display: inline-block;
-    align-items: center;
-    width: 1100px;
+    width: 494px;
     border: solid 2px black;
     padding: 5px;
-    width: 340px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 td {
-    width: 110px;
-    height: 62px;
+    width: 160px;
+    height: 90px;
     background-color: gray;
+    border: solid 0px black;
+}
+
+#cuadro_reiniciar {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+td img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+h1 {
+    text-align: center;
 }
