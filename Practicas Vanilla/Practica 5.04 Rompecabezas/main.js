@@ -1,28 +1,12 @@
 "use strict";
 
-import desordenarArray from "./biblioteca/desordenarArray.js";
-import imagenes from "./imagenes/imagenes.js";
 import ganarPartida from "./biblioteca/ganarPartida.js";
+import incluirImagenesDesordenadas from "./biblioteca/incluirImagenesDesordenadas.js";
+import incluirBotonReiniciar from "./biblioteca/incluirBotonReiniciar.js";
 
 window.onload = () => {
 
-let imagenesDesordenadas = desordenarArray(imagenes);
-
-let idContador = 1;
-
-for (let i = 0; i < imagenesDesordenadas.length; i++){
-    let selectorImagen = document.createElement('img');
-    selectorImagen.setAttribute("src", `./imagenes${imagenesDesordenadas[i]}`);
-    selectorImagen.classList.add("pieza_arrastrable");
-    selectorImagen.id = idContador; //Doy a cada imagen un id único.
-    idContador++;
-    document.getElementById('expositor_imagenes').appendChild(selectorImagen);
-};
-
-const expositorImagenes = document.getElementsByClassName("pieza_arrastrable");
-for (let i=0 ; i < expositorImagenes.length; i++){
-    expositorImagenes[i].setAttribute("draggable", true);
-};
+incluirImagenesDesordenadas();
 
 document.getElementById("piezas_arrastrables").addEventListener("dragstart",
     (evento) => {
@@ -86,20 +70,6 @@ document.getElementById("expositor_imagenes").addEventListener("drop",
     false
 );
 
-const botonReiniciar = document.getElementById("boton_reiniciar");
-    
-botonReiniciar.addEventListener("click", () => {
-    const casillasPuzzle = document.getElementsByClassName("casilla_pieza");
-    const expositor = document.getElementById("expositor_imagenes");
-    for(let i = 0; i < casillasPuzzle.length; i++){
-        const img = casillasPuzzle[i].querySelector("img");
-        if (img) {
-            expositor.appendChild(img);
-        }
-    }
-}
-);
-
-
+ incluirBotonReiniciar();
 
 }; //Fin de window.onload.
