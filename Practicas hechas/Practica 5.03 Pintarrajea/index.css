@@ -32,6 +32,10 @@ table {
     margin: 15px;
 }
 
+/*
+Aunque el enunciado de la práctica dice que las celdas deben ser de 10px x 10px, he decidido
+reducir su tamaño a 5px x 5px para que puedan verse todos los elementos del body perfectamente
+*/
 td {
     width: 5px;
     height: 5px;
