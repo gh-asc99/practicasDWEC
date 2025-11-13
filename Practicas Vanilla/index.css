@@ -10,7 +10,7 @@ input {
     margin-bottom: 10px;
 }
 
-#botonRegistrar {
+.botonFormulario {
     margin-top: 10px;
     padding: 5px;
 }
