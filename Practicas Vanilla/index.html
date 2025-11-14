@@ -19,15 +19,15 @@
             <label for="year">Año de Publicación:</label>
             <input type="number" name="year" id="year" min="1887" max="2025" placeholder="Año en el que fue publicado."></br>
             <fieldset>
-                <legend><strong>Género de música</strong></legend>
-                <input type="radio" name="genero" id="rock" value="rock">
-                <label for="rock">Rock and roll</label>
-                <input type="radio" name="genero" id="pop" value="pop">
-                <label for="pop">Pop</label>
-                <input type="radio" name="genero" id="bachata" value="bachata">
-                <label for="bachata">Bachata</label>
-                <input type="radio" name="genero" id="rap" value="rap">
-                <label for="rap">Rap</label>
+                <legend> <span id="checkboxGenerosMusicales"> <strong>Género de música</strong> </span> </legend>
+                <input type="checkbox" name="generoRock" id="generoRock" class="generoMusical">
+                <label for="generoRock">Rock and roll</label>
+                <input type="checkbox" name="generoPop" id="generoPop" class="generoMusical">
+                <label for="generoPop">Pop</label>
+                <input type="checkbox" name="generoReggaeton" id="generoReggaeton" class="generoMusical">
+                <label for="generoReggaeton">Reggaeton</label>
+                <input type="checkbox" name="generoRap" id="generoRap" class="generoMusical">
+                <label for="generoRap">Rap</label>
             </fieldset>
             <label for="localizacion">Localización:</label>
             <input type="text" name="localizacion" id="localizacion" placeholder="Localización para guardarlo.">
