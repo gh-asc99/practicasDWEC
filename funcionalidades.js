@@ -13,6 +13,16 @@ let getNumeroDecimalES = (numero) => {
     return valorES;
 }
 
+const convertirArrayEnString = (array) => {
+    let listaString = "";
+    for (let i = 0; i < array.length; i++){
+        if ((i !== array.length-1)){
+            listaString += `${array[i]}, `;
+        } else{
+            listaString += `${array[i]}.`;
+        }
+    }
+    return listaString;
+};
 
-
-export { imprimirArray, getNumeroDecimalES };
+export { imprimirArray, getNumeroDecimalES, convertirArrayEnString};

@@ -1,0 +1,95 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    width: 500px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.botonFormulario {
+    margin-top: 10px;
+    padding: 5px;
+}
+
+.error {
+    border: solid 2px red;
+}
+
+.oculto {
+    display: none !important; /*He incluido !important (recomendación de ChatGPT) al haber comprobado tras varias pruebas de ejecución que
+    al elemento que quería ocultar se le asignaba (como cabía esperar) la clase oculto y sin embargo, no se ocultaba.*/
+}
+
+.cuadroImpresionDisco{
+    display: flex;
+    background-color: LightSeaGreen;
+    padding: 10px;
+    gap: 20px;
+    border-radius: 5px;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.cuadroImpresionDisco #portadaDisco {
+    width: 50px;
+}
+
+#informadorErrores {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 2px black;
+    padding: 10px;
+    text-align: center;
+    width: 500px;
+    border-radius: 5px;
+}
+
+#informadorErrores p {
+    margin-left: 20px;
+    text-align: left;
+}
+
+#formularioAvisos {
+    display: flex;
+    gap: 40px;
+}
+
+#panelPrincipal {
+    border: solid 2px black;
+    border-radius: 5px;
+    margin: 40px;
+    width: 1040px;
+    padding: 10px;
+}
+
+#botones {
+    display: flex;
+    gap: 10px;
+}
+
+#panelBuscar {
+    background-color: LightSeaGreen;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+}
+
+#mostradorDiscos{
+    background-color: rgb(190, 255, 252);
+    border: solid 2px black;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px;
+}
