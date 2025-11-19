@@ -1,8 +1,8 @@
 "use strict";
 import { useParams } from "react-router-dom";
 import "./estiloPaginas.css";
-import peliculas from "../assets/json/peliculas.json";
-import Interprete from "../components/Lista/Interprete.jsx";
+import peliculas from "../../assets/json/peliculas.json";
+import Interprete from "../../components/Lista/Interprete.jsx";
 import { useNavigate } from "react-router-dom";
 
 const PeliculaDetalle = () => {

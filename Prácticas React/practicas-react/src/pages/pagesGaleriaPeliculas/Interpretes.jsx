@@ -1,7 +1,7 @@
 "use strict";
 import "./estiloPaginas.css";
-import Interprete from "../components/Lista/Interprete.jsx";
-import peliculas from "../assets/json/peliculas.json";
+import Interprete from "../../components/Lista/Interprete.jsx";
+import peliculas from "../../assets/json/peliculas.json";
 import { useNavigate } from "react-router-dom";
 
 const Interpretes = () => {

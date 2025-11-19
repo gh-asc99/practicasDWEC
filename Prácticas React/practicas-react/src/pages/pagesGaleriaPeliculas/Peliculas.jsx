@@ -1,6 +1,6 @@
 "use strict";
 import "./estiloPaginas.css";
-import peliculas from "../assets/json/peliculas.json";
+import peliculas from "../../assets/json/peliculas.json";
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
