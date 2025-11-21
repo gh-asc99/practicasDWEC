@@ -1,0 +1,32 @@
+.paginaInsertarDisco{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 180px);
+}
+
+form {
+    width: 500px;
+    margin-top: 80px;
+}
+
+input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.botonFormulario{
+    background-color: dodgerblue;
+    color: white;
+    margin-top: 20px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.generoMusical{
+    margin-left: 15px;
+}
+
+.nombreGenero{
+    margin-right: 15px;
+}
