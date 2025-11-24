@@ -1,6 +1,6 @@
 "use strict";
 
-import { convertirArrayEnString } from "../funcionalidades.js";
+import { convertirArrayEnString } from "../../funcionalidades.js";
 
 const comprobarError = (evento) => {
   if (!comprobarInputText(evento.target)) {
