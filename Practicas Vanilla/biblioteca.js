@@ -18,7 +18,7 @@ const traerPeliculas = () => {
         }
     })
     .catch ((error) => {
-
+        console.log("hola");
     });
 };
 
