@@ -1,7 +1,7 @@
 "use strict";
 
-const traerPeliculas = () => {
-    fetch(urlAPI1())
+const traerDatos = () => {
+    return fetch(urlAPI2())
     .then((objeto) => {
         if (objeto.ok){
             return objeto.json();
@@ -10,20 +10,31 @@ const traerPeliculas = () => {
         }
     })
     .then((datos) => {
-        if (datos.ok){
-            console.log(datos);
-            console.log(datos[0].title);
+        if (datos.results.length){
+            return datos.results;
         } else {
-            throw new Error("No se ha podido obtener contenido de la API");
+            throw new Error("No se ha podido extraer el contenido de la API.");
         }
     })
     .catch ((error) => {
-        console.log("hola");
+        console.log("No se ha podido establecer conexión con la API.");
     });
 };
+
+const imprimirTitulos = (listado, contenedor) => {
+    let contenido = "";
+    if (Array.isArray(listado) && listado.length){
+        listado.map((elemento) => contenido += `<input type="button" value="${elemento.name}"/>`);
+        contenedor.innerHTML = contenido;
+    }
+}
 
 const urlAPI1 = () => {
     return "https://swapi.info/api/films";
 };
 
-export { traerPeliculas };
+const urlAPI2 = () => {
+    return "https://swapi.dev/api/films/";
+};
+
+export { traerDatos, imprimirTitulos };

@@ -1,0 +1,35 @@
+#contenedor{
+    border: solid 2px black;
+    border-radius: 5px;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+}
+
+#peliculas{
+    border: solid 2px black;
+    border-radius: 5px;
+    padding: 10px;
+    margin-right: 10px;
+    width: 250px;
+}
+
+#informacion {
+    border: solid 2px black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#tituloPelicula {
+    border: solid 2px black;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 1200px;
+}
+
+#datosPelicula {
+    border: solid 2px black;
+    border-radius: 5px;
+    padding: 10px;
+}
