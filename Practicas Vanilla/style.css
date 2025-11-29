@@ -2,34 +2,73 @@
     border: solid 2px black;
     border-radius: 5px;
     display: flex;
-    padding: 10px;
+    padding-top: 180px;
+    padding-bottom: 180px;
+    padding-right: 10px;
+    padding-left: 10px;
     justify-content: center;
+    background-image: url("https://www.komar.de/media/catalog/product/cache/13/image/9df78eab33525d08d6e5fb8d27136e95/import/api-v1.1-file-public-files-pim-assets-97-ad-84-62-6284ad972eff292d45ce1a2e-images-4c-73-f0-65-65f0734c8fcf857268b20a37-026-dvd4-star-wars-poster-classic-1-web.jpg");
+    background-size: cover;
+background-position: center;
 }
 
 #peliculas{
+    background-color: rgb(255,255,255,0.5);
     border: solid 2px black;
     border-radius: 5px;
-    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 40px;
+    padding-bottom: 40px;
     margin-right: 10px;
     width: 250px;
 }
 
 #informacion {
+    background-color: rgb(255,255,255,0.5);
     border: solid 2px black;
     border-radius: 5px;
     padding: 10px;
 }
 
 #tituloPelicula {
+    background-color: rgb(255,255,255);
     border: solid 2px black;
     border-radius: 5px;
-    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     margin-bottom: 10px;
-    width: 1200px;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 25px;
+    color: rgb(30, 139, 255);
 }
 
 #datosPelicula {
+    background-color: rgb(255,255,255);
     border: solid 2px black;
     border-radius: 5px;
-    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.botonTitulo {
+    background-color: rgb(30, 139, 255);
+    padding: 5px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    color: white;
+    width: 200px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sinopsis {
+    text-align: center;
+    color: rgb(30, 139, 255);
 }

@@ -1,11 +1,12 @@
 "use strict";
-import {imprimirTitulos, traerDatos} from "./biblioteca.js";
+import {iniciarAplicacion, pintarInformacion} from "./biblioteca.js";
 
 window.onload = () => {
-    const contenedorPeliculas = document.getElementById(peliculas);
+    
+    iniciarAplicacion();
 
-    contenedorPeliculas.addEventListener("load", async() => {
-            const peliculas = await traerDatos();
-            imprimirTitulos(peliculas, contenedorPeliculas);
+    const contenedorPeliculas = document.getElementById("peliculas");
+    contenedorPeliculas.addEventListener("click", (evento)=>{
+        pintarInformacion(evento.target);
     });
 } //Fin de window.onload
