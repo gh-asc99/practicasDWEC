@@ -1,0 +1,28 @@
+#tituloPelicula{
+    color: gold;
+
+}
+
+.detalles{
+    text-align: left;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+h4 {
+    color: gold;
+}
+
+#listaPersonajes a{
+color: midnightblue;
+display: block;
+width: 200px;
+text-align: center;
+border: solid 2px black;
+border-radius: 5px;
+margin-top: 5px;
+}
+
+#listaPersonajes{
+    margin-bottom: 20px;
+}

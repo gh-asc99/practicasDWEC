@@ -1,0 +1,7 @@
+#contenedorPrincipal{
+    display: flex;
+    gap: 20px;
+    margin-top: 140px;
+    margin-bottom: 20px;
+    justify-content: center;
+}

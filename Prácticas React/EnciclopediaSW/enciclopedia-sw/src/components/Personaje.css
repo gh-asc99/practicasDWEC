@@ -1,0 +1,14 @@
+#personajeDetalles h3{
+    color: gold;
+    border: dashed 2px gold;
+    border-radius: 5px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#datosPersonaje{
+    text-align: left;
+    padding-left: 20px;
+}

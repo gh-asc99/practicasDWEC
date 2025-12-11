@@ -10,7 +10,7 @@
     const pintarInformacion = async (elemento) => {
         if (elemento.tagName === 'INPUT'){
 
-        const peliculas = await traerDatos(); //ahora con filter me quedo con la peli que tenga el id del target
+        const peliculas = await traerDatos();
         const peliculaSeleccionada = peliculas.filter((pelicula) => pelicula.episode_id === Number(elemento.id));
         const pelicula = peliculaSeleccionada[0];
 
