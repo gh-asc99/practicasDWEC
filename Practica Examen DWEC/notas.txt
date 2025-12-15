@@ -1,0 +1,63 @@
+    <form id="formularioRegistroDisco">
+        <h3>Registrar nuevo disco</h3>
+        <div class="campoFormulario">
+            <label for="inputNombre">Nombre:</label>
+            <input type="text" name="inputNombre" id="nombre" />
+        </div>
+        <div class="campoFormulario">
+            <label for="inputCaratula">Carátula:</label>
+            <input type="url" name="inputCaratula" id="caratula" />
+        </div>
+        <div class="campoFormulario">
+            <label for="inputInterprete">Intérprete:</label>
+            <input type="text" name="inputInterprete" id="interprete" />
+        </div>
+        <div class="campoFormulario">
+            <label for="inputFecha">Año de publicación:</label>
+            <input type="number" name="inputFecha" id="fecha" />
+        </div>
+        <div class="campoFormulario">
+            <p> <strong>Genero/s musical/es del disco:</strong></p>
+            <input type="checkbox" name="inputGenero" id="pop" value="pop" />
+            <label for="inputGenero">Pop</label>
+            <input type="checkbox" name="inputGenero" id="rock" value="rock" />
+            <label for="inputGenero">Rock</label>
+            <input type="checkbox" name="inputGenero" id="rap" value="rap" />
+            <label for="inputGenero">Rap</label>
+            <input type="checkbox" name="inputGenero" id="requeton" value="requeton" />
+            <label for="inputGenero">Requetón</label>
+        </div>
+        <div class="campoFormulario">
+            <label for="inputLocalizacion">Localización:</label>
+            <input type="text" name="inputLocalizacion" id="localizacion" />
+        </div>
+        <div class="campoFormulario">
+            <p> <strong>¿Se trata de un disco prestado?</strong></p>
+            <input type="radio" name="prestado" id="prestadoSi" value="si" />
+            <label for="prestado">Sí</label>
+            <input type="radio" name="prestado" id="prestadoNo" value="no" />
+            <label for="prestado">No</label>
+        </div>
+            <input type="button" value="Guardar disco" id="botonGuardar" />
+            <input type="button" value="Mostrar listado" id="botonBorrar" />
+    </form>
+
+
+body{
+    display: flex;
+    justify-content: center;
+}
+
+#formularioRegistroDisco{
+    border: solid 2px black;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.campoFormulario{
+    margin: 15px 0px;
+}
+
+*[type="button"]{
+    margin: 0px 10px 0px 0px;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prueba examen</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div id="main">
+        <div id="listadoPeliculas"></div>
+
+        <div id="contenedorLateral">
+            <div id="favoritos">
+                <form id="formularioPeliculaFavorita">
+                    <h3>Guarda tus películas favoritas</h3>
+                    <div class="campoFormulario">
+                        <label for="inputNombre">Nombre:</label>
+                        <input type="text" name="nombre" id="inputNombre" />
+                    </div>
+                    <div class="campoFormulario">
+                        <label for="inputComentario">Comentario:</label>
+                        <input type="text" name="comentario" id="inputComentario" />
+                    </div>
+                    <div class="campoFormulario">
+                        <label for="inputPuntuacion">Puntuación:</label>
+                        <input type="number" name="puntuacion" id="inputPuntuacion" step="0.05"/>
+                    </div>
+                    <input type="button" value="Guardar" id="botonGuardarFavorito" />
+                    <input type="button" value="Mostrar favoritos" id="botonMostrarFavorito">
+                </form>
+            </div>
+            <div id="detallesPelicula">
+                <p>Selecciona una película para consultarla.</p>
+            </div>
+        </div>
+
+        <div id="contendorMostradorFavoritos">
+            <div id="mostradorFavoritos"></div>
+        </div>
+    </div>
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
