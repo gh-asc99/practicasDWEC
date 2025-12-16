@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import "./PeliculaDetalles.css";
+import PersonajeListado from "./PersonajeListado";
 
 const PeliculaDetalles = ({ peliculaSeleccionada, setPersonajeSeleccionado }) => {
     const [pelicula, setPelicula] = useState(null);
@@ -51,6 +52,7 @@ const PeliculaDetalles = ({ peliculaSeleccionada, setPersonajeSeleccionado }) =>
             <h4>Protagonistas:</h4>
             <div id="listaPersonajes">
                 {personajes.map((pj, index) => (
+                    /*
                     <a
                         key={index}
                         className="nombrePersonaje"
@@ -58,6 +60,8 @@ const PeliculaDetalles = ({ peliculaSeleccionada, setPersonajeSeleccionado }) =>
                     >
                         {pj.name}
                     </a>
+                    */
+                   <PersonajeListado name={pj.name} index={pj.url}/>
                 ))}
             </div>
         </div>
