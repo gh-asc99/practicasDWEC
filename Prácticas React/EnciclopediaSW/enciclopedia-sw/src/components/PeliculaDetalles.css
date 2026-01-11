@@ -1,28 +1,29 @@
-#tituloPelicula{
+#tituloPelicula {
     color: gold;
 
 }
 
-.detalles{
+.detalles {
     text-align: left;
     padding-left: 20px;
     padding-right: 20px;
 }
 
-h4 {
+h4,
+h2 {
     color: gold;
 }
 
-#listaPersonajes a{
-color: midnightblue;
-display: block;
-width: 200px;
-text-align: center;
-border: solid 2px black;
-border-radius: 5px;
-margin-top: 5px;
+#listaPersonajes a {
+    color: midnightblue;
+    display: block;
+    width: 200px;
+    text-align: center;
+    border: solid 2px black;
+    border-radius: 5px;
+    margin-top: 5px;
 }
 
-#listaPersonajes{
+#listaPersonajes {
     margin-bottom: 20px;
 }

@@ -1,47 +1,57 @@
-"use strict";
+import { useContext, useState } from "react";
+import { StarWarsContext } from "../context/StarWarsContext.jsx";
+import { cargarDatos } from "../functions/traerDatos.jsx";
 
-import { useEffect, useState } from "react";
-import "./Personaje.css";
-
-const Personaje = ({ personajeSeleccionado }) => {
-    const [personaje, setPersonaje] = useState(null);
-
-    useEffect(() => {
-        if (!personajeSeleccionado) return;
-
-        const cargarPersonaje = async () => {
-            try {
-                const respuesta = await fetch(personajeSeleccionado);
-                const datos = await respuesta.json();
-                setPersonaje(datos);
-
-            } catch (error) {
-                console.error("Error cargando personaje:", error);
-            }
-        };
-
-        cargarPersonaje();
-    }, [personajeSeleccionado]);
+const Personaje = () => {
+    const { personajeSeleccionado } = useContext(StarWarsContext);
+    const [naves, setNaves] = useState([]);
+    const [mostrar, setMostrar] = useState(false);
 
     if (!personajeSeleccionado) {
-        return <p>Selecciona un personaje para ver su información.</p>;
+        return <p>Selecciona un personaje</p>;
     }
 
-    if (!personaje) {
-        return <p>Cargando personaje...</p>;
-    }
+    const mostrarNaves = () => {
+        const urls = [
+            ...personajeSeleccionado.starships,
+            ...personajeSeleccionado.vehicles
+        ];
+
+        if (urls.length === 0) {
+            setNaves([]);
+            setMostrar(true);
+            return;
+        }
+
+        cargarDatos(urls).then(resultados => {
+            setNaves(
+                resultados
+                    .filter(r => r.status === "fulfilled")
+                    .map(r => r.value)
+            );
+            setMostrar(true);
+        });
+    };
 
     return (
-        <div id="personajeDetalles">
-            <h3>{personaje.name}</h3>
-            <div id="datosPersonaje">
-            <p><strong>Género:</strong> {personaje.gender}</p>
-            <p><strong>Altura:</strong> {personaje.height} cm</p>
-            <p><strong>Peso:</strong> {personaje.mass} kg</p>
-            <p><strong>Color de pelo:</strong> {personaje.hair_color}</p>
-            <p><strong>Color de ojos:</strong> {personaje.eye_color}</p>
-            </div>
-        </div>
+        <>
+            <h3>{personajeSeleccionado.name}</h3>
+            <p>Color de ojos: {personajeSeleccionado.eye_color}</p>
+            <p>Sexo: {personajeSeleccionado.gender}</p>
+            <p>Año de nacimiento: {personajeSeleccionado.birth_year}</p>
+            <button onClick={mostrarNaves}>Pilota</button>
+
+            {mostrar && (
+                naves.length > 0
+                    ? naves.map(n => (
+                        <div key={n.url}>
+                            <p><strong>{n.name}</strong></p>
+                            <p>Modelo: {n.model}</p>
+                        </div>
+                    ))
+                    : <p>No pilota naves ni vehículos</p>
+            )}
+        </>
     );
 };
 

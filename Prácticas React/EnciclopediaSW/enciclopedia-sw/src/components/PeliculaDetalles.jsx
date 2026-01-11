@@ -1,70 +1,47 @@
-"use strict";
-
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { StarWarsContext } from "../context/StarWarsContext.jsx";
+import { traerDatosSinResults, cargarDatos } from "../functions/traerDatos.jsx";
+import PersonajesListado from "./PersonajesListado.jsx";
 import "./PeliculaDetalles.css";
-import PersonajeListado from "./PersonajeListado";
 
-const PeliculaDetalles = ({ peliculaSeleccionada, setPersonajeSeleccionado }) => {
+const PeliculaDetalles = () => {
+    const { peliculaSeleccionada, setPersonajeSeleccionado } = useContext(StarWarsContext);
     const [pelicula, setPelicula] = useState(null);
     const [personajes, setPersonajes] = useState([]);
 
     useEffect(() => {
         if (!peliculaSeleccionada) return;
 
-        const cargarPelicula = async () => {
-            try {
-                const respuesta = await fetch(`https://swapi.py4e.com/api/films/${peliculaSeleccionada}/`);
-                const datos = await respuesta.json();
+        traerDatosSinResults(`https://swapi.py4e.com/api/films/${peliculaSeleccionada}/`)
+            .then(datos => {
                 setPelicula(datos);
-
-                const primerosDiez = datos.characters.slice(0, 10);
-
-                const promesas = primerosDiez.map(url => fetch(url).then(r => r.json()));
-                const personajesCargados = await Promise.all(promesas);
-
-                setPersonajes(personajesCargados);
-
-            } catch (error) {
-                console.error("Error cargando película:", error);
-            }
-        };
-
-        cargarPelicula();
+                return datos.characters.slice(0, 10);
+            })
+            .then(cargarDatos)
+            .then(resultados => {
+                setPersonajes(
+                    resultados
+                        .filter(r => r.status === "fulfilled")
+                        .map(r => r.value)
+                );
+            });
     }, [peliculaSeleccionada]);
 
-
-    if (!peliculaSeleccionada) {
-        return <p>Selecciona una película para ver sus detalles.</p>;
-    }
+    if (!peliculaSeleccionada) return <p>Selecciona una película</p>;
 
     if (!pelicula) {
         return <p>Cargando película...</p>;
     }
 
     return (
-        <div className="detalles">
-            <h2 id="tituloPelicula">{pelicula.title}</h2>
+        <>
+            <h2>{pelicula.title}</h2>
             <p>{pelicula.opening_crawl}</p>
-            <p><strong>Director:</strong> {pelicula.director}</p>
-            <p><strong>Productores:</strong> {pelicula.producer}</p>
-            <p><strong>Fecha estreno:</strong> {pelicula.release_date}</p>
-
-            <h4>Protagonistas:</h4>
-            <div id="listaPersonajes">
-                {personajes.map((pj, index) => (
-                    /*
-                    <a
-                        key={index}
-                        className="nombrePersonaje"
-                        onClick={() => setPersonajeSeleccionado(pj.url)}
-                    >
-                        {pj.name}
-                    </a>
-                    */
-                   <PersonajeListado name={pj.name} index={pj.url}/>
-                ))}
-            </div>
-        </div>
+            <PersonajesListado
+                personajes={personajes}
+                onSeleccionar={setPersonajeSeleccionado}
+            />
+        </>
     );
 };
 

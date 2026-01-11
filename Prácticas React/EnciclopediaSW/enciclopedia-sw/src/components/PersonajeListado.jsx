@@ -1,14 +1,15 @@
 "use strict";
 
-const PersonajeListado = (props) => {
-    const nombre = props.name;
-    const url = props.url;
-    
+const PersonajeListado = ({ personaje, onSeleccionar }) => {
     return (
-        <>
-            <a onClick={setPersonajeSeleccionado(url)}>{nombre}</a>
-        </>
+        <a
+            className="nombrePersonaje"
+            onClick={() => onSeleccionar(personaje)}
+        >
+            {personaje.name}
+
+        </a>
     );
 };
 
-export default PersonajeListado
+export default PersonajeListado;

@@ -1,0 +1,12 @@
+.nombrePersonaje {
+    display: block;
+    margin-bottom: 8px;
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}
+
+#listaPersonajes {
+    display: flex;
+    flex-direction: column;
+}
