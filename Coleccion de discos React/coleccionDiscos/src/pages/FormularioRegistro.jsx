@@ -1,9 +1,10 @@
 import "./FormularioRegistro.css";
 import CampoFormulario from "../components/Formulario/CampoFormulario.jsx";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const FormularioRegistro = () => {
     const [errores, setErrores] = useState([]);
+    const [exito, setExito] = useState(false);
 
     const validarFormulario = (evento) => {
         let listaErrores = [];
@@ -16,6 +17,10 @@ const FormularioRegistro = () => {
         if (validarInputCheckbox(inputsCheckbox)) listaErrores = [...listaErrores, validarInputCheckbox(inputsCheckbox)];
 
         setErrores(listaErrores);
+
+        if(listaErrores.length === 0){
+            evento.target.ParentNode.ParentNode; //div contenedorFormulario
+        }
         
     }
 
@@ -100,11 +105,15 @@ const FormularioRegistro = () => {
                         <input type="button" id="inputGuardar" value="Guardar" onClick={(evento) => { validarFormulario(evento); }} />
                     </form>
                 </div>
+                <div id="contenedorExito" className={exito ? "" : "oculto"}>
+
+                </div>
                 <div id="contenedorErrores" className={errores.length > 0 ? "" : "oculto"}>
                     {errores.map((error, index) => (
                         <p key={index}>{error}</p>
                     ))}
                 </div>
+
             </div>
         </>
     )
