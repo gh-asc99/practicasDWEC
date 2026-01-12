@@ -1,5 +1,5 @@
 import './App.css'
-import Contenedor from './components/contenedor.jsx'
+import Contenedor from './components/Contenedor.jsx'
 import Menu from "./components/Menu/Menu.jsx";
 import PieDePagina from './components/PieDePagina.jsx'
 import Rutas from './routes/Rutas.jsx'
