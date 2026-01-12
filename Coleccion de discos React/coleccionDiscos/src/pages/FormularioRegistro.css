@@ -1,0 +1,54 @@
+form {
+    display: flex;
+    flex-direction: column;
+    border: dashed 2px rgb(36, 126, 156);
+    border-radius: 5px;
+    background-color: lightblue;
+    padding: 10px 15px;
+}
+
+form div {
+    margin: 5px 0px;
+    align-self: flex-start;
+}
+
+form p {
+    align-self: flex-start;
+    margin-bottom: -2px;
+}
+
+.opcionesCampo {
+    display: flex;
+    gap: 10px;
+}
+
+#inputGuardar {
+    width: 30%;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#cuerpoInsertarDisco {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+#contenedorErrores{
+    color: red;
+    border: dashed 2px red;
+    padding: 10px 15px;
+    border-radius: 5px;
+    width: 30%;
+    text-align: left;
+}
+
+#contenedorErrores p {
+    margin-right: 0px;
+}
+
+.oculto {
+    display: none;
+}

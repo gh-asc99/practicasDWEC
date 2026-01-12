@@ -1,0 +1,13 @@
+h4 {
+    border: solid 2px rgb(73, 73, 73);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+li {
+    text-align: left;
+}
+
+p {
+    margin-right: 25vw;
+}

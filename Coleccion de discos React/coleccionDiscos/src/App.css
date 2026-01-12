@@ -1,0 +1,35 @@
+#root{
+  margin: 0auto;
+  text-align: center;
+  width: 100vw;
+}
+
+.estiloEncabezado{
+  background-color: lightblue;
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.estiloCuerpo{
+  height: 80vh;
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.estiloPieDePagina{
+  background-color: rgb(106, 115, 119);
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.estiloPieDePagina small{
+  margin: 0px 20px;
+  color: white;
+}

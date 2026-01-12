@@ -1,0 +1,16 @@
+.botonMenu {
+    box-sizing: border-box;
+    margin: 0px 50px;
+    padding: 5px;
+    background-color: rgb(91, 177, 206);
+    border-radius: 5px;
+    color: white;
+}
+
+.barraMenu{
+    background-color: rgb(36, 126, 156);
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
