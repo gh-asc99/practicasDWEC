@@ -1,6 +1,6 @@
-const ListadoDiscos = () => {
+const ListadoDiscos = (props) => {
 
-    
+
 
     return (
         <>
