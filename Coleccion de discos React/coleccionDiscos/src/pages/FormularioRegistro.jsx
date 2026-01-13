@@ -4,6 +4,16 @@ import { useEffect, useState } from "react";
 
 const FormularioRegistro = () => {
 
+    //localStorage.clear();
+
+    const cargarListadoDiscosLocalStorage = () => {
+        return JSON.parse(localStorage.getItem("listadoDiscos"));
+    }
+
+    const guardarListadoDiscosLocalStorage = () => {
+        localStorage.setItem("listadoDiscos", JSON.stringify(listadoDiscos));
+    }
+
     const mensajesError = {
         nombre: (
             <>
@@ -36,6 +46,9 @@ const FormularioRegistro = () => {
     const [errores, setErrores] = useState([]);
     const [exito, setExito] = useState(false);
 
+    const listadoRecuperado = cargarListadoDiscosLocalStorage();
+    const [listadoDiscos, setListadoDiscos] = useState(listadoRecuperado ? listadoRecuperado : []);
+
     const discoVacio = {
         nombre: "",
         caratula: "",
@@ -46,16 +59,14 @@ const FormularioRegistro = () => {
         prestado: ""
     };
 
-    const [disco, setDisco] = useState(discoVacio);
-
     const actualizarDisco = (inputsFormulario) => {
         const nuevoDisco = { ...discoVacio };
 
         let generos = [];
 
         inputsFormulario.map((input) => {
-            const { name, value, type, checked } = input;
-            if (type !== "checkbox") {
+            const { name, value, type } = input;
+            if (type === "text" || type === "url" || type === "number") {
                 nuevoDisco[name] = value;
             }
 
@@ -63,9 +74,13 @@ const FormularioRegistro = () => {
                 generos = [...generos, value];
                 nuevoDisco[name] = generos;
             }
+
+            if (type === "radio" && input.checked) {
+                nuevoDisco[name] = value;
+            }
         });
 
-        setDisco(nuevoDisco);
+        setListadoDiscos([...listadoDiscos, nuevoDisco]);
     }
 
     const validarFormulario = (evento) => {
@@ -102,6 +117,7 @@ const FormularioRegistro = () => {
         if (codigosError.length === 0) {
             setExito(true);
             actualizarDisco(inputsFormulario);
+
             formulario.reset();
         } else {
             setExito(false);
@@ -138,16 +154,19 @@ const FormularioRegistro = () => {
     };
 
     useEffect(() => {
-        setErrores([]);
-        setExito(false);
-    }, [])
+        const datos = cargarListadoDiscosLocalStorage();
+        if (datos) setListadoDiscos(datos);
+}, []);
+
+    useEffect(() => {
+        guardarListadoDiscosLocalStorage();
+    }, [listadoDiscos]);
 
     //pruebas
     useEffect(() => {
-        console.log("Disco actualizado:", disco);
-    }, [disco]);
+        console.log(listadoDiscos);
+    }, [listadoDiscos]);
     //pruebas
-
 
     return (
         <>
