@@ -1,30 +1,37 @@
 const CampoFormulario = (props) => {
+    const { inputsConError, campoID } = props;
     let contenido;
-    if (props.inputTipo === "text" || props.inputTipo === "number"){
-        if(props.inputNombre === "inputNombre" || props.inputNombre === "inputArtista"){
-        contenido = <div>
-                        <label htmlFor={props.inputNombre}>{props.campo}</label>
-                        <input type={props.inputTipo} name={props.inputNombre} id={props.inputNombre} required/>
-                    </div>;
+    if (props.inputTipo === "text" || props.inputTipo === "number") {
+        if (props.campoID === "inputNombre" || props.campoID === "inputArtista") {
+            contenido = <div className={inputsConError.includes(campoID) ? "error" : ""}>
+                <label htmlFor={props.inputNombre}>{props.campo}</label>
+                <input type={props.inputTipo} name={props.inputNombre} id={props.campoID} required />
+            </div>;
         } else {
-        contenido = <div>
-                        <label htmlFor={props.inputNombre}>{props.campo}</label>
-                        <input type={props.inputTipo} name={props.inputNombre} id={props.inputNombre} />
-                    </div>;
+            contenido = <div className={inputsConError.includes(campoID) ? "error" : ""}>
+                <label htmlFor={props.inputNombre}>{props.campo}</label>
+                <input type={props.inputTipo} name={props.inputNombre} id={props.campoID} />
+            </div>;
         }
     } else { //Para inputs de tipo checkbox o radio.
-        let valorID = props.inputID ? props.inputID : props.inputNombre;
         let valorFor = props.inputFor ? props.inputFor : props.inputNombre;
-        if(props.valor === "no"){
-        contenido = <div>
-                        <label htmlFor={valorFor}>{props.campo}</label>
-                        <input type={props.inputTipo} name={props.inputNombre} id={valorID} value={props.valor} defaultChecked/>
-                    </div>;
-        }else{
-        contenido = <div>
-                        <label htmlFor={valorFor}>{props.campo}</label>
-                        <input type={props.inputTipo} name={props.inputNombre} id={valorID} value={props.valor} />
-                    </div>;
+        if (props.inputTipo === "radio") {
+            if (props.valor === "no") {
+                contenido = <div>
+                    <label htmlFor={valorFor}>{props.campo}</label>
+                    <input type={props.inputTipo} name={props.inputNombre} id={props.campoID} value={props.valor} defaultChecked />
+                </div>;
+            } else {
+                contenido = <div>
+                    <label htmlFor={valorFor}>{props.campo}</label>
+                    <input type={props.inputTipo} name={props.inputNombre} id={props.campoID} value={props.valor} />
+                </div>;
+            }
+        } else {
+            contenido = <div className={inputsConError.includes(props.inputNombre) ? "error" : ""}>
+                <label htmlFor={valorFor}>{props.campo}</label>
+                <input type={props.inputTipo} name={props.inputNombre} id={props.campoID} value={props.valor} />
+            </div>;
         }
     }
     return (
