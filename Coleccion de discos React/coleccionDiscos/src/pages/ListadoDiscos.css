@@ -1,0 +1,6 @@
+#marcoListado {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: rgb(36, 126, 156);
+}

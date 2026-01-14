@@ -1,0 +1,25 @@
+#plantillaDisco{
+    display: flex;
+    padding: 10px 15px;
+    border-radius: 5px;
+    align-items: center;
+    background-color: lightblue;
+}
+
+#datosPrimarios{
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+#datosSecundarios{
+    text-align: left;
+}
+
+#portadaDisco{
+    width: 8vw;
+    height: 8vw;
+    border-radius: 5px;
+}
