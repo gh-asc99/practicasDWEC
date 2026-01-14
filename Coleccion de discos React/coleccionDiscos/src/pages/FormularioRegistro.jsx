@@ -1,18 +1,13 @@
 import "./FormularioRegistro.css";
 import CampoFormulario from "../components/Formulario/CampoFormulario.jsx";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ContextoDiscos } from "../context/ProveedorDiscos.jsx";
 
 const FormularioRegistro = () => {
 
+    const { listadoDiscos, addDisco, validarDisco } = useContext(ContextoDiscos)
+
     //localStorage.clear();
-
-    const cargarListadoDiscosLocalStorage = () => {
-        return JSON.parse(localStorage.getItem("listadoDiscos"));
-    }
-
-    const guardarListadoDiscosLocalStorage = () => {
-        localStorage.setItem("listadoDiscos", JSON.stringify(listadoDiscos));
-    }
 
     const mensajesError = {
         nombre: (
@@ -46,121 +41,37 @@ const FormularioRegistro = () => {
     const [errores, setErrores] = useState([]);
     const [exito, setExito] = useState(false);
 
-    const listadoRecuperado = cargarListadoDiscosLocalStorage();
-    const [listadoDiscos, setListadoDiscos] = useState(listadoRecuperado ? listadoRecuperado : []);
-
-    const discoVacio = {
-        nombre: "",
-        caratula: "",
-        artista: "",
-        fecha: "",
-        localizacion: "",
-        genero: [],
-        prestado: ""
-    };
-
-    const actualizarDisco = (inputsFormulario) => {
-        const nuevoDisco = { ...discoVacio };
-
-        let generos = [];
-
-        inputsFormulario.map((input) => {
-            const { name, value, type } = input;
-            if (type === "text" || type === "url" || type === "number") {
-                nuevoDisco[name] = value;
-            }
-
-            if (type === "checkbox" && input.checked) {
-                generos = [...generos, value];
-                nuevoDisco[name] = generos;
-            }
-
-            if (type === "radio" && input.checked) {
-                nuevoDisco[name] = value;
-            }
-        });
-
-        setListadoDiscos([...listadoDiscos, nuevoDisco]);
-    }
-
     const validarFormulario = (evento) => {
         const formulario = evento.target.form;
-        const inputsFormulario = Array.from(formulario.elements)
-            .filter(el => el.type !== "button");
+        const disco = obtenerDatosFormulario(formulario);
 
-        const inputsTextNumber = inputsFormulario
-            .filter(el => el.type === "text" || el.type === "number");
+        const errores = validarDisco(disco);
+        setInputsConError(errores);
 
-        const inputsCheckbox = inputsFormulario
-            .filter(el => el.type === "checkbox");
-
-        let codigosError = [];
-        let idsError = [];
-
-        inputsTextNumber.map((input) => {
-            const codigo = validarInputTextNumber(input);
-            if (codigo) {
-                codigosError = [...codigosError, codigo];
-                idsError = [...idsError, input.id];
-            }
-        });
-
-        const errorGenero = validarInputCheckbox(inputsCheckbox);
-        if (errorGenero) {
-            codigosError = [...codigosError, errorGenero];
-            idsError = [...idsError, errorGenero];//linea cambiada e incluida
-        }
-
-        setErrores(codigosError);
-        setInputsConError(idsError);
-
-        if (codigosError.length === 0) {
+        if (errores.length === 0) {
+            setErrores([]);
+            addDisco(disco);
             setExito(true);
-            actualizarDisco(inputsFormulario);
-
             formulario.reset();
         } else {
+            setErrores(errores);
             setExito(false);
         }
     };
 
+    const obtenerDatosFormulario = (formulario) => {
+        const formData = new FormData(formulario);
 
-    const validarInputCheckbox = (listaCheckbox) => {
-        const marcado = listaCheckbox.some(input => input.checked);
-        if (!marcado) return "genero";
+        return {
+            nombre: formData.get("nombre"),
+            caratula: formData.get("caratula"),
+            artista: formData.get("artista"),
+            fecha: Number(formData.get("fecha")),
+            localizacion: formData.get("localizacion"),
+            genero: formData.getAll("genero"),
+            prestado: formData.get("prestado")
+        };
     };
-
-    const validarInputTextNumber = (input) => {
-        let error = "";
-
-        if (input.type === "text") {
-            if (input.id === "inputLocalizacion") {
-                const pattern = new RegExp("^ES-[0-9]{3}[A-Z]{2}$");
-                if (!pattern.test(input.value)) {
-                    error = "localizacion";
-                }
-            } else {
-                if (input.value.length < 5) {
-                    error = input.id === "inputNombre" ? "nombre" : "artista";
-                }
-            }
-        } else if (input.type === "number") {
-            if (input.value < 1000 || input.value > 9999) {
-                error = "fecha";
-            }
-        }
-
-        return error;
-    };
-
-    useEffect(() => {
-        const datos = cargarListadoDiscosLocalStorage();
-        if (datos) setListadoDiscos(datos);
-}, []);
-
-    useEffect(() => {
-        guardarListadoDiscosLocalStorage();
-    }, [listadoDiscos]);
 
     //pruebas
     useEffect(() => {

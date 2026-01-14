@@ -1,4 +1,5 @@
 const DiscoDetalles = (disco) => {
+    
     return (
         <>
             <div id="plantillaDisco">

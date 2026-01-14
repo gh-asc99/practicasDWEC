@@ -3,12 +3,12 @@ const CampoFormulario = (props) => {
     let contenido;
     if (props.inputTipo === "text" || props.inputTipo === "number") {
         if (props.campoID === "inputNombre" || props.campoID === "inputArtista") {
-            contenido = <div className={inputsConError.includes(campoID) ? "error" : ""}>
+            contenido = <div className={inputsConError.includes(props.inputNombre) ? "error" : ""}>
                 <label htmlFor={props.inputNombre}>{props.campo}</label>
                 <input type={props.inputTipo} name={props.inputNombre} id={props.campoID} required />
             </div>;
         } else {
-            contenido = <div className={inputsConError.includes(campoID) ? "error" : ""}>
+            contenido = <div className={inputsConError.includes(props.inputNombre) ? "error" : ""}>
                 <label htmlFor={props.inputNombre}>{props.campo}</label>
                 <input type={props.inputTipo} name={props.inputNombre} id={props.campoID} />
             </div>;
