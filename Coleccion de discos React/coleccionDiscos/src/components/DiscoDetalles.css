@@ -1,17 +1,53 @@
 #plantillaDisco{
     display: flex;
+    flex-direction: column;
     padding: 10px 15px;
     border-radius: 5px;
-    align-items: center;
     background-color: lightblue;
+    
 }
 
-#datosPrimarios{
-    width: 50vw;
+#datosPrimarios {
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 5px;
+    width: 100%;
     display: flex;
-    justify-content: center;
     gap: 20px;
     align-items: center;
+    padding: 10px 15px;
+}
+
+#detallesPrimarios {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#detallesNombreArtista h4 {
+    margin: 0;
+    border: dashed 2px rgb(36, 126, 156);
+    color: rgb(36, 126, 156);
+}
+
+#detallesNombreArtista p {
+    margin: 0;
+    white-space: nowrap;
+}
+
+#detallesNombreArtista {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+#detallesGenero {
+    background-color: rgb(36, 126, 156);
+    border-radius: 5px;
+    color: white;
 }
 
 #datosSecundarios{
@@ -22,4 +58,26 @@
     width: 8vw;
     height: 8vw;
     border-radius: 5px;
+}
+
+#botones {
+    margin-left: auto;
+}
+
+#botones img {
+    width: 5vw;
+}
+
+#datosSecundarios {
+    display: flex;
+}
+
+#datosSecundarios p {
+    display: flex;
+    gap: 5px;
+    margin: 10px 20px 5px 0px;
+}
+
+#datosSecundarios.oculto {
+    display: none;
 }

@@ -1,5 +1,6 @@
 const CampoFormulario = (props) => {
-    const { inputsConError, campoID } = props;
+    let { inputsConError } = props;
+    if(!inputsConError) inputsConError = [];
     let contenido;
     if (props.inputTipo === "text" || props.inputTipo === "number") {
         if (props.campoID === "inputNombre" || props.campoID === "inputArtista") {

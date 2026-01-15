@@ -1,29 +1,35 @@
-#root{
-  margin: 0auto;
+#root {
+  margin: 0 auto;
   text-align: center;
   width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.estiloEncabezado{
+/* ENCABEZADO */
+.estiloEncabezado {
   background-color: lightblue;
   height: 15vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
-.estiloCuerpo{
-  color:black;
-  height: 80vh;
+.estiloCuerpo {
+  flex: 1;
+  color: black;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: white;
+  overflow-y: auto;
 }
 
-.estiloPieDePagina{
+.estiloPieDePagina {
   background-color: rgb(106, 115, 119);
   height: 5vh;
   display: flex;
@@ -31,7 +37,7 @@
   align-items: center;
 }
 
-.estiloPieDePagina small{
+.estiloPieDePagina small {
   margin: 0px 20px;
   color: white;
 }
