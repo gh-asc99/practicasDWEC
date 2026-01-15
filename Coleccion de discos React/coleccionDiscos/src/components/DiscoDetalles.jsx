@@ -6,6 +6,15 @@ import { useState } from "react";
 const DiscoDetalles = ({ datos }) => {
     const [ocultar, setOcultar] = useState(true);
     let generosFormateados = arrayToString(datos.genero);
+        const { listadoDiscos } = useContext(ContextoDiscos);
+
+    const {nombreEliminado, setNombreEliminado} = useState("");
+
+    const eliminarDiscoListado = (nombre) => {
+        const nuevoListado = [];
+        nuevoListado = [...nuevoListado, listadoDiscos];
+
+    }
 
     return (
         <>
@@ -23,7 +32,7 @@ const DiscoDetalles = ({ datos }) => {
                             </div>
                         </div>
                         <div id="botones">
-                            <img src={papelera} alt="Eliminar disco" />
+                            <img src={papelera} alt="Eliminar disco" onClick={(evento) => { setNombreEliminado(datos.nombre) }}/>
                         </div>
                     </div>
                     <div id="datosSecundarios" className={ocultar ? "oculto" : ""}>
