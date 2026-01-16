@@ -3,9 +3,11 @@ import CampoFormulario from "../components/Formulario/CampoFormulario.jsx";
 import { useContext, useEffect, useState } from "react";
 import { ContextoDiscos } from "../context/ProveedorDiscos.jsx";
 import { useParams } from "react-router-dom";
-
+import { useNavigate } from 'react-router-dom';
 
 const FormularioRegistro = () => {
+
+    const navigate = useNavigate();
 
     const [disco, setDisco] = useState({
         nombre: "",
@@ -55,6 +57,18 @@ const FormularioRegistro = () => {
     const [errores, setErrores] = useState([]);
     const [exito, setExito] = useState(false);
 
+    const volverAListado = () => {
+        if(modoEdicion){
+            if(exito){
+                navigate('/listadoDiscos');
+            }
+        }
+    };
+
+    const recargarPagina = () => {
+        navigate('.', { replace: true });
+    }
+
     const validarFormulario = () => {
         const errores = validarDisco(disco);
         setInputsConError(errores);
@@ -64,7 +78,7 @@ const FormularioRegistro = () => {
             setInputsConError([]);
             guardarOActualizarDisco({
                 ...disco,
-                id: modoEdicion ? Number(id) : undefined
+                id: modoEdicion ? id : ""
             });
             setExito(true);
         } else {
@@ -101,6 +115,10 @@ const FormularioRegistro = () => {
             }
         }
     }, [modoEdicion, id, listadoDiscos]);
+
+    useEffect(() => {
+        volverAListado();
+    }, [disco]);
 
     return (
         <>

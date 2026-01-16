@@ -18,6 +18,7 @@ const ListadoDiscos = () => {
         return <img src={gifCargando} alt="Cargando..." />;
     }
 
+    //hacer ternaria con estado que o devuelve outlet o no devueleve nada (dentro de div "margenOutlet")
     return (
         <>
             <div id="cuerpoListadoDiscos">
