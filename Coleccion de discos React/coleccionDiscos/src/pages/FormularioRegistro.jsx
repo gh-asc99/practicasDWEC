@@ -2,12 +2,26 @@ import "./FormularioRegistro.css";
 import CampoFormulario from "../components/Formulario/CampoFormulario.jsx";
 import { useContext, useEffect, useState } from "react";
 import { ContextoDiscos } from "../context/ProveedorDiscos.jsx";
+import { useParams } from "react-router-dom";
+
 
 const FormularioRegistro = () => {
 
-    const { listadoDiscos, addDisco, validarDisco } = useContext(ContextoDiscos)
+    const [disco, setDisco] = useState({
+        nombre: "",
+        caratula: "",
+        artista: "",
+        fecha: "",
+        localizacion: "",
+        genero: [],
+        prestado: ""
+    });
 
-    //localStorage.clear();
+
+    const { validarDisco, guardarOActualizarDisco, obtenerDiscoPorId, listadoDiscos } = useContext(ContextoDiscos);
+
+    const { id } = useParams();
+    const modoEdicion = Boolean(id);
 
     const mensajesError = {
         nombre: (
@@ -41,76 +55,97 @@ const FormularioRegistro = () => {
     const [errores, setErrores] = useState([]);
     const [exito, setExito] = useState(false);
 
-    const validarFormulario = (evento) => {
-        const formulario = evento.target.form;
-        const disco = obtenerDatosFormulario(formulario);
-
+    const validarFormulario = () => {
         const errores = validarDisco(disco);
         setInputsConError(errores);
 
         if (errores.length === 0) {
             setErrores([]);
-            addDisco(disco);
+            setInputsConError([]);
+            guardarOActualizarDisco({
+                ...disco,
+                id: modoEdicion ? Number(id) : undefined
+            });
             setExito(true);
-            formulario.reset();
         } else {
             setErrores(errores);
             setExito(false);
         }
     };
 
-    const obtenerDatosFormulario = (formulario) => {
-        const formData = new FormData(formulario);
+    const handleChange = (evento) => {
+        const { name, value, type, checked } = evento.target;
 
-        return {
-            nombre: formData.get("nombre"),
-            caratula: formData.get("caratula"),
-            artista: formData.get("artista"),
-            fecha: Number(formData.get("fecha")),
-            localizacion: formData.get("localizacion"),
-            genero: formData.getAll("genero"),
-            prestado: formData.get("prestado")
-        };
+        setDisco(discoPrevio => {
+            if (type === "checkbox") {
+                return {
+                    ...discoPrevio,
+                    genero: checked
+                        ? [...discoPrevio.genero, value]
+                        : discoPrevio.genero.filter(g => g !== value)
+                };
+            }
+
+            return {
+                ...discoPrevio,
+                [name]: type === "number" ? Number(value) : value
+            };
+        });
     };
 
-    //pruebas
     useEffect(() => {
-        console.log(listadoDiscos);
-    }, [listadoDiscos]);
-    //pruebas
+        if (modoEdicion) {
+            const discoEditar = obtenerDiscoPorId(id);
+            if (discoEditar) {
+                setDisco(discoEditar);
+            }
+        }
+    }, [modoEdicion, id, listadoDiscos]);
 
     return (
         <>
             <div id="cuerpoInsertarDisco">
                 <div id="contenedorFormulario">
-                    <h4>Registro de nuevo disco</h4>
+                    <h4>{modoEdicion ? "Editar disco" : "Registro de nuevo disco"}</h4>
                     <form>
-                        <CampoFormulario inputsConError={inputsConError} inputNombre="nombre" inputTipo="text" campo="Nombre: " campoID="inputNombre" ></CampoFormulario>
-                        <CampoFormulario inputsConError={inputsConError} inputNombre="caratula" inputTipo="url" campo="Carátula: " campoID="inputCaratula"></CampoFormulario>
-                        <CampoFormulario inputsConError={inputsConError} inputNombre="artista" inputTipo="text" campo="Grupo/Intérprete: " campoID="inputArtista"></CampoFormulario>
-                        <CampoFormulario inputsConError={inputsConError} inputNombre="fecha" inputTipo="number" campo="Año de publicación: " campoID="inputFecha"></CampoFormulario>
-                        <CampoFormulario inputsConError={inputsConError} inputNombre="localizacion" inputTipo="text" campo="Localización: " campoID="inputLocalizacion"></CampoFormulario>
+                        <CampoFormulario inputsConError={inputsConError} inputNombre="nombre" inputTipo="text" campo="Nombre: " campoID="inputNombre" valor={disco.nombre} onChange={(evento) => handleChange(evento)} />
+                        <CampoFormulario inputsConError={inputsConError} inputNombre="caratula" inputTipo="url" campo="Carátula: " campoID="inputCaratula" valor={disco.caratula} onChange={(evento) => handleChange(evento)} />
+                        <CampoFormulario inputsConError={inputsConError} inputNombre="artista" inputTipo="text" campo="Grupo/Intérprete: " campoID="inputArtista" valor={disco.artista} onChange={(evento) => handleChange(evento)} />
+                        <CampoFormulario inputsConError={inputsConError} inputNombre="fecha" inputTipo="number" campo="Año de publicación: " campoID="inputFecha" valor={disco.fecha} onChange={(evento) => handleChange(evento)} />
+                        <CampoFormulario inputsConError={inputsConError} inputNombre="localizacion" inputTipo="text" campo="Localización: " campoID="inputLocalizacion" valor={disco.localizacion} onChange={(evento) => handleChange(evento)} />
                         <p><strong>Género de música:</strong></p>
                         <div className="opcionesCampo">
-                            <CampoFormulario inputsConError={inputsConError} inputNombre="genero" inputTipo="checkbox" campo="Rap" valor="rap" campoID="inputGeneroRap"></CampoFormulario>
-                            <CampoFormulario inputsConError={inputsConError} inputNombre="genero" inputTipo="checkbox" campo="Rock" valor="rock" campoID="inputGeneroRock"></CampoFormulario>
-                            <CampoFormulario inputsConError={inputsConError} inputNombre="genero" inputTipo="checkbox" campo="Pop" valor="pop" campoID="inputGeneroPop"></CampoFormulario>
-                            <CampoFormulario inputsConError={inputsConError} inputNombre="genero" inputTipo="checkbox" campo="Indie" valor="indie" campoID="inputGeneroIndie"></CampoFormulario>
-                            <CampoFormulario inputsConError={inputsConError} inputNombre="genero" inputTipo="checkbox" campo="Trap" valor="trap" campoID="inputGeneroTrap"></CampoFormulario>
-                            <CampoFormulario inputsConError={inputsConError} inputNombre="genero" inputTipo="checkbox" campo="Urbana" valor="urbana" campoID="inputGeneroUrbana"></CampoFormulario>
+                            <CampoFormulario inputsConError={inputsConError} inputNombre="genero" inputTipo="checkbox" campo="Rap" valor="rap" campoID="inputGeneroRap" checked={disco.genero.includes("rap")} onChange={(evento) => handleChange(evento)} />
+                            <CampoFormulario inputsConError={inputsConError} inputNombre="genero" inputTipo="checkbox" campo="Rock" valor="rock" campoID="inputGeneroRock" checked={disco.genero.includes("rock")} onChange={(evento) => handleChange(evento)} />
+                            <CampoFormulario inputsConError={inputsConError} inputNombre="genero" inputTipo="checkbox" campo="Pop" valor="pop" campoID="inputGeneroPop" checked={disco.genero.includes("pop")} onChange={(evento) => handleChange(evento)} />
+                            <CampoFormulario inputsConError={inputsConError} inputNombre="genero" inputTipo="checkbox" campo="Indie" valor="indie" campoID="inputGeneroIndie" checked={disco.genero.includes("indie")} onChange={(evento) => handleChange(evento)} />
+                            <CampoFormulario inputsConError={inputsConError} inputNombre="genero" inputTipo="checkbox" campo="Trap" valor="trap" campoID="inputGeneroTrap" checked={disco.genero.includes("trap")} onChange={(evento) => handleChange(evento)} />
+                            <CampoFormulario inputsConError={inputsConError} inputNombre="genero" inputTipo="checkbox" campo="Urbana" valor="urbana" campoID="inputGeneroUrbana" checked={disco.genero.includes("urbana")} onChange={(evento) => handleChange(evento)} />
                         </div>
                         <p><strong>Disco prestado:</strong></p>
                         <div className="opcionesCampo">
-                            <CampoFormulario inputsConError={inputsConError} inputNombre="prestado" inputFor="opcionSi" inputTipo="radio" campo="Sí" valor="si" campoID="inputSi"></CampoFormulario>
-                            <CampoFormulario inputsConError={inputsConError} inputNombre="prestado" inputFor="opcionNo" inputTipo="radio" campo="No" valor="no" campoID="inputNo"></CampoFormulario>
+                            <CampoFormulario inputsConError={inputsConError} inputNombre="prestado" inputFor="opcionSi" inputTipo="radio" campo="Sí" valor="si" campoID="inputSi" checked={disco.prestado === "si"} onChange={(evento) => handleChange(evento)}></CampoFormulario>
+                            <CampoFormulario inputsConError={inputsConError} inputNombre="prestado" inputFor="opcionNo" inputTipo="radio" campo="No" valor="no" campoID="inputNo" checked={disco.prestado === "no"} onChange={(evento) => handleChange(evento)}></CampoFormulario>
                         </div>
-                        <input type="button" id="inputGuardar" value="Guardar" onClick={(evento) => { validarFormulario(evento); }} />
+                        <input type="button" id="inputGuardar" value={modoEdicion ? "Actualizar datos" : "Guardar"}
+                            onClick={() => validarFormulario()} />
                     </form>
                 </div>
 
                 <div id="contenedorExito" className={exito ? "" : "oculto"}>
-                    <h4>El disco ha sido almacenado correctamente</h4>
-                    <p>Ahora puedes consultarlo en <em>Listar discos</em>.</p>
+                    <h4>
+                        {modoEdicion
+                            ? "El disco ha sido actualizado correctamente"
+                            : "El disco ha sido almacenado correctamente"}
+                    </h4>
+
+                    {modoEdicion ? (
+                        <p>Recarga la página para ver el nuevo listado.</p>
+                    ) : (
+                        <p>
+                            Ahora puedes consultarlo en <em>Listar discos</em>.
+                        </p>
+                    )}
                 </div>
 
                 <div id="contenedorErrores" className={errores.length > 0 ? "" : "oculto"}>

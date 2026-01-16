@@ -4,19 +4,21 @@ const ContextoDiscos = createContext();
 
 const ProveedorDiscos = ({ children }) => {
 
-    const cargarListadoDiscosLocalStorage = () => {
-        return JSON.parse(localStorage.getItem("listadoDiscos"));
-    }
+    const API_URL = "http://localhost:3000/discos";
 
-    const guardarListadoDiscosLocalStorage = () => {
-        localStorage.setItem("listadoDiscos", JSON.stringify(listadoDiscos));
-    }
+    const [listadoDiscos, setListadoDiscos] = useState([]);
+    const [cargando, setCargando] = useState(true);
 
-    const listadoRecuperado = cargarListadoDiscosLocalStorage();
-    const [listadoDiscos, setListadoDiscos] = useState(listadoRecuperado ? listadoRecuperado : []);
+    const obtenerDiscoPorId = (id) => {
+        return listadoDiscos.find(disco => disco.id === id);
+    };
 
-    const addDisco = (disco) => {
-        setListadoDiscos(listadoPrevio => [...listadoPrevio, disco]);
+    const guardarOActualizarDisco = (disco) => {
+        if (disco.id) {
+            return actualizarDisco(disco);
+        } else {
+            return guardarDisco(disco);
+        }
     };
 
     const validarDisco = (disco) => {
@@ -41,16 +43,57 @@ const ProveedorDiscos = ({ children }) => {
         return errores;
     };
 
+    const cargarDiscos = async () => {
+        try {
+            setCargando(true);
+            const respuesta = await fetch(API_URL);
+            const datos = await respuesta.json();
+            setListadoDiscos(datos);
+        } catch (error) {
+            console.error("Error al cargar discos:", error);
+        } finally {
+            setCargando(false);
+        }
+    };
+
+    const guardarDisco = async (disco) => {
+        const respuesta = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(disco)
+        });
+
+        const nuevoDisco = await respuesta.json();
+        setListadoDiscos(prev => [...prev, nuevoDisco]);
+    };
+
+    const eliminarDisco = async (id) => {
+        await fetch(`${API_URL}/${id}`, {
+            method: "DELETE"
+        });
+
+        setListadoDiscos(discoPrevio =>
+            discoPrevio.filter(disco => disco.id !== id)
+        );
+    };
+
+    const actualizarDisco = async (disco) => {
+        await fetch(`${API_URL}/${disco.id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(disco)
+        });
+
+        setListadoDiscos(discoPrevio =>
+            discoPrevio.map(elemento => elemento.id === disco.id ? disco : elemento)
+        );
+    };
+
     useEffect(() => {
-        const datos = cargarListadoDiscosLocalStorage();
-        if (datos) setListadoDiscos(datos);
+        cargarDiscos();
     }, []);
 
-    useEffect(() => {
-        guardarListadoDiscosLocalStorage();
-    }, [listadoDiscos]);
-
-    const elementosExportados = { listadoDiscos, addDisco, validarDisco };
+    const elementosExportados = { listadoDiscos, cargando, guardarDisco, validarDisco, eliminarDisco, actualizarDisco, obtenerDiscoPorId, guardarOActualizarDisco};
 
     return (
         <ContextoDiscos value={elementosExportados}>{children}</ContextoDiscos>

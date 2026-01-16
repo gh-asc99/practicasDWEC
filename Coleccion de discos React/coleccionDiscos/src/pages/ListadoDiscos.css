@@ -11,8 +11,9 @@
     text-align: left;
 }
 
-#buscadorListado input{
+#buscadorListado #inputBuscador{
     width: 40%;
+    margin-right: 10px;
 }
 
 #contenedorListado {
@@ -20,4 +21,33 @@
     flex-direction: column;
     gap: 10px;
     width: 50vw;
+}
+
+#cuerpoCompleto {
+    display: flex;
+    gap: 20px;
+}
+
+#margenOutlet {
+    flex: 1;
+    max-width: 100%;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.formularioEnListado #cuerpoInsertarDisco {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.formularioEnListado #contenedorErrores,
+.formularioEnListado #contenedorExito {
+    width: 100%;
+    max-width: 500px;
+}
+
+.oculto {
+    display: none;
 }

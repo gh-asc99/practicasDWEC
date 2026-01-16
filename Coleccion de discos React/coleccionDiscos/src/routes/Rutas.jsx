@@ -9,7 +9,9 @@ const Rutas = () => {
             <Routes>
                 <Route path="/" element={<Inicio/>}/>
                 <Route path="/registroDisco" element={<FormularioRegistro/>}/>
-                <Route path="/listadoDiscos" element={<ListadoDiscos/>}/>
+                <Route path="/listadoDiscos" element={<ListadoDiscos/>}>
+                    <Route path=":id" element={<FormularioRegistro />} />
+                </Route>
             </Routes>
         </>
     )

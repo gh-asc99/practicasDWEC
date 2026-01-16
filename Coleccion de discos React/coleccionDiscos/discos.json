@@ -1,0 +1,83 @@
+{
+  "discos": [
+    {
+      "nombre": "One more light",
+      "caratula": "https://sgfm.elcorteingles.es/SGFM/dctm/MEDIA03/201705/11/00105111452537____1__640x640.jpg",
+      "artista": "Linkin Park",
+      "fecha": 2017,
+      "localizacion": "ES-001AF",
+      "genero": [
+        "rock",
+        "rap"
+      ],
+      "prestado": "no",
+      "id": "1"
+    },
+    {
+      "id": "4899",
+      "nombre": "Cowboys de la A3",
+      "caratula": "https://rocksesion.com/wp-content/uploads/2023/05/arde-bogota-e28093-cowboys-de-la-a3-rocksesion.jpg",
+      "artista": "Arde Bogotá",
+      "fecha": 2023,
+      "localizacion": "ES-000AA",
+      "genero": [
+        "rock",
+        "pop",
+        "indie"
+      ],
+      "prestado": "no"
+    },
+    {
+      "id": "5000",
+      "nombre": "Under the mistletoe",
+      "caratula": "https://m.media-amazon.com/images/I/71WTcKzH4rL.jpg",
+      "artista": "Justin Bieber",
+      "fecha": 2011,
+      "localizacion": "ES-000AB",
+      "genero": [
+        "pop"
+      ],
+      "prestado": "no"
+    },
+    {
+      "id": "3106",
+      "nombre": "Changes",
+      "caratula": "https://m.media-amazon.com/images/I/B1GaWRbLdmL._UF894,1000_QL80_.jpg",
+      "artista": "Justin Bieber",
+      "fecha": 2020,
+      "localizacion": "ES-000AC",
+      "genero": [
+        "rock",
+        "pop",
+        "trap"
+      ],
+      "prestado": "si"
+    },
+    {
+      "id": "b4c6",
+      "nombre": "Positions",
+      "caratula": "https://upload.wikimedia.org/wikipedia/en/a/a0/Ariana_Grande_-_Positions.png",
+      "artista": "Ariana Grande",
+      "fecha": 2020,
+      "localizacion": "ES-000AD",
+      "genero": [
+        "pop",
+        "trap"
+      ],
+      "prestado": "si"
+    },
+    {
+      "id": "b359",
+      "nombre": "Eternal sunshine",
+      "caratula": "https://www.lahiguera.net/musicalia/artistas/ariana_grande/disco/13290/ariana_grande_eternal_sunshine-portada.jpg",
+      "artista": "Ariana Grande",
+      "fecha": 2024,
+      "localizacion": "ES-000AE",
+      "genero": [
+        "rock",
+        "pop"
+      ],
+      "prestado": "si"
+    }
+  ]
+}

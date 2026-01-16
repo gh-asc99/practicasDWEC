@@ -1,38 +1,38 @@
 import { arrayToString } from "../functions/biblioteca.js";
 import "./DiscoDetalles.css";
 import papelera from "../assets/img/papelera.png";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ContextoDiscos } from "../context/ProveedorDiscos.jsx";
+import { Link } from "react-router-dom";
 
 const DiscoDetalles = ({ datos }) => {
     const [ocultar, setOcultar] = useState(true);
     let generosFormateados = arrayToString(datos.genero);
-        const { listadoDiscos } = useContext(ContextoDiscos);
-
-    const {nombreEliminado, setNombreEliminado} = useState("");
-
-    const eliminarDiscoListado = (nombre) => {
-        const nuevoListado = [];
-        nuevoListado = [...nuevoListado, listadoDiscos];
-
-    }
+    const { eliminarDisco} = useContext(ContextoDiscos);
 
     return (
         <>
             <div id="plantillaCompleta">
                 <div id="plantillaDisco">
                     <div id="datosPrimarios">
-                        <img id="portadaDisco" src={datos.caratula} alt="Portada del disco" onClick={() => {setOcultar(!ocultar);}}/>
-                        <div id="detallesPrimarios" onClick={() => {setOcultar(!ocultar);}}>
+                        <img id="portadaDisco" src={datos.caratula} alt="Portada del disco" onClick={() => { setOcultar(!ocultar); }} />
+                        <div id="detallesPrimarios" onClick={() => { setOcultar(!ocultar); }}>
                             <div id="detallesNombreArtista">
                                 <h4>{datos.nombre}</h4>
-                                <p>de <strong>{datos.artista}</strong></p>
+                                <p>de <strong>{datos.artista}.</strong></p>
                             </div>
                             <div id="detallesGenero">
                                 <small><strong>Género/s: </strong>{generosFormateados}</small>
                             </div>
                         </div>
                         <div id="botones">
-                            <img src={papelera} alt="Eliminar disco" onClick={(evento) => { setNombreEliminado(datos.nombre) }}/>
+                            <div id="botonEditar">
+                                <Link to={`/listadoDiscos/${datos.id}`}>Editar</Link>
+                            </div>
+                            <img src={papelera} alt="Eliminar disco" onClick={() => {
+                                let pregunta = confirm(`¿Estas seguro/a de borrar el disco ${datos.nombre}?`);
+                                if (pregunta) { eliminarDisco(datos.id); }
+                            }} />
                         </div>
                     </div>
                     <div id="datosSecundarios" className={ocultar ? "oculto" : ""}>

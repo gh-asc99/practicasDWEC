@@ -36,24 +36,25 @@ form p {
     gap: 40px;
 }
 
+
+#contenedorErrores,
+#contenedorExito {
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+}
+
 #contenedorErrores{
-    color: red;
-    border: dashed 2px red;
-    padding: 10px 15px;
-    border-radius: 5px;
-    width: 30vw;
     text-align: left;
+    color: red;
+}
+
+#contenedorExito{
+    color: green;
 }
 
 #contenedorErrores p {
     margin-right: 0px;
-}
-
-#contenedorExito{
-    color: rgb(66, 182, 66);
-    width: 30vw;
-    padding: 12px 17px;
-    text-align: center;
 }
 
 #contenedorExito h4 {
