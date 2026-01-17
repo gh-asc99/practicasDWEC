@@ -1,7 +1,7 @@
 import "./FormularioRegistro.css";
 import CampoFormulario from "../components/Formulario/CampoFormulario.jsx";
-import { useContext, useEffect, useState } from "react";
-import { ContextoDiscos } from "../context/ProveedorDiscos.jsx";
+import { useEffect, useState } from "react";
+import useDiscos from "../hooks/useDisco.js";
 import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
@@ -19,8 +19,7 @@ const FormularioRegistro = () => {
         prestado: ""
     });
 
-
-    const { validarDisco, guardarOActualizarDisco, obtenerDiscoPorId, listadoDiscos } = useContext(ContextoDiscos);
+    const { validarDisco, guardarOActualizarDisco, obtenerDiscoPorId, listadoDiscos } = useDiscos();
 
     const { id } = useParams();
     const modoEdicion = Boolean(id);
@@ -58,16 +57,12 @@ const FormularioRegistro = () => {
     const [exito, setExito] = useState(false);
 
     const volverAListado = () => {
-        if(modoEdicion){
-            if(exito){
+        if (modoEdicion) {
+            if (exito) {
                 navigate('/listadoDiscos');
             }
         }
     };
-
-    const recargarPagina = () => {
-        navigate('.', { replace: true });
-    }
 
     const validarFormulario = () => {
         const errores = validarDisco(disco);

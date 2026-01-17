@@ -11,15 +11,15 @@ function App() {
     <>
       <Contenedor className="estiloEncabezado">
         <h3>Colección de discos</h3>
-        <Menu/>
+        <Menu />
       </Contenedor>
       <Contenedor className="estiloCuerpo">
         <ProveedorDiscos>
-          <Rutas/>
+          <Rutas />
         </ProveedorDiscos>
       </Contenedor>
       <Contenedor className="estiloPieDePagina">
-        <PieDePagina autor="Alejandro Soler Cruz" asignatura="Desarrollo Web en Entorno Cliente" curso="2º DAW"/>
+        <PieDePagina autor="Alejandro Soler Cruz" asignatura="Desarrollo Web en Entorno Cliente" curso="2º DAW" />
       </Contenedor>
     </>
   )

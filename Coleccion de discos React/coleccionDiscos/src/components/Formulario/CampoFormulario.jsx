@@ -1,5 +1,4 @@
 const CampoFormulario = (props) => {
-
     const inputsConError = props.inputsConError ? props.inputsConError : [];
 
     if (

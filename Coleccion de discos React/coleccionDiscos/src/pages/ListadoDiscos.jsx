@@ -1,14 +1,13 @@
-import { useState, useContext } from "react";
-import { ContextoDiscos } from "../context/ProveedorDiscos.jsx";
+import { useState } from "react";
+import useDiscos from "../hooks/useDisco.js";
 import DiscoDetalles from "../components/DiscoDetalles.jsx";
 import "./ListadoDiscos.css";
 import gifCargando from "../assets/img/cargando.gif";
 import { Outlet } from "react-router-dom";
 
-
 const ListadoDiscos = () => {
     const [busqueda, setBusqueda] = useState("");
-    const { listadoDiscos, cargando} = useContext(ContextoDiscos);
+    const { listadoDiscos, cargando} = useDiscos();
 
     const discosFiltrados = listadoDiscos.filter((disco) =>
         disco.nombre.toLowerCase().includes(busqueda.toLowerCase())
@@ -18,7 +17,6 @@ const ListadoDiscos = () => {
         return <img src={gifCargando} alt="Cargando..." />;
     }
 
-    //hacer ternaria con estado que o devuelve outlet o no devueleve nada (dentro de div "margenOutlet")
     return (
         <>
             <div id="cuerpoListadoDiscos">

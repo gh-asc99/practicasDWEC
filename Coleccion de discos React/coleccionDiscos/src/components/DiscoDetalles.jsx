@@ -1,14 +1,14 @@
 import { arrayToString } from "../functions/biblioteca.js";
 import "./DiscoDetalles.css";
 import papelera from "../assets/img/papelera.png";
-import { useState, useContext } from "react";
-import { ContextoDiscos } from "../context/ProveedorDiscos.jsx";
+import { useState } from "react";
+import useDiscos from "../hooks/useDisco.js";
 import { Link } from "react-router-dom";
 
 const DiscoDetalles = ({ datos }) => {
     const [ocultar, setOcultar] = useState(true);
     let generosFormateados = arrayToString(datos.genero);
-    const { eliminarDisco} = useContext(ContextoDiscos);
+    const { eliminarDisco } = useDiscos();
 
     return (
         <>
