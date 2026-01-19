@@ -1,0 +1,15 @@
+nav{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 5px 10px;
+}
+
+.botonMenu {
+    background-color: green;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    width: 100px;
+    text-align: center;
+}

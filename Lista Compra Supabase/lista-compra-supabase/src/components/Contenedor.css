@@ -1,0 +1,42 @@
+.cabecera{
+    box-sizing: border-box;
+    background-color: lightgreen;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    color: green;
+    padding: 0px 15px;
+    justify-content: space-between;
+}
+
+.iniciarSesion{
+    box-sizing: border-box;
+    background-color: white;
+    font-size: small;
+    color: black;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0px 15px;
+    border-radius: 5px;
+}
+
+.cuerpo{
+    background-color: rgb(255, 237, 138);
+    color: black;
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.piePagina{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+    color: white;
+}
+
+.piePagina small {
+    margin: 0px 20px;
+}
