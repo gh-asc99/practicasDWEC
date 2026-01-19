@@ -6,7 +6,9 @@ const Menu = () => {
         <>
             <nav>
                 <Link className="botonMenu" to="/">Inicio</Link>
-                <Link className="botonMenu" to="/nuevoListado">Nueva lista</Link>
+                <Link className="botonMenu" to="/nuevoProducto">Nuevo producto</Link>
+                <Link className="botonMenu" to="/misProductos">Mis productos</Link>
+                <Link className="botonMenu" to="/nuevoListado">Nuevo listado</Link>
                 <Link className="botonMenu" to="/misListas">Mis listas</Link>
             </nav>
         </>

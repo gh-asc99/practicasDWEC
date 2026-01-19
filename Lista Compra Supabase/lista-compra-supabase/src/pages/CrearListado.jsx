@@ -2,7 +2,7 @@ const CrearListado = () => {
     return (
         <>
             <div>
-                <h3>Aquí crearás tu nuevo listado.</h3>
+                <h3>Aquí meteria el formulario de creación de lista.</h3>
             </div>
         </>
     )
