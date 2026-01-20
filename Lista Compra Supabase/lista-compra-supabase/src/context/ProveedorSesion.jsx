@@ -1,10 +1,13 @@
-import { useContext } from "react"
+import { createContext } from "react"
+import { useNavigate } from "react-router-dom";
 
-const ContextoSesion = useContext();
+const ContextoSesion = createContext();
 
-const ProveedorSesion = () => {
+const ProveedorSesion = ({children}) => {
 
-    const elementosExportados = {};
+    const navegar = useNavigate();
+
+    const elementosExportados = { navegar };
     return(
         <ContextoSesion value={elementosExportados}>{children}</ContextoSesion>
     )

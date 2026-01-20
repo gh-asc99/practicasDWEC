@@ -4,6 +4,7 @@ import CrearListado from "../pages/CrearListado.jsx";
 import VerListados from "../pages/VerListados.jsx";
 import CrearProducto from "../pages/CrearProducto.jsx";
 import VerProductos from "../pages/VerProductos.jsx";
+import InicioSesionRegistro from "../pages/InicioSesionRegistro.jsx";
 
 const Rutas = () => {
     return(
@@ -14,6 +15,7 @@ const Rutas = () => {
                 <Route path="/misListas" element={<VerListados/>}/>
                 <Route path="/nuevoProducto" element={<CrearProducto/>}/>
                 <Route path="/misProductos" element={<VerProductos/>}/>
+                <Route path="/accesoApp" element={<InicioSesionRegistro/>}/>
             </Routes>
         </>
     )
