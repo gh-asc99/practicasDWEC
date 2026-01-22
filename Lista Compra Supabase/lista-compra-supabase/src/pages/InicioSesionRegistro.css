@@ -1,0 +1,41 @@
+#cuerpoInicioRegistro{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 80vw;
+}
+
+
+#marcoRegistro{
+    width: 400px;
+}
+
+#marcoLogin{
+    width: 400px;
+}
+
+#marcoRegistro form{
+    box-sizing: border-box;
+    background-color: lightgreen;
+    border-radius: 5px;
+    padding: 10px 15px;
+    text-align: left;
+}
+
+.campoFormulario{
+    margin-bottom: 10px;
+}
+
+.botonFormulario{
+    display: flex;
+    justify-content: center;
+}
+
+#marcoLogin form{
+    box-sizing: border-box;
+    color: white;
+    background-color: rgb(94, 165, 94);
+    border-radius: 5px;
+    padding: 10px 15px;
+    text-align: left;
+}
