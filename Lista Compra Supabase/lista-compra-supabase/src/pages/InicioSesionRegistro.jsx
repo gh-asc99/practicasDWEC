@@ -1,21 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./InicioSesionRegistro.css";
+import { ContextoSesion } from "../context/ProveedorSesion.jsx";
 
 const InicioSesionRegistro = () => {
 
-    const datosFormularioRegistro = {
-        "nombre": "",
-        "correo": "",
-        "password": ""
-    }
-
-    const [datosRegistro, setDatosRegistro] = useState(datosFormularioRegistro);
-
-    const actualizarDatoRegistro = (valor, nombre) => {
-        let datosRecogidos = datosRegistro;
-        datosRecogidos[nombre] = valor;
-        setDatosRegistro(datosRecogidos);
-    }
+    const { actualizarDatoRegistro, actualizarDatoLogin, registrarUsuario, iniciarSesion } = useContext(ContextoSesion);
 
     return (
         <>
@@ -42,7 +31,10 @@ const InicioSesionRegistro = () => {
                             }}/>
                         </div>
                         <div className="botonFormulario">
-                            <input type="button" value="Registrarme" />
+                            <input type="button" value="Registrarme" onClick={() => {
+                                registrarUsuario();
+
+                            }}/>
                         </div>
                     </form>
                 </div>
@@ -50,15 +42,21 @@ const InicioSesionRegistro = () => {
                     <h2>Accede a la App</h2>
                     <form>
                         <div className="campoFormulario">
-                            <label htmlFor="inputEmail"><strong>Correo: </strong></label>
-                            <input type="email" name="inputEmail" id="inputEmailLogin" />
+                            <label htmlFor="correo"><strong>Correo: </strong></label>
+                            <input type="email" name="correo" id="inputEmailLogin" onChange={(evento) => {
+                                actualizarDatoLogin(evento.target.value, evento.target.name)
+                            }}/>
                         </div>
                         <div className="campoFormulario">
-                            <label htmlFor="inputPassword"><strong>Contraseña: </strong></label>
-                            <input type="password" name="inputPassword" id="inputPasswordLogin" />
+                            <label htmlFor="password"><strong>Contraseña: </strong></label>
+                            <input type="password" name="password" id="inputPasswordLogin" onChange={(evento) => {
+                                actualizarDatoLogin(evento.target.value, evento.target.name)
+                            }}/>
                         </div>
                         <div className="botonFormulario">
-                            <input type="button" value="Acceder" />
+                            <input type="button" value="Acceder" onClick={() => {
+                                iniciarSesion();
+                            }}/>
                         </div>
                     </form>
                 </div>
