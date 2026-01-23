@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
 import "./InicioSesionRegistro.css";
 import { ContextoSesion } from "../context/ProveedorSesion.jsx";
+import Aviso from "../components/Aviso.jsx";
 
 const InicioSesionRegistro = () => {
 
-    const { actualizarDatoRegistro, actualizarDatoLogin, registrarUsuario, iniciarSesion } = useContext(ContextoSesion);
+    const { actualizarDatoRegistro, actualizarDatoLogin, registrarUsuario, iniciarSesion, navegar, mostrarAviso } = useContext(ContextoSesion);
 
     return (
         <>
@@ -33,7 +34,7 @@ const InicioSesionRegistro = () => {
                         <div className="botonFormulario">
                             <input type="button" value="Registrarme" onClick={() => {
                                 registrarUsuario();
-
+                                mostrarAviso();
                             }}/>
                         </div>
                     </form>
@@ -56,10 +57,12 @@ const InicioSesionRegistro = () => {
                         <div className="botonFormulario">
                             <input type="button" value="Acceder" onClick={() => {
                                 iniciarSesion();
+                                navegar("/");
                             }}/>
                         </div>
                     </form>
                 </div>
+                <Aviso titulo="Confirmación de correo." descripcion = "Si el correo que has usado es válido, deberá llegarte un nuevo correo a tu email con el enlace de confirmación para activar tu cuenta."/>
             </div>
         </>
     )

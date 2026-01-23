@@ -1,0 +1,16 @@
+.contenedorAviso{
+    box-sizing: border-box;
+    border: solid 2px lightcoral;
+    background-color: wheat;
+    color: red;
+    position: absolute;
+    padding: 10px 15px;
+    border-radius: 5px;
+    width: 300px;
+    top: 70px;
+    left: 310px;
+}
+
+.oculto{
+    display: none;
+}

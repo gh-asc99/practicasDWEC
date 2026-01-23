@@ -2,15 +2,15 @@ import Contenedor from "./Contenedor.jsx"
 import { useContext } from "react";
 import { ContextoSesion } from "../context/ProveedorSesion.jsx";
 
-const ContenedorIniciarSesion = (props) => {
-    const { navegar } = useContext(ContextoSesion);
+const ContenedorCerrarSesion = (props) => {
+    const { navegar, cerrarSesion } = useContext(ContextoSesion);
     return (
         <>
             <Contenedor titulo={props.titulo} clase={props.clase}>
-                <input type="button" value="Registro e inicio de sesión" onClick={() => {navegar("/accesoApp")}}/>
+                <input type="button" value="Cerrar sesión" onClick={() => {cerrarSesion(); navegar("/bienvenida")}}/>
             </Contenedor>
         </>
     )
 }
 
-export default ContenedorIniciarSesion;
+export default ContenedorCerrarSesion;

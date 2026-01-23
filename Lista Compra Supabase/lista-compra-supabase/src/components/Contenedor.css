@@ -21,6 +21,17 @@
     border-radius: 5px;
 }
 
+.cerrarSesion{
+    box-sizing: border-box;
+    font-size: small;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0px 15px;
+    border-radius: 5px;
+}
+
 .cuerpo {
     box-sizing: border-box;
     background-color: rgb(255, 237, 138);
