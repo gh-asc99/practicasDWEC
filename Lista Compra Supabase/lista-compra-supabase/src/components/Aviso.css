@@ -1,5 +1,18 @@
 .contenedorAviso{
     box-sizing: border-box;
+    border: solid 2px rgb(94, 165, 94);
+    background-color: lightgoldenrodyellow;
+    color: rgb(94, 165, 94);
+    position: absolute;
+    padding: 10px 15px;
+    border-radius: 5px;
+    width: 300px;
+    top: 70px;
+    left: 310px;
+}
+
+.error{
+        box-sizing: border-box;
     border: solid 2px lightcoral;
     background-color: wheat;
     color: red;
@@ -13,4 +26,14 @@
 
 .oculto{
     display: none;
+}
+
+.avisoRegistro {
+    top: 70px;
+    left: 310px;
+}
+
+.avisoLogin {
+    top: 110px;
+    left: 930px;
 }

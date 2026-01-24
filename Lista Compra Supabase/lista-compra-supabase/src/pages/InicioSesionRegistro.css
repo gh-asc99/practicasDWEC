@@ -24,11 +24,22 @@
 
 .campoFormulario{
     margin-bottom: 10px;
+    text-align: right;
+    margin-right: 20%;
+}
+
+#cuerpoInicioRegistro h3, h2{
+    color: rgb(155, 137, 47);
+}
+
+#formularioRegistro .campoFormulario{
+    color: rgb(94, 165, 94);
 }
 
 .botonFormulario{
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 
 #marcoLogin form{
