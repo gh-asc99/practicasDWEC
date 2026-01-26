@@ -1,11 +1,13 @@
 import { createContext } from "react"
+import useProducto from "../hooks/useProducto.js";
 
 const ContextoProducto = createContext();
 
-const ProveedorProducto = () => {
-    const elementosExportados = {};
+const ProveedorProducto = ({children}) => {
+
+    const producto = useProducto();
     return(
-        <ContextoProducto value={elementosExportados}>{children}</ContextoProducto>
+        <ContextoProducto.Provider value={producto}>{children}</ContextoProducto.Provider>
     )
 }
 

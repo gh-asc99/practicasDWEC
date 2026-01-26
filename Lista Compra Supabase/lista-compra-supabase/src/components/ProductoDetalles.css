@@ -1,0 +1,17 @@
+.plantillaProducto{
+    background-color: rgb(94, 165, 94);
+    display: flex;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    color: white;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+    gap: 20px;
+    border-radius: 5px;
+}
+
+.plantillaProducto img{
+    height: 100px;
+    border-radius: 5px;
+}

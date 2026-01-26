@@ -4,20 +4,23 @@ import ContenedorEstadoSesion from './components/ContenedorEstadoSesion.jsx'
 import ContenedorPiePagina from './components/ContenedorPiePagina.jsx'
 import Menu from './components/Menu/Menu.jsx'
 import SaludoUsuario from './components/SaludoUsuario.jsx'
+import ProveedorProducto from './context/ProveedorProducto.jsx'
 import Rutas from './routes/Rutas.jsx'
 
 function App() {
- return (
+  return (
     <>
       <Contenedor titulo="Lista de la compra APP" clase="cabecera">
-        <SaludoUsuario/>
-        <ContenedorEstadoSesion/>
+        <SaludoUsuario />
+        <ContenedorEstadoSesion />
       </Contenedor>
-      <Menu/>
+      <Menu />
       <Contenedor clase="cuerpo">
-        <Rutas/>
+        <ProveedorProducto>
+          <Rutas />
+        </ProveedorProducto>
       </Contenedor>
-      <ContenedorPiePagina clase="piePagina"/>
+      <ContenedorPiePagina clase="piePagina" />
     </>
   )
 }

@@ -9,11 +9,11 @@
     padding: 5px;
 }
 
-ul li{
+#cuerpoInicio ul li{
     font-size: 13px;
     text-align: left;
 }
 
-ul{
+#cuerpoInicio ul{
     width: 500px;
 }
