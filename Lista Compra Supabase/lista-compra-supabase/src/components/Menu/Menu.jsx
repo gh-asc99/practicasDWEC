@@ -17,9 +17,12 @@ const Menu = () => {
                     <Link className="botonMenu" to="/misListas">Mis listas</Link>
                 </>
             ) : (
-                <Link className="botonMenu" to="/bienvenida">
-                    Bienvenida a la APP
-                </Link>
+            <>
+                <Link className="botonMenu" to="/bienvenida">Bienvenida a la APP</Link>
+                <Link className="botonMenu" to="/misProductos">Mis productos</Link>
+            </>
+
+
             )}
         </nav>
     );

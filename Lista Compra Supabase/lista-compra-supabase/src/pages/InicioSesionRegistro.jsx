@@ -54,7 +54,7 @@ const InicioSesionRegistro = () => {
                 </div>
                 <div id="marcoLogin">
                     <h2>Accede a la App</h2>
-                    <form>
+                    <form id="formularioLogin">
                         <div className="campoFormulario">
                             <label htmlFor="correo"><strong>Correo: </strong></label>
                             <input type="email" name="correo" id="inputEmailLogin" onChange={(evento) => {
