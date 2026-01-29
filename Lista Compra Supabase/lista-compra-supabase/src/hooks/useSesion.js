@@ -124,7 +124,9 @@ const useSesion = () => {
         setDatosLogin(prev => ({ ...prev, [nombre]: valor }));
     };
 
-    useEffect(() => {
+    
+/*
+    useEffect(() => { //pasar al contexto los useEffect aquellas tarea que quiero que se ejecute una sola vez
         comprobarSesion();
 
         const { data: listener } = supabase.auth.onAuthStateChange(
@@ -141,11 +143,12 @@ const useSesion = () => {
 
         return () => listener.subscription.unsubscribe();
     }, []);
-
+*/
     return {
         usuarioLogueado,
         nombreUsuario,
         aviso,
+        comprobarSesion,
         registrarUsuario,
         iniciarSesion,
         cerrarSesion,
