@@ -1,11 +1,73 @@
 import useProducto from "../hooks/useProducto.js";
 import "./CrearProducto.css";
+import { ContextoAviso } from "../context/ProveedorAviso.jsx";
+import { useContext } from "react";
 
 const CrearProducto = () => {
 
-    const { actualizarDatoProducto } = useProducto();
+    const { productoCreado, actualizarDatoProducto } = useProducto();
 
+    const { mostrarAviso } = useContext(ContextoAviso);
 
+        const erroresFormularioProducto = {
+        nombre: "El nombre del producto debe contener 5 carácteres como mínimo.",
+        descripcion: "La descripción del producto debe contener 25 carácteres como mínimo.",
+        peso: "El peso del producto debe ser mayor que 0.",
+        precio: "El precio del producto debe ser mayor que 0.",
+        categoria: "Debes seleccionar alguna categoría para el producto.",
+        imagen: "La descripción del producto"
+    }
+
+    const comprobarProductoFormulario = () => {
+        let erroresFormulario = [];
+        const producto = productoCreado;
+
+        if (producto['nombre'].length < 5) {
+            erroresFormulario = [...erroresFormulario, erroresFormularioProducto['nombre']]
+            mostrarAviso({
+                tipo: "error",
+                titulo: "Campo no válido",
+                mensaje: erroresFormularioProducto['nombre']
+            });
+        } else if (producto['descripcion'].length < 25) {
+            formularioValido = false;
+            mostrarAviso({
+                tipo: "error",
+                titulo: "Campo no válido",
+                mensaje: erroresFormularioProducto['descripcion']
+            });
+        } else if (producto['peso'].length <= 0) {
+            formularioValido = false;
+            mostrarAviso({
+                tipo: "error",
+                titulo: "Campo no válido",
+                mensaje: erroresFormularioProducto['peso']
+            });
+        } else if (producto['precio'].length <= 0) {
+            formularioValido = false;
+            mostrarAviso({
+                tipo: "error",
+                titulo: "Campo no válido",
+                mensaje: erroresFormularioProducto['precio']
+            });
+        } else if (producto['categoria'] == null) {
+            formularioValido = false;
+            mostrarAviso({
+                tipo: "error",
+                titulo: "Campo no válido",
+                mensaje: erroresFormularioProducto['categoria']
+            });
+        } else if (URL.canParse(producto['imagen'])) {
+            formularioValido = false;
+            mostrarAviso({
+                tipo: "error",
+                titulo: "Campo no válido",
+                mensaje: erroresFormularioProducto['imagen']
+            });
+        }
+
+        return formularioValido;
+    }
 
     return (
         <>
@@ -45,12 +107,19 @@ const CrearProducto = () => {
                         </div>
                         <div id="botonGuardar">
                             <input type="button" value="Guardar producto" onClick={() => {
-                                if (comprobarFormulario()){
+                                if (comprobarProductoFormulario()){
                                     agregarProductoSupabase();
-                                    //lanzar aviso de exito
+                                    mostrarAviso({
+                                            tipo: "exito",
+                                            titulo: "Producto registrado correctamente",
+                                            mensaje: "La lista de productos almacenados ha sido actualizada."
+                                        });
                                 } else{
-                                    //lanzar error
-                                    //lanzar aviso de error
+                                    mostrarAviso({
+                                            tipo: "error",
+                                            titulo: "Fallo al registrar un nuevo producto",
+                                            mensaje: "Comprueba que has rellenado el formulario de creación del producto correctamente."
+                                        });
                                 }
                             }}/>
                         </div>

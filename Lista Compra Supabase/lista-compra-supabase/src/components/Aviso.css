@@ -1,30 +1,27 @@
-.contenedorAviso{
+.aviso {
     box-sizing: border-box;
+    padding: 10px 15px;
+    position: absolute;
+    bottom: 2%;
+    right: 2%;
+    width: 400px;
+}
+
+.aviso-exito {
     border: solid 2px rgb(94, 165, 94);
     background-color: lightgoldenrodyellow;
     color: rgb(94, 165, 94);
-    position: absolute;
-    padding: 10px 15px;
     border-radius: 5px;
-    width: 300px;
-    top: 70px;
-    left: 310px;
 }
 
-.error{
-        box-sizing: border-box;
+.aviso-error {
     border: solid 2px lightcoral;
     background-color: wheat;
     color: red;
-    position: absolute;
-    padding: 10px 15px;
     border-radius: 5px;
-    width: 300px;
-    top: 70px;
-    left: 310px;
 }
 
-.oculto{
+.oculto {
     display: none;
 }
 

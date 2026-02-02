@@ -15,11 +15,7 @@ const useProducto = () => {
     const [productoCreado, setProductoCreado] = useState(objetoProducto);
     const [listaProductos, setListaProductos] = useState([]);
 
-    const comprobarProductoFormulario = () => {
-        if(productoCreado['nombre'].length > 5){
-            
-        }
-    }
+
 
     const actualizarDatoProducto = (campo, valor) => {
         setProductoCreado(previo => ({ ...previo, [campo]: valor }))

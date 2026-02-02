@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabase/config.js";
 
@@ -81,6 +81,10 @@ const useSesion = () => {
     const actualizarDatoLogin = (valor, nombre) => {
         setDatosLogin(prev => ({ ...prev, [nombre]: valor }));
     };
+
+    useEffect(() => {
+        comprobarSesion();
+    }, []);
 
     return {
         usuarioLogueado,

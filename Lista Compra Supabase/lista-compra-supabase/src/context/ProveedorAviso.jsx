@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext } from "react";
 import Aviso from "../components/Aviso.jsx";
 import useAviso from "../hooks/useAviso.js";
 
@@ -7,7 +7,7 @@ const ContextoAviso = createContext();
 export const ProveedorAviso = ({ children }) => {
 
     const contenidoAviso = useAviso();
-    const{aviso, ocultarAviso} = useAviso();
+    const{aviso, ocultarAviso} = contenidoAviso;
 
     return (
         <ContextoAviso.Provider value={contenidoAviso}>
