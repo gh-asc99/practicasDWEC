@@ -2,13 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { ContextoProducto } from "../context/ProveedorProducto.jsx";
 import ProductoDetalles from "../components/ProductoDetalles.jsx";
 import "./VerProductos.css";
-import { ContextoSesion } from "../context/ProveedorSesion.jsx";
+import useSesion from "../hooks/useSesion.js";
 
 const VerProductos = () => {
-    const { traerProductosSupabase,
-        listaProductos } = useContext(ContextoProducto);
+    const { traerProductosSupabase, listaProductos } = useContext(ContextoProducto);
 
-    const { usuarioLogueado } = useContext(ContextoSesion);
+    const { usuarioLogueado, comprobarSesion } = useSesion();
 
     const [filtroActivo, setFiltroActivo] = useState("nombre");
     const [ordenActivo, setOrdenActivo] = useState("");
@@ -73,6 +72,7 @@ const VerProductos = () => {
 
     useEffect(() => {
         traerProductosSupabase();
+        comprobarSesion();
     }, []);
 
     return (

@@ -1,11 +1,13 @@
 import { useContext, useState } from "react";
 import "./InicioSesionRegistro.css";
 import { ContextoSesion } from "../context/ProveedorSesion.jsx";
-import Aviso from "../components/Aviso.jsx";
+import useAviso from "../hooks/useAviso.js";
 
 const InicioSesionRegistro = () => {
 
-    const { actualizarDatoRegistro, actualizarDatoLogin, registrarUsuario, iniciarSesion, navegar, mostrarAvisoError, mostrarAvisoMensaje } = useContext(ContextoSesion);
+    const { mostrarAviso } = useAviso();
+
+    const { actualizarDatoRegistro, actualizarDatoLogin, registrarUsuario, iniciarSesion, navegar} = useContext(ContextoSesion);
 
     return (
         <>
@@ -38,14 +40,18 @@ const InicioSesionRegistro = () => {
                                 onClick={async () => {
                                     const ok = await registrarUsuario();
                                     if (ok) {
-                                        mostrarAvisoMensaje(
-                                            "registro",
-                                            "Confirmación de correo",
-                                            "Si el correo es válido, recibirás un enlace de confirmación."
-                                        );
+                                        mostrarAviso({
+                                            tipo: "exito",
+                                            titulo: "Registro correcto",
+                                            mensaje: "Revisa tu correo para confirmar la cuenta"
+                                        });
                                     } else {
-                                        mostrarAvisoError("registro");
-                                        
+                                        mostrarAviso({
+                                            tipo: "error",
+                                            titulo: "Registro fallido",
+                                            mensaje: "Comprueba que has rellenado los datos del formulario de registro de forma correcta."
+                                        });
+
                                     }
                                 }}
                             />
@@ -76,7 +82,11 @@ const InicioSesionRegistro = () => {
                                     if (ok) {
                                         navegar("/");
                                     } else {
-                                        mostrarAvisoError("iniciarSesion");
+                                            mostrarAviso({
+                                            tipo: "error",
+                                            titulo: "Login fallido",
+                                            mensaje: "Comprueba que has rellenado los datos del formulario de inicio de sesión de forma correcta."
+                                        });
                                     }
                                 }}
                             />
@@ -84,7 +94,6 @@ const InicioSesionRegistro = () => {
                         </div>
                     </form>
                 </div>
-                <Aviso tipo="mensaje" titulo="Confirmación de correo." descripcion="Si el correo que has usado es válido, deberá llegarte un nuevo correo a tu email con el enlace de confirmación para activar tu cuenta." />
             </div>
         </>
     )

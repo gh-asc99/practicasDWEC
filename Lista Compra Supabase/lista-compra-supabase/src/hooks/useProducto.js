@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "../supabase/config.js";
 
 const useProducto = () => {
@@ -15,11 +15,17 @@ const useProducto = () => {
     const [productoCreado, setProductoCreado] = useState(objetoProducto);
     const [listaProductos, setListaProductos] = useState([]);
 
+    const comprobarProductoFormulario = () => {
+        if(productoCreado['nombre'].length > 5){
+            
+        }
+    }
+
     const actualizarDatoProducto = (campo, valor) => {
         setProductoCreado(previo => ({ ...previo, [campo]: valor }))
     }
 
-    const agregarProducto = async (producto) => {
+    const agregarProductoSupabase = async (producto) => {
         const { data, error } = await supabase.from('producto').insert([
             {
                 nombre: producto.nombre,
@@ -48,12 +54,11 @@ const useProducto = () => {
     }
 
 
-
     return {
         objetoProducto,
         productoCreado,
         actualizarDatoProducto,
-        agregarProducto,
+        agregarProductoSupabase,
         traerProductosSupabase,
         listaProductos
     }

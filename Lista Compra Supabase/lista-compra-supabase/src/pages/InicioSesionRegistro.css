@@ -22,7 +22,10 @@
     text-align: left;
 }
 
-
+#formularioRegistro{
+    border: solid 2px rgb(94, 165, 94);
+    border-radius: 5px;
+}
 
 #cuerpoInicioRegistro h3,
 h2 {

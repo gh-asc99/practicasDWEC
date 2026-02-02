@@ -1,27 +1,12 @@
-import { useContext } from "react";
 import "./Aviso.css";
-import { ContextoSesion } from "../context/ProveedorSesion.jsx";
-
-const Aviso = () => {
-    const { aviso, ocultarAviso } = useContext(ContextoSesion);
-
-    if (!aviso.visible) return null;
-
-    const claseBase =
-        aviso.tipo === "mensaje" ? "contenedorAviso" : "error";
-
-    const clasePosicion =
-        aviso.origen === "registro" ? "avisoRegistro" : "avisoLogin";
+const Aviso = ({ visible, tipo, titulo, mensaje, onClose }) => {
+    if (!visible) return null;
 
     return (
-        <div className={`${claseBase} ${clasePosicion}`}>
-            <h4>{aviso.titulo}</h4>
-            <p>{aviso.descripcion}</p>
-            <input
-                type="button"
-                value="De acuerdo"
-                onClick={ocultarAviso}
-            />
+        <div className={`aviso aviso-${tipo}`}>
+            <h4>{titulo}</h4>
+            <p>{mensaje}</p>
+            <button onClick={onClose}>Cerrar</button>
         </div>
     );
 };

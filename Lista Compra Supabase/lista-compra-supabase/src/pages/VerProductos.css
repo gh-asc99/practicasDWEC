@@ -1,10 +1,12 @@
 #cuerpoVerProductos{
     color: rgb(155, 137, 47);
     width: 100%;
+
 }
 
 #tituloPagina{
-    margin-left: 53%;
+    margin-left: auto;
+    margin-right: auto;
     border: solid 2px;
     width: 300px;
     border-radius: 5px;
@@ -66,6 +68,7 @@ margin-right: auto;
 #marcoListado{
     width: 100%;
     display: flex;
+    justify-content: center;
     gap: 15px;
 }
 
@@ -79,4 +82,9 @@ margin-bottom: 20px;
     justify-content: space-around;
     background-color: white;
     border-radius: 0px 0px 5px 5px;
+}
+
+#seccionListado{
+        border: solid 2px rgb(94, 165, 94);
+        border-radius: 5px;
 }
