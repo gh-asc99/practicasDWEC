@@ -4,7 +4,8 @@
     position: absolute;
     bottom: 2%;
     right: 2%;
-    width: 400px;
+    width: 550px;
+    white-space: pre-line;
 }
 
 .aviso-exito {
@@ -23,14 +24,4 @@
 
 .oculto {
     display: none;
-}
-
-.avisoRegistro {
-    top: 70px;
-    left: 330px;
-}
-
-.avisoLogin {
-    top: 110px;
-    left: 970px;
 }

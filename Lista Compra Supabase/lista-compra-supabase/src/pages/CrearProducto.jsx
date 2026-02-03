@@ -5,64 +5,42 @@ import { useContext } from "react";
 
 const CrearProducto = () => {
 
-    const { productoCreado, actualizarDatoProducto } = useProducto();
+    const { productoCreado, actualizarDatoProducto, agregarProductoSupabase, erroresFormularioProducto } = useProducto();
 
     const { mostrarAviso } = useContext(ContextoAviso);
 
-        const erroresFormularioProducto = {
-        nombre: "El nombre del producto debe contener 5 carácteres como mínimo.",
-        descripcion: "La descripción del producto debe contener 25 carácteres como mínimo.",
-        peso: "El peso del producto debe ser mayor que 0.",
-        precio: "El precio del producto debe ser mayor que 0.",
-        categoria: "Debes seleccionar alguna categoría para el producto.",
-        imagen: "La descripción del producto"
-    }
 
     const comprobarProductoFormulario = () => {
+        let formularioValido = true;
         let erroresFormulario = [];
         const producto = productoCreado;
 
         if (producto['nombre'].length < 5) {
             erroresFormulario = [...erroresFormulario, erroresFormularioProducto['nombre']]
-            mostrarAviso({
-                tipo: "error",
-                titulo: "Campo no válido",
-                mensaje: erroresFormularioProducto['nombre']
-            });
-        } else if (producto['descripcion'].length < 25) {
+        }
+        if (producto['descripcion'].length < 25) {
+            erroresFormulario = [...erroresFormulario, erroresFormularioProducto['descripcion']]
+        }
+        if (producto['peso'] <= 0) {
+            erroresFormulario = [...erroresFormulario, erroresFormularioProducto['peso']]
+        }
+        if (producto['precio'] <= 0) {
+            erroresFormulario = [...erroresFormulario, erroresFormularioProducto['precio']]
+        }
+        if (!producto['categoria']) {
+            erroresFormulario = [...erroresFormulario, erroresFormularioProducto['categoria']]
+        }
+        if (!URL.canParse(producto['imagen'])) {
+            erroresFormulario = [...erroresFormulario, erroresFormularioProducto['imagen']]
+        }
+
+        if (erroresFormulario.length) {
             formularioValido = false;
             mostrarAviso({
                 tipo: "error",
-                titulo: "Campo no válido",
-                mensaje: erroresFormularioProducto['descripcion']
-            });
-        } else if (producto['peso'].length <= 0) {
-            formularioValido = false;
-            mostrarAviso({
-                tipo: "error",
-                titulo: "Campo no válido",
-                mensaje: erroresFormularioProducto['peso']
-            });
-        } else if (producto['precio'].length <= 0) {
-            formularioValido = false;
-            mostrarAviso({
-                tipo: "error",
-                titulo: "Campo no válido",
-                mensaje: erroresFormularioProducto['precio']
-            });
-        } else if (producto['categoria'] == null) {
-            formularioValido = false;
-            mostrarAviso({
-                tipo: "error",
-                titulo: "Campo no válido",
-                mensaje: erroresFormularioProducto['categoria']
-            });
-        } else if (URL.canParse(producto['imagen'])) {
-            formularioValido = false;
-            mostrarAviso({
-                tipo: "error",
-                titulo: "Campo no válido",
-                mensaje: erroresFormularioProducto['imagen']
+                titulo: "Fallo al registrar un nuevo producto",
+                mensaje: `Comprueba que has rellenado el formulario de creación del producto correctamente:\n
+                ${erroresFormulario.join('\n')}`
             });
         }
 
@@ -94,7 +72,8 @@ const CrearProducto = () => {
                         <div className="campoFormulario">
                             <label htmlFor="categoria">Categoria: </label>
                             <select id="categorias" name="categoria" onChange={(evento) => actualizarDatoProducto(evento.target.name, evento.target.value)}>
-                                <option name="categoria" value="Cereal" defaultChecked>Cereales</option>
+                                <option value="">Selecciona una categoría</option>
+                                <option name="categoria" value="Cereal">Cereales</option>
                                 <option name="categoria" value="Salsa">Salsas</option>
                                 <option name="categoria" value="Carne">Carnes</option>
                                 <option name="categoria" value="Cacao">Cacaos</option>
@@ -106,22 +85,25 @@ const CrearProducto = () => {
                             <input type="url" name="imagen" id="inputImagen" onInput={(evento) => { actualizarDatoProducto(evento.target.name, evento.target.value) }} />
                         </div>
                         <div id="botonGuardar">
-                            <input type="button" value="Guardar producto" onClick={() => {
-                                if (comprobarProductoFormulario()){
-                                    agregarProductoSupabase();
-                                    mostrarAviso({
+                            <input type="button" value="Guardar producto" onClick={async () => {
+                                if (comprobarProductoFormulario()) {
+                                    try {
+                                        await agregarProductoSupabase(productoCreado);
+                                        mostrarAviso({
                                             tipo: "exito",
                                             titulo: "Producto registrado correctamente",
                                             mensaje: "La lista de productos almacenados ha sido actualizada."
                                         });
-                                } else{
-                                    mostrarAviso({
+                                    } catch (error) {
+                                        mostrarAviso({
                                             tipo: "error",
-                                            titulo: "Fallo al registrar un nuevo producto",
-                                            mensaje: "Comprueba que has rellenado el formulario de creación del producto correctamente."
+                                            titulo: "Error al guardar el producto",
+                                            mensaje: error.message
                                         });
+                                    }
+
                                 }
-                            }}/>
+                            }} />
                         </div>
                     </form>
                 </div>

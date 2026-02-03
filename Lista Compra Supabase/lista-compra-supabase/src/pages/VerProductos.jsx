@@ -3,9 +3,17 @@ import { ContextoProducto } from "../context/ProveedorProducto.jsx";
 import ProductoDetalles from "../components/ProductoDetalles.jsx";
 import "./VerProductos.css";
 import useSesion from "../hooks/useSesion.js";
+import Confirmacion from "../components/Confirmacion.jsx";
+import EdicionProducto from "../components/EdicionProducto.jsx";
 
 const VerProductos = () => {
-    const { traerProductosSupabase, listaProductos } = useContext(ContextoProducto);
+    const { traerProductosSupabase,
+        listaProductos, 
+        cambiarModoBorrado, 
+        modoBorrado,
+        modoEdicion,
+        productoABorrar,
+        productoAEditar } = useContext(ContextoProducto);
 
     const { usuarioLogueado, comprobarSesion } = useSesion();
 
@@ -73,7 +81,10 @@ const VerProductos = () => {
     useEffect(() => {
         traerProductosSupabase();
         comprobarSesion();
+        cambiarModoBorrado(false);
     }, []);
+
+    
 
     return (
         <div id="cuerpoVerProductos">
@@ -82,47 +93,47 @@ const VerProductos = () => {
             <div id="cuerpoCompleto">
                 <div id="marcoListado">
                     {usuarioLogueado && (<>
-                    <div id="barraBotones">
-                        <div id="cuerpoFiltros">
-                            <h4>Búscar por filtro</h4>
-                            <div id="cuerpoFiltrarPorNombre" className="filtro">
-                                <label htmlFor="inputBuscadorNombre"><strong>Filtrar por nombre: </strong></label>
-                                <input type="search" name="inputBuscadorNombre" id="inputBuscadorNombre" value={busquedaNombre}
-                                    onFocus={() => setFiltroActivo("nombre")}
-                                    onChange={(evento) => {
-                                        setBusquedaNombre(evento.target.value);
-                                        aplicarFiltro(listaProductos);
-                                    }} />
+                        <div id="barraBotones">
+                            <div id="cuerpoFiltros">
+                                <h4>Búscar por filtro</h4>
+                                <div id="cuerpoFiltrarPorNombre" className="filtro">
+                                    <label htmlFor="inputBuscadorNombre"><strong>Filtrar por nombre: </strong></label>
+                                    <input type="search" name="inputBuscadorNombre" id="inputBuscadorNombre" value={busquedaNombre}
+                                        onFocus={() => setFiltroActivo("nombre")}
+                                        onChange={(evento) => {
+                                            setBusquedaNombre(evento.target.value);
+                                            aplicarFiltro(listaProductos);
+                                        }} />
+                                </div>
+                                <div id="cuerpoFiltrarPorPrecio" className="filtro">
+                                    <label htmlFor="inputBuscadorPrecio"><strong>Filtrar por precio: </strong></label>
+                                    <input type="number" step="0.01" name="inputBuscadorPrecio" id="inputBuscadorPrecio" value={busquedaPrecio}
+                                        onFocus={() => setFiltroActivo("precio")}
+                                        onChange={(evento) => {
+                                            setBusquedaPrecio(evento.target.value);
+                                            aplicarFiltro(listaProductos);
+                                        }} />
+                                </div>
+                                <div id="cuerpoFiltrarPorPeso" className="filtro">
+                                    <label htmlFor="inputBuscadorPeso"><strong>Filtrar por peso: </strong></label>
+                                    <input type="number" step="0.01" name="inputBuscadorPeso" id="inputBuscadorPeso" value={busquedaPeso}
+                                        onFocus={() => setFiltroActivo("peso")}
+                                        onChange={(evento) => {
+                                            setBusquedaPeso(evento.target.value);
+                                            aplicarFiltro(listaProductos);
+                                        }} />
+                                </div>
                             </div>
-                            <div id="cuerpoFiltrarPorPrecio" className="filtro">
-                                <label htmlFor="inputBuscadorPrecio"><strong>Filtrar por precio: </strong></label>
-                                <input type="number" step="0.01" name="inputBuscadorPrecio" id="inputBuscadorPrecio" value={busquedaPrecio}
-                                    onFocus={() => setFiltroActivo("precio")}
-                                    onChange={(evento) => {
-                                        setBusquedaPrecio(evento.target.value);
-                                        aplicarFiltro(listaProductos);
-                                    }} />
-                            </div>
-                            <div id="cuerpoFiltrarPorPeso" className="filtro">
-                                <label htmlFor="inputBuscadorPeso"><strong>Filtrar por peso: </strong></label>
-                                <input type="number" step="0.01" name="inputBuscadorPeso" id="inputBuscadorPeso" value={busquedaPeso}
-                                    onFocus={() => setFiltroActivo("peso")}
-                                    onChange={(evento) => {
-                                        setBusquedaPeso(evento.target.value);
-                                        aplicarFiltro(listaProductos);
-                                    }} />
-                            </div>
-                        </div>
 
-                        <div id="cuerpoOrdenar">
-                            <h4>Ordenar por campo</h4>
-                            <div id="cuerpoBotones">
-                                <input type="button" value="Nombre" className="botonOrdenar" onClick={() => { setOrdenActivo("nombre"); aplicarOrden(productosFiltrados) }} />
-                                <input type="button" value="Precio" className="botonOrdenar" onClick={() => { setOrdenActivo("precio"); aplicarOrden(productosFiltrados) }} />
-                                <input type="button" value="Peso" className="botonOrdenar" onClick={() => { setOrdenActivo("peso"); aplicarOrden(productosFiltrados) }} />
+                            <div id="cuerpoOrdenar">
+                                <h4>Ordenar por campo</h4>
+                                <div id="cuerpoBotones">
+                                    <input type="button" value="Nombre" className="botonOrdenar" onClick={() => { setOrdenActivo("nombre"); aplicarOrden(productosFiltrados) }} />
+                                    <input type="button" value="Precio" className="botonOrdenar" onClick={() => { setOrdenActivo("precio"); aplicarOrden(productosFiltrados) }} />
+                                    <input type="button" value="Peso" className="botonOrdenar" onClick={() => { setOrdenActivo("peso"); aplicarOrden(productosFiltrados) }} />
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </>)}
 
                     <div id="seccionListado">
@@ -140,6 +151,18 @@ const VerProductos = () => {
                         </div>
                     </div>
 
+                    {modoBorrado && (
+                        <Confirmacion
+                            accion="eliminar"
+                            nombre={productoABorrar.nombre}
+                        />
+                    )}
+
+                    {modoEdicion && (
+                        <EdicionProducto
+                            producto={productoAEditar}
+                        />
+                    )}
 
                 </div>
             </div>

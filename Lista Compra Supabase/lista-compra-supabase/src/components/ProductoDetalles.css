@@ -15,3 +15,17 @@
     height: 100px;
     border-radius: 5px;
 }
+
+#cuadroBotones{
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(218, 218, 218);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#cuadroBotones img{
+    height: 40px;
+}
