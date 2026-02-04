@@ -1,7 +1,7 @@
 #cuerpoEditarProducto{
     position: fixed;
-    left: 2%;
-    bottom: 2%;
+    top: 22%;
+    right: 5%;
     background-color: rgb(255, 231, 111);
     box-sizing: border-box;
     border: solid 2px;

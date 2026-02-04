@@ -1,0 +1,47 @@
+.plantillaListado{
+    background-color: rgb(94, 165, 94);
+    box-sizing: border-box;
+    padding: 10px 15px;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 5px;
+}
+
+#capaSuperior{
+    padding: 0px 25px;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 5px;
+    align-items: center;
+}
+
+.plantillaListado .datosPrincipales{
+    padding: 0px 110px;
+}
+
+.plantillaListado .datosPrincipales p {
+    font-size: small;
+}
+
+#datosSecundarios {
+    color: white;
+}
+
+#capaSuperior #cuadroBotones{
+    background-color: rgb(218, 218, 218);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 25%;
+    padding: 0px 20px;
+    height: 80px;
+    border-radius: 5px;
+}
+
+.oculto {
+    display: none;
+}

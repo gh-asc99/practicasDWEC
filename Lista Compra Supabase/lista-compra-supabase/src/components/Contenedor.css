@@ -9,6 +9,11 @@
     padding: 10px 15px;
 }
 
+.cabecera h3 {
+    color: white;
+    margin-left: 65px;
+}
+
 .iniciarSesion{
     box-sizing: border-box;
     background-color: white;
