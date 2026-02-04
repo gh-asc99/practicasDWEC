@@ -1,3 +1,30 @@
 #cuerpoCrearListado{
     color: rgb(155, 137, 47);
 }
+
+#cuerpoCrearListado h3{
+    background-color: rgba(255, 255, 255,0.4);
+    border: solid 2px rgb(155, 137, 47);
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+
+#contFormRegistrarListado .campoFormulario {
+    display: flex;
+    gap: 10px;
+    justify-content: right;
+    margin-bottom: 10px;
+    margin-right: 7%;
+}
+
+#contFormRegistrarListado{
+    background-color: rgba(187, 187, 187, 0.4);
+    border: solid 2px rgb(155, 137, 47);
+    color: rgb(101, 89, 31);
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+#contFormRegistrarListado #botonGuardar{
+    margin-top: 20px;
+}

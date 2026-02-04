@@ -4,6 +4,7 @@ import ContenedorEstadoSesion from './components/ContenedorEstadoSesion.jsx'
 import ContenedorPiePagina from './components/ContenedorPiePagina.jsx'
 import Menu from './components/Menu/Menu.jsx'
 import SaludoUsuario from './components/SaludoUsuario.jsx'
+import ProveedorListado from './context/ProveedorListado.jsx'
 import ProveedorProducto from './context/ProveedorProducto.jsx'
 import Rutas from './routes/Rutas.jsx'
 
@@ -17,7 +18,9 @@ function App() {
       <Menu />
       <Contenedor clase="cuerpo">
         <ProveedorProducto>
-          <Rutas />
+          <ProveedorListado>
+            <Rutas />
+          </ProveedorListado>
         </ProveedorProducto>
       </Contenedor>
       <ContenedorPiePagina clase="piePagina" />

@@ -4,6 +4,7 @@ import edicion from "../assets/img/editar.png";
 import { useContext, useEffect } from "react";
 import { ContextoProducto } from "../context/ProveedorProducto";
 import useSesion from "../hooks/useSesion.js";
+import useListado from "../hooks/useListado.js";
 
 const ProductoDetalles = ({ datos }) => {
     const precioFormateado = (datos.precio).toLocaleString('es-ES', {
@@ -12,11 +13,13 @@ const ProductoDetalles = ({ datos }) => {
     });
 
     const { usuarioLogueado, comprobarSesion } = useSesion();
+    const { productoEnListado, adaptarProductoEnListado } = useListado();
 
     const { cambiarProductoABorrar, cambiarProductoAEditar, cambiarModoBorrado, cambiarModoEdicion } = useContext(ContextoProducto);
 
     useEffect(()=>{
         comprobarSesion();
+        adaptarProductoEnListado();
     }, [])
     return (
         <div className='plantillaProducto'>
@@ -32,7 +35,7 @@ const ProductoDetalles = ({ datos }) => {
                     <li><strong>Categoria: </strong>{datos.categoria}</li>
                 </ul>
             </div>
-            {usuarioLogueado && (<>
+            {usuarioLogueado && !productoEnListado && (<>
                 <div id="cuadroBotones">
                     <img src={papelera} name="boton" alt="Eliminar producto" onClick={(evento) => {
                         cambiarProductoABorrar(datos);

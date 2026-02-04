@@ -31,12 +31,14 @@ select{
     margin-right: 8px;
 }
 
-#botonGuardar{
-    margin-top: 30px;
+#contFormRegistrarProducto #botonGuardar{
+    margin-top: 20px;
 }
 
 #contFormRegistrarProducto {
-    background-color: rgb(155, 137, 47);
+    background-color: rgba(187, 187, 187, 0.4);
+        border: solid 2px rgb(155, 137, 47);
+    color: rgb(101, 89, 31);
     padding: 10px 15px;
     border: solid 2px;
     border-radius: 5px;

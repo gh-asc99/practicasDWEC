@@ -1,10 +1,37 @@
+import { useEffect } from "react";
+import useListado from "../hooks/useListado";
 import "./VerListados.css";
+import ListadoDetalles from "../components/ListadoDetalles.jsx";
 
 const VerListados = () => {
-    return(
+
+const {traerListadosSupabase, listaListados } = useListado();
+
+useEffect(() => {
+    traerListadosSupabase();
+}, [])
+
+    return (
         <>
             <div id="cuerpoVerListados">
-                <h3>Aquí se mostraría el listado de listas creadas.</h3>
+                <h3 id="tituloPagina">Listas de la compra</h3>
+
+                <div id="cuerpoCompleto">
+                    <div id="marcoListado">
+
+                        <div id="seccionListado">
+                            <div id="contenedorListado">
+                                {listaListados.length
+                                    ? listaListados.map((listado, index) => (
+                                        <ListadoDetalles key={index} datos={listado} />
+                                    ))
+                                    : "No se han encontrado listas de la compra."}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </>
     )
