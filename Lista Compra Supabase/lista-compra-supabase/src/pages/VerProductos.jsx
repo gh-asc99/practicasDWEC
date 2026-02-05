@@ -142,7 +142,7 @@ const VerProductos = () => {
                                 ? productosFiltrados.map((producto, index) => (
                                     <ProductoDetalles key={index} datos={producto} />
                                 ))
-                                : "No se han encontrado productos"}
+                                : "No se han encontrado productos."}
                         </div>
 
                         <div id="valoresFinales">
@@ -154,6 +154,8 @@ const VerProductos = () => {
                     {modoBorrado && (
                         <Confirmacion
                             accion="eliminar"
+                            elemento="el producto"
+                            campo="producto"
                             nombre={productoABorrar.nombre}
                         />
                     )}

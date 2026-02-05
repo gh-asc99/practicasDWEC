@@ -2,18 +2,19 @@ import "./ProductoDetalles.css";
 import papelera from "../assets/img/borrar.png";
 import edicion from "../assets/img/editar.png";
 import { useContext, useEffect } from "react";
-import { ContextoProducto } from "../context/ProveedorProducto";
+import { ContextoProducto } from "../context/ProveedorProducto.jsx";
+import { ContextoListado } from "../context/ProveedorListado.jsx";
 import useSesion from "../hooks/useSesion.js";
-import useListado from "../hooks/useListado.js";
 
-const ProductoDetalles = ({ datos }) => {
+
+const ProductoDetalles = ({ datos, cantidad, comprado }) => {
     const precioFormateado = (datos.precio).toLocaleString('es-ES', {
         style: 'currency',
         currency: 'EUR'
     });
 
     const { usuarioLogueado, comprobarSesion } = useSesion();
-    const { productoEnListado, adaptarProductoEnListado } = useListado();
+    const { productoEnListado, adaptarProductoEnListado } = useContext(ContextoListado);
 
     const { cambiarProductoABorrar, cambiarProductoAEditar, cambiarModoBorrado, cambiarModoEdicion } = useContext(ContextoProducto);
 
@@ -29,7 +30,7 @@ const ProductoDetalles = ({ datos }) => {
                 <p>{datos.descripcion}</p>
             </div>
             <div className='datosSecundarios'>
-                <ul>
+                <ul id="lista">
                     <li><strong>Precio: </strong>{precioFormateado}</li>
                     <li><strong>Peso: </strong>{datos.peso}</li>
                     <li><strong>Categoria: </strong>{datos.categoria}</li>

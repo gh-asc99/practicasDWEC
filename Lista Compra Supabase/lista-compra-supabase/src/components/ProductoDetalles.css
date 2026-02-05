@@ -7,7 +7,7 @@
     align-items: center;
     width: 100%;
     justify-content: space-around;
-    gap: 20px;
+    gap: 10px;
     border-radius: 5px;
 }
 
@@ -28,4 +28,24 @@
 
 #cuadroBotones img{
     height: 40px;
+}
+
+.plantillaProducto .datosPrincipales{
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: dashed 2px;
+    width: 42%;
+    padding: 0px 10px;
+}
+
+.plantillaProducto .datosPrincipales p{
+    font-size: small;
+}
+
+.plantillaProducto .datosSecundarios{
+    margin-left: -3%;
+}
+
+.plantillaProducto .datosSecundarios #lista{
+    text-align: left;
 }

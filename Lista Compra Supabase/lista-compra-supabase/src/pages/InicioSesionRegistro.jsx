@@ -7,7 +7,11 @@ const InicioSesionRegistro = () => {
 
     const { mostrarAviso } = useContext(ContextoAviso);
 
-    const { actualizarDatoRegistro, actualizarDatoLogin, registrarUsuario, iniciarSesion, navegar} = useContext(ContextoSesion);
+    const { actualizarDatoRegistro, 
+        actualizarDatoLogin, 
+        registrarUsuario, 
+        iniciarSesion, 
+        navegar} = useContext(ContextoSesion);
 
     return (
         <>

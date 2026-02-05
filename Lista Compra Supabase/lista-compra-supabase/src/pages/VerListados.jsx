@@ -1,15 +1,23 @@
-import { useEffect } from "react";
-import useListado from "../hooks/useListado";
+import { useEffect, useContext } from "react";
 import "./VerListados.css";
 import ListadoDetalles from "../components/ListadoDetalles.jsx";
+import Confirmacion from "../components/Confirmacion.jsx";
+import ListaAgregarProductos from "../components/listaAgregarProductos.jsx";
+import { ContextoListado } from "../context/ProveedorListado.jsx";
 
 const VerListados = () => {
 
-const {traerListadosSupabase, listaListados } = useListado();
+    const { traerListadosSupabase,
+        listaListados,
+        listadoABorrar,
+        modoBorradoListado,
+        modoIncluirProductos,
+        cambiarModoBorradoListado } = useContext(ContextoListado);
 
-useEffect(() => {
-    traerListadosSupabase();
-}, [])
+    useEffect(() => {
+        traerListadosSupabase();
+        cambiarModoBorradoListado(false);
+    }, [])
 
     return (
         <>
@@ -29,10 +37,25 @@ useEffect(() => {
                             </div>
                         </div>
 
+                        {modoBorradoListado && (
+                            <Confirmacion
+                                accion="eliminar"
+                                elemento="la lista de compra"
+                                campo="listado"
+                                nombre={listadoABorrar?.nombre}
+                            />
+                        )}
+
+
+
                     </div>
                 </div>
-
+                {modoIncluirProductos && (
+                    <ListaAgregarProductos />
+                )}
             </div>
+
+
         </>
     )
 }

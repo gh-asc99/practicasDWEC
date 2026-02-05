@@ -1,7 +1,7 @@
-import useListado from "../hooks/useListado.js";
 import "./CrearListado.css";
 import { useContext } from "react";
 import { ContextoAviso } from "../context/ProveedorAviso.jsx";
+import { ContextoListado } from "../context/ProveedorListado.jsx";
 
 const CrearListado = () => {
 
@@ -10,7 +10,7 @@ const CrearListado = () => {
     const { actualizarDatoListado,
         listadoCreado,
         erroresFormularioListado,
-        agregarListadoSupabase } = useListado();
+        agregarListadoSupabase } = useContext(ContextoListado);
 
     const comprobarListadoFormulario = () => {
         let formularioValido = true;

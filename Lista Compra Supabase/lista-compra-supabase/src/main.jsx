@@ -5,13 +5,16 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import ProveedorSesion from './context/ProveedorSesion.jsx'
 import { ProveedorAviso } from './context/ProveedorAviso.jsx'
+import ProveedorListado from './context/ProveedorListado.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <ProveedorSesion>
         <ProveedorAviso>
-          <App />
+          <ProveedorListado>
+            <App />
+          </ProveedorListado>
         </ProveedorAviso>
       </ProveedorSesion>
     </BrowserRouter>

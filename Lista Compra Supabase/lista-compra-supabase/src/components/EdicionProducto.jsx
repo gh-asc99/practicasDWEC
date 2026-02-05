@@ -1,5 +1,4 @@
 import { ContextoAviso } from "../context/ProveedorAviso.jsx";
-import useProducto from "../hooks/useProducto.js";
 import { useContext, useEffect } from "react";
 import { ContextoProducto } from "../context/ProveedorProducto.jsx";
 
@@ -11,9 +10,9 @@ const EdicionProducto = ({ producto }) => {
     const { productoCreado,
         actualizarProductoSupabase, 
         actualizarDatoProducto, 
-        erroresFormularioProducto} = useProducto();
-
-    const { cambiarModoEdicion } = useContext(ContextoProducto);
+        erroresFormularioProducto,
+        traerProductosSupabase,
+        cambiarModoEdicion} = useContext(ContextoProducto);
 
     const { mostrarAviso } = useContext(ContextoAviso);
 
@@ -107,7 +106,7 @@ const EdicionProducto = ({ producto }) => {
                                 if (comprobarProductoFormularioEdicion()) {
                                     try {
                                         await actualizarProductoSupabase(productoCreado);
-                                        navegar(0);
+                                        await traerProductosSupabase();
                                         mostrarAviso({
                                             tipo: "exito",
                                             titulo: "Producto actualizado correctamente",

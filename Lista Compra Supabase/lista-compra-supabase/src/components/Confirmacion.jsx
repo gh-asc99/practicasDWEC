@@ -1,19 +1,46 @@
 import { useContext } from 'react'
 import { ContextoProducto } from '../context/ProveedorProducto.jsx'
+import { ContextoListado } from '../context/ProveedorListado.jsx'
 import "./Confirmacion.css";
 
 const Confirmacion = (props) => {
 
-    const { productoABorrar, cambiarProductoABorrar, cambiarModoBorrado, borrarProductoSupabase } = useContext(ContextoProducto);
+    const { traerProductosSupabase, productoABorrar, cambiarProductoABorrar, cambiarModoBorrado, borrarProductoSupabase } = useContext(ContextoProducto);
+    const { traerListadosSupabase, listadoABorrar, borrarListadoSupabase, cambiarListadoABorrar, cambiarModoBorradoListado } = useContext(ContextoListado);
+
+    let metodoBorrarSupabase;
+    let metodoCambiarElementoABorrar;
+    let metodoCambiarBorrado;
+    let metodoTraerElementosSupabase;
+    let elemento;
+
+    if(props.campo === "producto"){
+        metodoBorrarSupabase = borrarProductoSupabase;
+        metodoCambiarElementoABorrar = cambiarProductoABorrar;
+        metodoCambiarBorrado = cambiarModoBorrado;
+        metodoTraerElementosSupabase = traerProductosSupabase;
+        elemento = productoABorrar;
+    } else if(props.campo === "listado"){
+        metodoBorrarSupabase = borrarListadoSupabase;
+        metodoCambiarElementoABorrar = cambiarListadoABorrar;
+        metodoCambiarBorrado = cambiarModoBorradoListado;
+        metodoTraerElementosSupabase = traerListadosSupabase;
+        elemento = listadoABorrar;
+    }
 
     return (
         <div id='marcoConfirmacion'>
-            <h4>¿Seguro que quieres {props.accion} el producto {props.nombre}?</h4>
+            <h4>¿Seguro que quieres {props.accion} {props.elemento} {props.nombre}?</h4>
             <div className='decision'>
-                <input type="button" value="Sí" onClick={() => { borrarProductoSupabase(productoABorrar.id) }} />
+                <input type="button" value="Sí" onClick={async () => { 
+                    await metodoBorrarSupabase(elemento.id);
+                    await metodoTraerElementosSupabase();
+                    metodoCambiarElementoABorrar(null);
+                    metodoCambiarBorrado(false);
+                    }} />
                 <input type="button" value="No" onClick={() => {
-                    cambiarProductoABorrar(null);
-                    cambiarModoBorrado(false);
+                    metodoCambiarElementoABorrar(null);
+                    metodoCambiarBorrado(false);
                 }} />
             </div>
         </div>

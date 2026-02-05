@@ -18,9 +18,7 @@ function App() {
       <Menu />
       <Contenedor clase="cuerpo">
         <ProveedorProducto>
-          <ProveedorListado>
             <Rutas />
-          </ProveedorListado>
         </ProveedorProducto>
       </Contenedor>
       <ContenedorPiePagina clase="piePagina" />

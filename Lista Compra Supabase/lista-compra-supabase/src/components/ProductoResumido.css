@@ -1,0 +1,49 @@
+.plantillaProductoResumido {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 10px;
+    border: solid 2px rgb(94, 165, 94);
+    border-radius: 5px;
+    padding: 0px 10px;
+    background-color: lightgreen;
+}
+
+.plantillaProductoResumido img {
+    height: 60px;
+    border-radius: 5px;
+}
+
+.plantillaProductoResumido #datosProductoResumido {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.plantillaProductoResumido #datosProductoResumido #primeraMitad .lista {
+    margin-top: -30px;
+    margin-left: 0px;
+    text-align: left;
+    font-size: small;
+}
+
+.plantillaProductoResumido #datosProductoResumido #primeraMitad {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    box-sizing: border-box;
+    width: 150px;
+    text-align: left;
+    padding: 0px 15px;
+}
+
+.plantillaProductoResumido #datosProductoResumido #segundaMitad {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.plantillaProductoResumido #datosProductoResumido #segundaMitad img {
+    height: 30px;
+}
