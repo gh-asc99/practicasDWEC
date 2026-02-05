@@ -93,14 +93,14 @@ const useListado = () => {
         descripcion: "La descripción del listado debe contener 25 carácteres como mínimo.",
     }
 
-    const agregarProductoAListadoSupabase = async ({ listaId, productoId, cantidad }) => {
+    const agregarProductoAListadoSupabase = async (listaId, productoId, cantidad ) => {
         const { error } = await supabase
             .from('lista_producto')
             .insert([
                 {
-                    lista_id: listaId,
-                    producto_id: productoId,
-                    cantidad: cantidad,
+                    id_lista: listaId,
+                    id_producto: productoId,
+                    cantidad: Number(cantidad),
                     comprado: false
                 }
             ]);

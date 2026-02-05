@@ -79,7 +79,7 @@ const useProducto = () => {
 
     }
 
-    const traerProductosSupabase = async () => {
+    const traerProductosSupabase = async () => {// tabla, sentencia
         const { data, error } = await supabase.from('producto').select('*');
         if (error) {
             throw new Error("No ha sido posible traer el listado de productos de Supabase.")
@@ -88,7 +88,7 @@ const useProducto = () => {
         }
     }
 
-    const borrarProductoSupabase = async (id) => {
+    const borrarProductoSupabase = async (id) => {//tabla, id
         const { data, error } = await supabase
             .from('producto')
             .delete()

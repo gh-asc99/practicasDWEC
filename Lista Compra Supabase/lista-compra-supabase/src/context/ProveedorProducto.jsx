@@ -6,6 +6,7 @@ const ContextoProducto = createContext();
 const ProveedorProducto = ({children}) => {
 
     const producto = useProducto();
+
     return(
         <ContextoProducto.Provider value={producto}>{children}</ContextoProducto.Provider>
     )

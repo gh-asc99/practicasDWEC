@@ -2,8 +2,9 @@ import { useEffect, useContext } from "react";
 import "./VerListados.css";
 import ListadoDetalles from "../components/ListadoDetalles.jsx";
 import Confirmacion from "../components/Confirmacion.jsx";
-import ListaAgregarProductos from "../components/listaAgregarProductos.jsx";
+import ListaAgregarProductos from "../components/ListaAgregarProductos.jsx";
 import { ContextoListado } from "../context/ProveedorListado.jsx";
+
 
 const VerListados = () => {
 
