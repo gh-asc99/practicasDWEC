@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { ContextoSesion } from "../context/ProveedorSesion.jsx";
 import "./SaludoUsuario.css";
+import useSesion from "../hooks/useSesion.js";
 
 const SaludoUsuario = () => {
-    const { usuarioLogueado, nombreUsuario } = useContext(ContextoSesion);
+    const { usuarioLogueado, 
+        nombreUsuario } = useSesion();
 
     return usuarioLogueado ? (<h4 id="saludo">¡Hola {nombreUsuario}!</h4>) : "";
 };

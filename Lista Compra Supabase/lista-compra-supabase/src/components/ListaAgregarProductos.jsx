@@ -1,11 +1,12 @@
-import { useContext, useEffect } from "react"
-import { ContextoProducto } from "../context/ProveedorProducto.jsx"
+import { useEffect } from "react"
 import ProductoResumido from "./ProductoResumido.jsx";
 import "./ListaAgregarProductos.css";
+import useProducto from "../hooks/useProducto.js";
 
 const ListaAgregarProductos = () => {
 
-    const { listaProductos, traerProductosSupabase } = useContext(ContextoProducto);
+    const { listaProductos, 
+      traerProductosSupabase } = useProducto();
 
     const listadoDeProductos = listaProductos;
 

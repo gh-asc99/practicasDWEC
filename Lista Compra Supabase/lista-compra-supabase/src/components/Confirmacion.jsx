@@ -1,12 +1,20 @@
-import { useContext } from 'react'
-import { ContextoProducto } from '../context/ProveedorProducto.jsx'
-import { ContextoListado } from '../context/ProveedorListado.jsx'
 import "./Confirmacion.css";
+import useProducto from '../hooks/useProducto.js';
+import useListado from '../hooks/useListado.js';
 
 const Confirmacion = (props) => {
 
-    const { traerProductosSupabase, productoABorrar, cambiarProductoABorrar, cambiarModoBorrado, borrarProductoSupabase } = useContext(ContextoProducto);
-    const { traerListadosSupabase, listadoABorrar, borrarListadoSupabase, cambiarListadoABorrar, cambiarModoBorradoListado } = useContext(ContextoListado);
+    const { traerProductosSupabase, 
+        productoABorrar, 
+        cambiarProductoABorrar, 
+        cambiarModoBorrado, 
+        borrarProductoSupabase } = useProducto();
+
+    const { traerListadosSupabase, 
+        listadoABorrar, 
+        borrarListadoSupabase, 
+        cambiarListadoABorrar, 
+        cambiarModoBorradoListado } = useListado();
 
     let metodoBorrarSupabase;
     let metodoCambiarElementoABorrar;

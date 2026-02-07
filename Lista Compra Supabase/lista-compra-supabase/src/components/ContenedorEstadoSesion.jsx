@@ -1,10 +1,9 @@
-import { useContext } from "react";
-import { ContextoSesion } from "../context/ProveedorSesion.jsx";
 import ContenedorIniciarSesion from "./ContenedorIniciarSesion.jsx";
 import ContenedorCerrarSesion from "./ContenedorCerrarSesion.jsx";
+import useSesion from "../hooks/useSesion.js";
 
 const ContenedorEstadoSesion = () => {
-    const { usuarioLogueado } = useContext(ContextoSesion);
+    const { usuarioLogueado } = useSesion();
     let contenido;
     if (!usuarioLogueado) {
         contenido = (<>

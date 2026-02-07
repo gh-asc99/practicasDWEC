@@ -1,9 +1,8 @@
 import Contenedor from "./Contenedor.jsx"
-import { useContext } from "react";
-import { ContextoSesion } from "../context/ProveedorSesion.jsx";
+import useSesion from "../hooks/useSesion.js";
 
 const ContenedorIniciarSesion = (props) => {
-    const { navegar } = useContext(ContextoSesion);
+    const { navegar } = useSesion();
     return (
         <>
             <Contenedor titulo={props.titulo} clase={props.clase}>

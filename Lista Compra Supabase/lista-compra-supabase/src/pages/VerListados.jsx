@@ -1,9 +1,9 @@
-import { useEffect, useContext } from "react";
+import { useEffect} from "react";
 import "./VerListados.css";
 import ListadoDetalles from "../components/ListadoDetalles.jsx";
 import Confirmacion from "../components/Confirmacion.jsx";
 import ListaAgregarProductos from "../components/ListaAgregarProductos.jsx";
-import { ContextoListado } from "../context/ProveedorListado.jsx";
+import useListado from "../hooks/useListado.js";
 
 
 const VerListados = () => {
@@ -13,7 +13,7 @@ const VerListados = () => {
         listadoABorrar,
         modoBorradoListado,
         modoIncluirProductos,
-        cambiarModoBorradoListado } = useContext(ContextoListado);
+        cambiarModoBorradoListado } = useListado();
 
     useEffect(() => {
         traerListadosSupabase();

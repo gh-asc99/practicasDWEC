@@ -14,7 +14,6 @@ const useSupabase = () => {
         return data;
     }
 
-
     const borrarDatosSupabase = async (tabla, id) => {
             const { error } = await supabase
             .from(tabla)

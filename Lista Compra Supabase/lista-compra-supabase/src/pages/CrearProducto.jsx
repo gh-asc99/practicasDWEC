@@ -5,7 +5,10 @@ import { useContext } from "react";
 
 const CrearProducto = () => {
 
-    const { productoCreado, actualizarDatoProducto, agregarProductoSupabase, erroresFormularioProducto } = useProducto();
+    const { productoCreado, 
+        actualizarDatoProducto, 
+        agregarProductoSupabase, 
+        erroresFormularioProducto } = useProducto();
 
     const { mostrarAviso } = useContext(ContextoAviso);
 

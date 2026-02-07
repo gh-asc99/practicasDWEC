@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import "./Menu.css";
-import { useContext } from "react";
-import { ContextoSesion } from "../../context/ProveedorSesion.jsx";
+import useSesion from "../../hooks/useSesion.js";
 
 const Menu = () => {
-    const { usuarioLogueado } = useContext(ContextoSesion);
+    const { usuarioLogueado } = useSesion();
 
     return (
         <nav>

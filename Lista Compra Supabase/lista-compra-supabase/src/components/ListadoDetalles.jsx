@@ -3,10 +3,9 @@ import detalles from "../assets/img/detalles.png";
 import coche from "../assets/img/coche.png";
 import agregarEnistado from "../assets/img/agregarEnListado.png";
 import "./ListadoDetalles.css";
-import { useContext, useEffect } from "react";
-import { ContextoListado } from "../context/ProveedorListado.jsx";
 import ProductoDetalles from "../components/ProductoDetalles.jsx";
 import ValoresFinalesListado from "./ValoresFinalesListado.jsx";
+import useListado from "../hooks/useListado.js";
 
 const ListadoDetalles = ({ datos }) => {
 
@@ -16,9 +15,7 @@ const ListadoDetalles = ({ datos }) => {
         cambiarModoBorradoListado,
         cambiarListadoSeleccionado,
         cambiarModoIncluirProductos,
-        pesoTotalListado,
-        calcularPrecioYPesoTotalListado,
-    calcularPesoListado } = useContext(ContextoListado);
+        calcularPesoListado } = useListado();
 
     const articulosAlmacenados = datos.lista_producto ?? [];
 

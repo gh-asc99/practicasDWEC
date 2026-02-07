@@ -1,10 +1,10 @@
 import "./ProductoDetalles.css";
 import papelera from "../assets/img/borrar.png";
 import edicion from "../assets/img/editar.png";
-import { useContext, useEffect } from "react";
-import { ContextoProducto } from "../context/ProveedorProducto.jsx";
-import { ContextoListado } from "../context/ProveedorListado.jsx";
+import { useEffect } from "react";
 import useSesion from "../hooks/useSesion.js";
+import useListado from "../hooks/useListado.js";
+import useProducto from "../hooks/useProducto.js";
 
 
 const ProductoDetalles = ({ datos, cantidad, comprado }) => {
@@ -17,12 +17,12 @@ const ProductoDetalles = ({ datos, cantidad, comprado }) => {
         comprobarSesion } = useSesion();
         
     const { productoEnListado, 
-        adaptarProductoEnListado} = useContext(ContextoListado);
+        adaptarProductoEnListado} = useListado();
 
     const { cambiarProductoABorrar, 
         cambiarProductoAEditar, 
         cambiarModoBorrado, 
-        cambiarModoEdicion } = useContext(ContextoProducto);
+        cambiarModoEdicion } = useProducto();
 
     const cantidadActual = cantidad;
     useEffect(() => {

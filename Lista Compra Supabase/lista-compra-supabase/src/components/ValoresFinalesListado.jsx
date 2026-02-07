@@ -1,6 +1,6 @@
-import { useContext, useEffect } from 'react'
-import { ContextoListado } from '../context/ProveedorListado.jsx'
+import { useEffect } from 'react'
 import "./ValoresFinalesListado.css";
+import useListado from '../hooks/useListado.js';
 
 const ValoresFinalesListado = (props) => {
 
@@ -9,7 +9,7 @@ const ValoresFinalesListado = (props) => {
         pesoTotalListado,
         traerListadosSupabase,
         listaListados
-    } = useContext(ContextoListado);
+    } = useListado();
 
     const precio = (precioTotalListado).toLocaleString('es-ES', {
         style: 'currency',

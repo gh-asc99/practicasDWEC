@@ -1,10 +1,14 @@
-import { useContext } from "react";
 import agregar from "../assets/img/agregar.png";
 import restar from "../assets/img/restar.png";
 import "./ProductoResumido.css";
-import { ContextoListado } from "../context/ProveedorListado.jsx";
+import useListado from "../hooks/useListado.js";
 
 const ProductoResumido = ({ datos }) => {
+
+    const { listadoSeleccionado,
+        incluirUnidadDeProductoAListadoSupabase,
+        quitarUnidadDeProductoAListadoSupabase
+     } = useListado();
 
     const precioProducto = (datos.precio).toLocaleString('es-ES', {
         style: 'currency',
@@ -19,11 +23,6 @@ const ProductoResumido = ({ datos }) => {
     });
 
     const pesoProducto = formateadorPeso.format(datos.peso);
-
-    const { listadoSeleccionado,
-        incluirUnidadDeProductoAListadoSupabase,
-        quitarUnidadDeProductoAListadoSupabase
-     } = useContext(ContextoListado);
 
     const idListado = listadoSeleccionado?.id ?? null;
     const idProducto = datos.id;

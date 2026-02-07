@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import { ContextoProducto } from "../context/ProveedorProducto.jsx";
+import { useEffect, useState } from "react";
 import ProductoDetalles from "../components/ProductoDetalles.jsx";
 import "./VerProductos.css";
 import useSesion from "../hooks/useSesion.js";
 import Confirmacion from "../components/Confirmacion.jsx";
 import EdicionProducto from "../components/EdicionProducto.jsx";
+import useProducto from "../hooks/useProducto.js";
 
 const VerProductos = () => {
     const { traerProductosSupabase,
@@ -13,7 +13,7 @@ const VerProductos = () => {
         modoBorrado,
         modoEdicion,
         productoABorrar,
-        productoAEditar } = useContext(ContextoProducto);
+        productoAEditar } = useProducto();
 
     const { usuarioLogueado, comprobarSesion } = useSesion();
 
