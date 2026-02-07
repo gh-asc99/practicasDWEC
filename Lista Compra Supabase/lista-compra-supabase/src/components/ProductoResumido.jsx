@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import agregar from "../assets/img/agregar.png";
+import restar from "../assets/img/restar.png";
 import "./ProductoResumido.css";
 import { ContextoListado } from "../context/ProveedorListado.jsx";
 
@@ -19,9 +20,10 @@ const ProductoResumido = ({ datos }) => {
 
     const pesoProducto = formateadorPeso.format(datos.peso);
 
-    const { listadoSeleccionado, 
-        agregarProductoAListadoSupabase,
-        traerListadosSupabase } = useContext(ContextoListado);
+    const { listadoSeleccionado,
+        incluirUnidadDeProductoAListadoSupabase,
+        quitarUnidadDeProductoAListadoSupabase
+     } = useContext(ContextoListado);
 
     const idListado = listadoSeleccionado?.id ?? null;
     const idProducto = datos.id;
@@ -41,9 +43,11 @@ const ProductoResumido = ({ datos }) => {
                         </div>
                     </div>
                     <div id="segundaMitad">
-                        <img src={agregar} alt="Incluir a la lista" onClick={() => {
-                            agregarProductoAListadoSupabase( idListado, idProducto, 1);
-                            traerListadosSupabase();
+                        <img src={agregar} alt="Incluir a la lista" onClick={async() => {
+                            await incluirUnidadDeProductoAListadoSupabase(idListado, idProducto);
+                        }}/>
+                        <img src={restar} alt="Quitar de la lista" onClick={async() => {
+                            await quitarUnidadDeProductoAListadoSupabase(idListado, idProducto);
                         }}/>
                     </div>
                 </div>

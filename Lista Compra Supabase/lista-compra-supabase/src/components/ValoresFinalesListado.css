@@ -1,0 +1,8 @@
+.valoresFinalesLista{
+    display: flex;
+    justify-content: space-around;
+    border: solid 2px;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(54, 107, 54);
+}

@@ -13,12 +13,19 @@ const ProductoDetalles = ({ datos, cantidad, comprado }) => {
         currency: 'EUR'
     });
 
-    const { usuarioLogueado, comprobarSesion } = useSesion();
-    const { productoEnListado, adaptarProductoEnListado } = useContext(ContextoListado);
+    const { usuarioLogueado, 
+        comprobarSesion } = useSesion();
+        
+    const { productoEnListado, 
+        adaptarProductoEnListado} = useContext(ContextoListado);
 
-    const { cambiarProductoABorrar, cambiarProductoAEditar, cambiarModoBorrado, cambiarModoEdicion } = useContext(ContextoProducto);
+    const { cambiarProductoABorrar, 
+        cambiarProductoAEditar, 
+        cambiarModoBorrado, 
+        cambiarModoEdicion } = useContext(ContextoProducto);
 
-    useEffect(()=>{
+    const cantidadActual = cantidad;
+    useEffect(() => {
         comprobarSesion();
         adaptarProductoEnListado();
     }, [])
@@ -46,6 +53,12 @@ const ProductoDetalles = ({ datos, cantidad, comprado }) => {
                         cambiarProductoAEditar(datos);
                         cambiarModoEdicion(true);
                     }} />
+                </div>
+            </>)}
+
+            {cantidadActual > 0 && (<>
+                <div className="cantidadListado">
+                    <p>{cantidad}</p>
                 </div>
             </>)}
 

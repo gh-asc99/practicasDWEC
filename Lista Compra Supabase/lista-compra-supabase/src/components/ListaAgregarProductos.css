@@ -2,7 +2,7 @@
     position: fixed;
     left: 1%;
     top: 25%;
-    width: 20%;
+    width: 22%;
     height: 60%;
     border: solid 2px;
     border-radius: 5px;
@@ -14,4 +14,12 @@
     gap: 10px;
     overflow-y:auto;
     overflow-x: hidden;
+}
+
+#marcoAgregarProductos h4{
+    border: solid 2px rgb(94, 165, 94);
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px;
+    color: rgb(94, 165, 94);
 }

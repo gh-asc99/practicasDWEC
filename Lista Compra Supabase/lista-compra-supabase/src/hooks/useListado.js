@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { supabase } from "../supabase/config.js";
+import useSupabase from "./useSupabase.js";
 
 const useListado = () => {
+
+    const { traerDatosSupabase,
+        borrarDatosSupabase,
+        insertarDatoSupabase
+    } = useSupabase();
 
     const objetoListado = {
         nombre: "",
@@ -17,12 +23,23 @@ const useListado = () => {
     const [listadoSeleccionado, setListadoSeleccionado] = useState(null);
     const [modoIncluirProductos, setModoIncluirProductos] = useState(false);
     const [listadoDetallesAbierto, setListadoDetallesAbierto] = useState("");
+    const [precioTotalListado, setPrecioTotalListado] = useState(0);
+    const [pesoTotalListado, setPesoTotalListado] = useState(0);
+
+    const cambiarPrecioTotalListado = (valor) => {
+        setPrecioTotalListado(valor);
+    }
+
+    const cambiarPesoTotalListado = (valor) => {
+        setPesoTotalListado(valor);
+    }
+
     const cambiarListadoSeleccionado = (datos) => {
         setListadoSeleccionado(datos);
     }
 
     const cambiarModoIncluirProductos = () => {
-        setModoIncluirProductos(true);
+        setModoIncluirProductos(!modoIncluirProductos);
     }
 
     const cambiarModoBorradoListado = (boolean) => {
@@ -52,55 +69,56 @@ const useListado = () => {
     }
 
     const traerListadosSupabase = async () => {
-        const { data, error } = await supabase.from('lista').select(`id, nombre, descripcion, fechaCreacion,
-            lista_producto (cantidad, comprado, 
-            producto (id,nombre, descripcion, precio, peso, categoria, imagen)
-            )`);
-        if (error) {
-            throw new Error("No ha sido posible traer las listas de Supabase.")
-        } else {
-            setListaListados(data);
-        }
+        const data = await traerDatosSupabase(
+            "lista",
+            `id,
+         nombre,
+         descripcion,
+         fechaCreacion,
+         lista_producto (
+            cantidad,
+            comprado,
+            producto (
+                id,
+                nombre,
+                descripcion,
+                precio,
+                peso,
+                categoria,
+                imagen
+            )
+         )`
+        );
+        setListaListados(data);
+
     }
 
     const agregarListadoSupabase = async (listado) => {
-        const { data, error } = await supabase.from('lista').insert([
-            {
-                nombre: listado.nombre,
-                descripcion: listado.descripcion
-            }
-        ])
+        const listadoFormateado = {
+            nombre: listado.nombre,
+            descripcion: listado.descripcion
+        };
 
-        if (error) {
-            throw new Error(error.message);
-        }
-
+        await insertarDatoSupabase("lista", listadoFormateado);
     }
 
     const borrarListadoSupabase = async (id) => {
-        const { data, error } = await supabase
-            .from('lista')
-            .delete()
-            .eq('id', id);
-
-        if (error) {
-            throw new Error(error.message);
-        }
+        await borrarDatosSupabase("lista", id);
     };
 
-    const erroresFormularioListado = {
+    const erroresFormularioListado = { //mover al contexto
         nombre: "El nombre del listado debe contener 5 carácteres como mínimo.",
         descripcion: "La descripción del listado debe contener 25 carácteres como mínimo.",
     }
 
-    const agregarProductoAListadoSupabase = async (listaId, productoId, cantidad ) => {
+    const agregarProductoAListadoSupabase = async (listaId, productoId) => {
         const { error } = await supabase
             .from('lista_producto')
             .insert([
                 {
                     id_lista: listaId,
                     id_producto: productoId,
-                    cantidad: Number(cantidad),
+                    cantidad: 1,
                     comprado: false
                 }
             ]);
@@ -109,6 +127,131 @@ const useListado = () => {
             throw new Error(error.message);
         }
     };
+
+    const quitarProductoAListadoSupabase = async (listaId, productoId) => {
+        const { error } = await supabase
+            .from('lista_producto')
+            .delete('*')
+            .eq('id_lista', listaId)
+            .eq('id_producto', productoId);
+
+        if (error) {
+            throw new Error(error.message);
+        }
+    };
+
+    const sumarORestarUnidadAProductoEnListadoSupabase = async (listaId, productoId, operacion) => {
+        const cantidadActual = await obtenerCantidadDelProductoEnListado(listaId, productoId);
+
+        let nuevaCantidad;
+
+        if (nuevaCantidad < 0) {
+            return;
+        }
+
+        if (operacion === "sumar") {
+            nuevaCantidad = cantidadActual + 1;
+        } else if (operacion === "restar") {
+            nuevaCantidad = cantidadActual - 1;
+        } else {
+            throw new Error("Operación no válida");
+        }
+
+        const { error } = await supabase
+            .from('lista_producto')
+            .update({ cantidad: nuevaCantidad })
+            .eq('id_lista', listaId)
+            .eq('id_producto', productoId);
+
+        if (error) {
+            throw new Error(error.message);
+        }
+    };
+
+    const calcularPrecioYPesoTotalListado = (listaId) => { //mover al contexto
+        cambiarPrecioTotalListado(0);
+        cambiarPesoTotalListado(0);
+
+        let totalPrecioListado = 0;
+        let totalPesoListado = 0;
+
+        const listadoFiltrado = listaListados.filter(lista => lista.id === listaId)[0];
+
+        if (listadoFiltrado.length === 0 || !listadoFiltrado.lista_producto) {
+            return 0;
+        }
+
+        listadoFiltrado.lista_producto.map(registro => {
+            const cantidad = registro.cantidad;
+
+            totalPrecioListado += registro.producto.precio * cantidad;
+            totalPesoListado += registro.producto.peso * cantidad;
+        });
+
+        cambiarPrecioTotalListado(totalPrecioListado);
+        cambiarPesoTotalListado(totalPesoListado);
+    }
+
+    const comprobarSiExisteFilaEnSupabase = async (listaId, productoId) => {
+        const { data, error } = await supabase.from('lista_producto').select('*')
+            .eq('id_lista', listaId)
+            .eq('id_producto', productoId);
+        if (error) {
+            return false;
+        }
+        return data.length > 0;
+    };
+
+    const obtenerCantidadDelProductoEnListado = async (listaId, productoId) => {
+        const { data, error } = await supabase.from('lista_producto').select('cantidad')
+            .eq('id_lista', listaId)
+            .eq('id_producto', productoId)
+            .single();
+        if (error) {
+            throw new Error(error.message);
+        }
+        return data.cantidad;
+    }
+
+    const incluirUnidadDeProductoAListadoSupabase = async (listaId, productoId) => {
+        if (await comprobarSiExisteFilaEnSupabase(listaId, productoId)) {
+            await sumarORestarUnidadAProductoEnListadoSupabase(listaId, productoId, "sumar")
+        } else {
+            await agregarProductoAListadoSupabase(listaId, productoId);
+        }
+
+        await traerListadosSupabase();
+    }
+
+    const quitarUnidadDeProductoAListadoSupabase = async (listaId, productoId) => {
+        if (await comprobarSiExisteFilaEnSupabase(listaId, productoId)) {
+            const cantidadActual = await obtenerCantidadDelProductoEnListado(listaId, productoId);
+            if (cantidadActual > 1) {
+                await sumarORestarUnidadAProductoEnListadoSupabase(listaId, productoId, "restar")
+            } else {
+                await quitarProductoAListadoSupabase(listaId, productoId);
+            }
+        }
+
+        await traerListadosSupabase();
+    }
+
+    const calcularPesoListado = (listaId) => { //mover al contexto
+        let pesoTotal = 0;
+
+        const listadoFiltrado = listaListados.filter(lista => lista.id === listaId)[0];
+
+        if (!listadoFiltrado || !listadoFiltrado.lista_producto) {
+            return 0;
+        }
+
+        listadoFiltrado.lista_producto.map(registro => {
+            pesoTotal += registro.producto.peso * registro.cantidad;
+        });
+
+        return pesoTotal;
+    };
+
 
     return {
         listadoCreado,
@@ -119,6 +262,8 @@ const useListado = () => {
         modoBorradoListado,
         listadoSeleccionado,
         modoIncluirProductos,
+        precioTotalListado,
+        pesoTotalListado,
         cambiarListadoSeleccionado,
         cambiarModoIncluirProductos,
         cambiarModoBorradoListado,
@@ -130,7 +275,10 @@ const useListado = () => {
         erroresFormularioListado,
         traerListadosSupabase,
         mostrarOcutarDatosSecundarios,
-        agregarProductoAListadoSupabase
+        incluirUnidadDeProductoAListadoSupabase,
+        quitarUnidadDeProductoAListadoSupabase,
+        calcularPrecioYPesoTotalListado,
+        calcularPesoListado
     }
 }
 

@@ -9,6 +9,7 @@
     justify-content: space-around;
     gap: 10px;
     border-radius: 5px;
+    position: relative;
 }
 
 .plantillaProducto img{
@@ -44,8 +45,26 @@
 
 .plantillaProducto .datosSecundarios{
     margin-left: -3%;
+    width: 25%;
 }
 
 .plantillaProducto .datosSecundarios #lista{
     text-align: left;
+}
+
+.plantillaProducto .cantidadListado{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 0px;
+    border-radius: 50%;
+    left: 10px;
+    top: 0px;
+    color: rgb(155, 137, 47);
+    border: solid 2px;
+    background-color: rgba(255, 255, 255,0.8);
 }

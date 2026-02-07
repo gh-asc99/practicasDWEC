@@ -1,7 +1,13 @@
 import { useState } from "react";
-import { supabase } from "../supabase/config.js";
+import useSupabase from "./useSupabase.js";
 
 const useProducto = () => {
+
+    const { traerDatosSupabase,
+        borrarDatosSupabase,
+        insertarDatoSupabase,
+        actualizarDatoSupabase
+    } = useSupabase();
 
     const objetoProducto = {
         nombre: "",
@@ -10,7 +16,7 @@ const useProducto = () => {
         precio: "",
         categoria: "",
         imagen: ""
-    }
+    };
 
     const [productoCreado, setProductoCreado] = useState(objetoProducto);
     const [listaProductos, setListaProductos] = useState([]);
@@ -41,65 +47,42 @@ const useProducto = () => {
     }
 
     const agregarProductoSupabase = async (producto) => {
-        const { data, error } = await supabase.from('producto').insert([
-            {
-                nombre: producto.nombre,
-                descripcion: producto.descripcion,
-                peso: Number(producto.peso),
-                precio: Number(producto.precio),
-                categoria: producto.categoria,
-                imagen: producto.imagen
-            }
-        ])
+        const productoFormateado = {
+            nombre: producto.nombre,
+            descripcion: producto.descripcion,
+            peso: Number(producto.peso),
+            precio: Number(producto.precio),
+            categoria: producto.categoria,
+            imagen: producto.imagen
+        };
 
-        if (error) {
-            throw new Error(error.message);
-        }
-
+        await insertarDatoSupabase("producto", productoFormateado);
     }
 
     const actualizarProductoSupabase = async (producto) => {
-        const { data, error } = await supabase
-        .from('producto')
-        .update([
-            {
-                nombre: producto.nombre,
-                descripcion: producto.descripcion,
-                peso: Number(producto.peso),
-                precio: Number(producto.precio),
-                categoria: producto.categoria,
-                imagen: producto.imagen
-            }
-        ])
-        .eq('id', producto.id);
+        const productoFormateado = {
+            nombre: producto.nombre,
+            descripcion: producto.descripcion,
+            peso: Number(producto.peso),
+            precio: Number(producto.precio),
+            categoria: producto.categoria,
+            imagen: producto.imagen
+        };
 
-        if (error) {
-            throw new Error(error.message);
-        }
+        await actualizarDatoSupabase("producto", producto.id, productoFormateado);
+    }
+
+    const traerProductosSupabase = async () => {
+        const data = await traerDatosSupabase("producto", "*");
+        setListaProductos(data);
 
     }
 
-    const traerProductosSupabase = async () => {// tabla, sentencia
-        const { data, error } = await supabase.from('producto').select('*');
-        if (error) {
-            throw new Error("No ha sido posible traer el listado de productos de Supabase.")
-        } else {
-            setListaProductos(data);
-        }
-    }
-
-    const borrarProductoSupabase = async (id) => {//tabla, id
-        const { data, error } = await supabase
-            .from('producto')
-            .delete()
-            .eq('id', id);
-
-        if (error) {
-            throw new Error(error.message);
-        }
+    const borrarProductoSupabase = async (id) => {
+        await borrarDatosSupabase("producto", id);
     };
 
-    const erroresFormularioProducto = {
+    const erroresFormularioProducto = { //mover al contexto
         nombre: "El nombre del producto debe contener 5 carácteres como mínimo.",
         descripcion: "La descripción del producto debe contener 25 carácteres como mínimo.",
         peso: "El peso del producto debe ser mayor que 0.",
