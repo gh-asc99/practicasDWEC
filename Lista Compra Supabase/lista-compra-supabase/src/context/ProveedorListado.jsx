@@ -1,6 +1,5 @@
 import { createContext } from 'react'
 import { useState } from 'react';
-import { supabase } from "../supabase/config.js";
 import useSupabase from "../hooks/useSupabase.js";
 
 const ContextoListado = createContext();
@@ -9,7 +8,12 @@ const ProveedorListado = ({children}) => {
 
       const { traerDatosSupabase,
         borrarDatosSupabase,
-        insertarDatoSupabase
+        insertarDatoSupabase,
+        comprobarSiExisteFilaEnSupabase,
+        sumarORestarUnidadAProductoEnListadoSupabase,
+        obtenerCantidadDelProductoEnListado,
+        agregarProductoAListadoSupabase,
+        quitarProductoAListadoSupabase
     } = useSupabase();
 
     const objetoListado = {
@@ -71,6 +75,29 @@ const ProveedorListado = ({children}) => {
         }
     }
 
+        const incluirUnidadDeProductoAListadoSupabase = async (listaId, productoId) => { //A useSupabase
+        if (await comprobarSiExisteFilaEnSupabase(listaId, productoId)) {
+            await sumarORestarUnidadAProductoEnListadoSupabase(listaId, productoId, "sumar")
+        } else {
+            await agregarProductoAListadoSupabase(listaId, productoId);
+        }
+
+        await traerListadosSupabase();
+    }
+
+        const quitarUnidadDeProductoAListadoSupabase = async (listaId, productoId) => { //A useSupabase
+        if (await comprobarSiExisteFilaEnSupabase(listaId, productoId)) {
+            const cantidadActual = await obtenerCantidadDelProductoEnListado(listaId, productoId);
+            if (cantidadActual > 1) {
+                await sumarORestarUnidadAProductoEnListadoSupabase(listaId, productoId, "restar")
+            } else {
+                await quitarProductoAListadoSupabase(listaId, productoId);
+            }
+        }
+
+        await traerListadosSupabase();
+    }
+
     const traerListadosSupabase = async () => {
         const data = await traerDatosSupabase(
             "lista",
@@ -114,63 +141,6 @@ const ProveedorListado = ({children}) => {
         descripcion: "La descripción del listado debe contener 25 carácteres como mínimo.",
     }
 
-    const agregarProductoAListadoSupabase = async (listaId, productoId) => {
-        const { error } = await supabase
-            .from('lista_producto')
-            .insert([
-                {
-                    id_lista: listaId,
-                    id_producto: productoId,
-                    cantidad: 1,
-                    comprado: false
-                }
-            ]);
-
-        if (error) {
-            throw new Error(error.message);
-        }
-    };
-
-    const quitarProductoAListadoSupabase = async (listaId, productoId) => {
-        const { error } = await supabase
-            .from('lista_producto')
-            .delete('*')
-            .eq('id_lista', listaId)
-            .eq('id_producto', productoId);
-
-        if (error) {
-            throw new Error(error.message);
-        }
-    };
-
-    const sumarORestarUnidadAProductoEnListadoSupabase = async (listaId, productoId, operacion) => {
-        const cantidadActual = await obtenerCantidadDelProductoEnListado(listaId, productoId);
-
-        let nuevaCantidad;
-
-        if (nuevaCantidad < 0) {
-            return;
-        }
-
-        if (operacion === "sumar") {
-            nuevaCantidad = cantidadActual + 1;
-        } else if (operacion === "restar") {
-            nuevaCantidad = cantidadActual - 1;
-        } else {
-            throw new Error("Operación no válida");
-        }
-
-        const { error } = await supabase
-            .from('lista_producto')
-            .update({ cantidad: nuevaCantidad })
-            .eq('id_lista', listaId)
-            .eq('id_producto', productoId);
-
-        if (error) {
-            throw new Error(error.message);
-        }
-    };
-
     const calcularPrecioYPesoTotalListado = (listaId) => {
         cambiarPrecioTotalListado(0);
         cambiarPesoTotalListado(0);
@@ -193,50 +163,6 @@ const ProveedorListado = ({children}) => {
 
         cambiarPrecioTotalListado(totalPrecioListado);
         cambiarPesoTotalListado(totalPesoListado);
-    }
-
-    const comprobarSiExisteFilaEnSupabase = async (listaId, productoId) => {
-        const { data, error } = await supabase.from('lista_producto').select('*')
-            .eq('id_lista', listaId)
-            .eq('id_producto', productoId);
-        if (error) {
-            return false;
-        }
-        return data.length > 0;
-    };
-
-    const obtenerCantidadDelProductoEnListado = async (listaId, productoId) => {
-        const { data, error } = await supabase.from('lista_producto').select('cantidad')
-            .eq('id_lista', listaId)
-            .eq('id_producto', productoId)
-            .single();
-        if (error) {
-            throw new Error(error.message);
-        }
-        return data.cantidad;
-    }
-
-    const incluirUnidadDeProductoAListadoSupabase = async (listaId, productoId) => {
-        if (await comprobarSiExisteFilaEnSupabase(listaId, productoId)) {
-            await sumarORestarUnidadAProductoEnListadoSupabase(listaId, productoId, "sumar")
-        } else {
-            await agregarProductoAListadoSupabase(listaId, productoId);
-        }
-
-        await traerListadosSupabase();
-    }
-
-    const quitarUnidadDeProductoAListadoSupabase = async (listaId, productoId) => {
-        if (await comprobarSiExisteFilaEnSupabase(listaId, productoId)) {
-            const cantidadActual = await obtenerCantidadDelProductoEnListado(listaId, productoId);
-            if (cantidadActual > 1) {
-                await sumarORestarUnidadAProductoEnListadoSupabase(listaId, productoId, "restar")
-            } else {
-                await quitarProductoAListadoSupabase(listaId, productoId);
-            }
-        }
-
-        await traerListadosSupabase();
     }
 
     const calcularPesoListado = (listaId) => {
@@ -267,6 +193,7 @@ const ProveedorListado = ({children}) => {
         modoIncluirProductos,
         precioTotalListado,
         pesoTotalListado,
+        erroresFormularioListado,
         cambiarListadoSeleccionado,
         cambiarModoIncluirProductos,
         cambiarModoBorradoListado,
@@ -275,7 +202,6 @@ const ProveedorListado = ({children}) => {
         agregarListadoSupabase,
         borrarListadoSupabase,
         actualizarDatoListado,
-        erroresFormularioListado,
         traerListadosSupabase,
         mostrarOcutarDatosSecundarios,
         incluirUnidadDeProductoAListadoSupabase,
