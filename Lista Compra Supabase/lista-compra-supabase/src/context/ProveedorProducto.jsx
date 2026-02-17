@@ -72,7 +72,7 @@ const ProveedorProducto = ({children}) => {
             imagen: producto.imagen
         };
 
-        await actualizarDatoSupabase("producto", producto.id, productoFormateado);
+        await actualizarDatoSupabase("producto", "id", producto.id, productoFormateado);
     }
 
     const traerProductosSupabase = async () => {

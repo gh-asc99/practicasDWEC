@@ -37,6 +37,13 @@ const ProveedorSesion = ({ children }) => {
         }
     };
 
+    const traerIdUsuarioLogueado = async () => {
+        const { data: { session } } = await supabase.auth.getSession()
+        const userId = session?.user.id;
+
+        return userId
+    }
+
     const registrarUsuario = async () => {
         const { nombre, correo, password } = datosRegistro;
 
@@ -97,6 +104,7 @@ const ProveedorSesion = ({ children }) => {
         cerrarSesion,
         actualizarDatoRegistro,
         actualizarDatoLogin,
+        traerIdUsuarioLogueado,
         navegar
     };
 

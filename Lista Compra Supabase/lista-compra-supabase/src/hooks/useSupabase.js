@@ -35,11 +35,11 @@ const useSupabase = () => {
         }
     };
 
-    const actualizarDatoSupabase = async (tabla, id, cambios) => {
+    const actualizarDatoSupabase = async (tabla, columnaId, id, cambios) => {
         const { error } = await supabase
             .from(tabla)
-            .update([cambios])
-            .eq('id', id);
+            .update(cambios)
+            .eq(columnaId, id);
 
         if (error) {
             throw new Error(error.message);

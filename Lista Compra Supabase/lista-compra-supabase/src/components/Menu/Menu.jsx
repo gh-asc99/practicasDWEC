@@ -14,6 +14,7 @@ const Menu = () => {
                     <Link className="botonMenu" to="/misProductos">Mis productos</Link>
                     <Link className="botonMenu" to="/nuevoListado">Nuevo listado</Link>
                     <Link className="botonMenu" to="/misListas">Mis listas</Link>
+                    <Link className="botonMenu" to="/administrarRoles">Administrar roles</Link>
                 </>
             ) : (
             <>
