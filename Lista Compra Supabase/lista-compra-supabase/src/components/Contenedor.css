@@ -10,8 +10,17 @@
 }
 
 .cabecera h3 {
+    background-color: rgba(29, 157, 189, 0.5);
     color: white;
     margin-left: 65px;
+    box-sizing: border-box;
+    border: solid 2px rgb(29, 157, 189);
+    padding: 0px 15px;
+    border-radius: 5px;
+}
+
+.cerrarSesion h3{
+    display: none;
 }
 
 .iniciarSesion h3{
@@ -31,14 +40,23 @@
     border-radius: 5px;
 }
 
-.cerrarSesion{
+.cerrarSesion div{
     box-sizing: border-box;
-    font-size: small;
+    position: absolute;
+    right: 10px;
+    top: 15px;
     display: flex;
     align-items: center;
     gap: 20px;
     padding: 0px 15px;
     border-radius: 5px;
+}
+
+.cerrarSesion #imagenPerfil{
+    box-sizing: border-box;
+    height: 60px;
+    border: solid 3px #1d9dbd;
+    border-radius: 50%;
 }
 
 .cuerpo {

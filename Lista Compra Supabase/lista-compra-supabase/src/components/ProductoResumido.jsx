@@ -42,11 +42,11 @@ const ProductoResumido = ({ datos }) => {
                         </div>
                     </div>
                     <div id="segundaMitad">
-                        <img src={agregar} alt="Incluir a la lista" onClick={async() => {
-                            await incluirUnidadDeProductoAListadoSupabase(idListado, idProducto);
+                        <img src={agregar} alt="Incluir a la lista" onClick={() => {
+                            incluirUnidadDeProductoAListadoSupabase(idListado, idProducto);
                         }}/>
-                        <img src={restar} alt="Quitar de la lista" onClick={async() => {
-                            await quitarUnidadDeProductoAListadoSupabase(idListado, idProducto);
+                        <img src={restar} alt="Quitar de la lista" onClick={() => {
+                            quitarUnidadDeProductoAListadoSupabase(idListado, idProducto);
                         }}/>
                     </div>
                 </div>
