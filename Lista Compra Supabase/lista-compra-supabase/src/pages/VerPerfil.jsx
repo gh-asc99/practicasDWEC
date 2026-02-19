@@ -4,6 +4,7 @@ import usePerfil from "../hooks/usePerfil.js";
 import useSesion from "../hooks/useSesion.js";
 import { useEffect, useState, useContext } from "react";
 import { ContextoAviso } from "../context/ProveedorAviso.jsx";
+import ImagenesPerfil from "../assets/img/perfil/ImagenesPerfil.jsx";
 
 const VerPerfil = () => {
 
@@ -20,6 +21,7 @@ const VerPerfil = () => {
     const [perfilUsuario, setPerfilUsuario] = useState(null);
     const [nombreEditado, setNombreEditado] = useState("");
     const [descripcionEditada, setDescripcionEditada] = useState("");
+    const [modoCambiarImagen, setModoCambiarImagen] = useState(false);
 
     const cargarDatos = async () => {
         const listaPerfiles = await traerPerfilesSupabase();
@@ -38,6 +40,7 @@ const VerPerfil = () => {
 
     useEffect(() => {
         cargarDatos();
+        setModoCambiarImagen(false);
     }, []);
 
     if (!perfilUsuario) {
@@ -53,7 +56,7 @@ const VerPerfil = () => {
                 <h3 id='tituloPagina'>Datos de usuario</h3>
                 <div id='formDatosUsuario'>
                     <form>
-                        <img src={avatar} alt="Foto de perfíl" />
+                        <img src={avatar} alt="Foto de perfíl" onClick={() => {setModoCambiarImagen(!modoCambiarImagen)}}/>
                         <div className="campoFormulario">
                             <label htmlFor="nombre">Nombre: </label>
                             <input type="text" name="nombre" id="inputNombre" defaultValue={nombreEditado} onChange={(evento) => {
@@ -92,7 +95,7 @@ const VerPerfil = () => {
                         </div>
                     </form>
                 </div>
-
+                {modoCambiarImagen && (<ImagenesPerfil/>)}
             </div>
         </>
     )
