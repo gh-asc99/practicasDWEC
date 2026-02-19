@@ -30,6 +30,7 @@ const ProveedorRol = ({ children }) => {
         };
 
         await actualizarDatoSupabase("roles", "id_rol", registroRol.id_rol, rolFormateado);
+        await traerRolesSupabase();
     }
 
     const traerDatosRolesPorId = () => {

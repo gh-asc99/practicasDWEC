@@ -9,7 +9,9 @@ const ContenedorCerrarSesion = (props) => {
         <>
             <Contenedor titulo={props.titulo} clase={props.clase}>
                 <input type="button" value="Cerrar sesión" onClick={() => {cerrarSesion(); navegar("/bienvenida")}}/>
-                <img id="imagenPerfil" src={perfil} alt="Consultar perfil de usuario" />
+                <img id="imagenPerfil" src={perfil} alt="Consultar perfil de usuario" onClick={() => {
+                    navegar('/verPerfil');
+                }}/>
             </Contenedor>
         </>
     )

@@ -10,11 +10,10 @@
 }
 
 .cabecera h3 {
-    background-color: rgba(29, 157, 189, 0.5);
-    color: white;
+    color: rgb(94, 165, 94);
+    border: dashed;
     margin-left: 65px;
     box-sizing: border-box;
-    border: solid 2px rgb(29, 157, 189);
     padding: 0px 15px;
     border-radius: 5px;
 }
@@ -24,12 +23,15 @@
 }
 
 .iniciarSesion h3{
+    background-color: rgba(200, 200, 200, 0);
+    font-size:medium;
+    border: 0px;
     margin-left: 0px;
     color: rgb(94, 165, 94);
 }
 
 .iniciarSesion {
-    width: 330px;
+    width: 340px;
     box-sizing: border-box;
     background-color: white;
     color: rgb(94, 165, 94);

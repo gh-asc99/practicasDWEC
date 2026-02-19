@@ -1,7 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import "./InicioSesionRegistro.css";
-import { ContextoSesion } from "../context/ProveedorSesion.jsx";
 import { ContextoAviso } from "../context/ProveedorAviso.jsx";
+import useSesion from "../hooks/useSesion.js";
 
 const InicioSesionRegistro = () => {
 
@@ -11,7 +11,7 @@ const InicioSesionRegistro = () => {
         actualizarDatoLogin, 
         registrarUsuario, 
         iniciarSesion, 
-        navegar} = useContext(ContextoSesion);
+        navegar} = useSesion();
 
     return (
         <>

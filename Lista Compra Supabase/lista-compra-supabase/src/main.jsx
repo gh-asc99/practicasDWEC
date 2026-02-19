@@ -7,19 +7,21 @@ import ProveedorSesion from './context/ProveedorSesion.jsx'
 import ProveedorAviso from './context/ProveedorAviso.jsx'
 import ProveedorListado from './context/ProveedorListado.jsx'
 import ProveedorRol from './context/ProveedorRol.jsx'
+import ProveedorPerfil from './context/ProveedorPerfil.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <ProveedorSesion>
-        <ProveedorRol>
-          <ProveedorAviso>
-            <ProveedorListado>
-              <App />
-            </ProveedorListado>
-          </ProveedorAviso>
-        </ProveedorRol>
-
+        <ProveedorPerfil>
+          <ProveedorRol>
+            <ProveedorAviso>
+              <ProveedorListado>
+                <App />
+              </ProveedorListado>
+            </ProveedorAviso>
+          </ProveedorRol>
+        </ProveedorPerfil>
       </ProveedorSesion>
     </BrowserRouter>
   </StrictMode>,

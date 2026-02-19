@@ -7,6 +7,7 @@ import VerProductos from "../pages/VerProductos.jsx";
 import InicioSesionRegistro from "../pages/InicioSesionRegistro.jsx";
 import Bienvenida from "../pages/Bienvenida.jsx";
 import AdministrarRoles from "../pages/AdministrarRoles.jsx";
+import VerPerfil from "../pages/VerPerfil.jsx";
 
 const Rutas = () => {
     return(
@@ -18,6 +19,7 @@ const Rutas = () => {
                 <Route path="/nuevoProducto" element={<CrearProducto/>}/>
                 <Route path="/misProductos" element={<VerProductos/>}/>
                 <Route path="/administrarRoles" element={<AdministrarRoles/>}/>
+                <Route path="/verPerfil" element={<VerPerfil/>}/>
                 <Route path="/accesoApp" element={<InicioSesionRegistro/>}/>
                 <Route path="/bienvenida" element={<Bienvenida/>}/>
             </Routes>
