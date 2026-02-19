@@ -1,32 +1,16 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { ContextoAviso } from "../context/ProveedorAviso.jsx";
 
 const useAviso = () => {
-    const avisoInicial = {
-        visible: false,
-        tipo: "info",
-        titulo: "",
-        mensaje: ""
-    };
-    const [aviso, setAviso] = useState(avisoInicial);
+    const contexto = useContext(ContextoAviso);
 
-    const mostrarAviso = ({ tipo = "info", titulo, mensaje }) => {
-        setAviso({
-            visible: true,
-            tipo,
-            titulo,
-            mensaje
-        });
-    };
-
-    const ocultarAviso = () => {
-        setAviso(avisoInicial);
-    };
-
-    return{
-        aviso,
-        mostrarAviso,
-        ocultarAviso
+    if(!contexto){
+        throw new Error(
+          "No se ha usado useAviso dentro de ProveedorAviso."  
+        );
     }
+
+    return contexto;
 }
 
 export default useAviso;

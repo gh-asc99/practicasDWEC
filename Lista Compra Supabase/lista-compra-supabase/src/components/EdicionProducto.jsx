@@ -1,8 +1,7 @@
-import { ContextoAviso } from "../context/ProveedorAviso.jsx";
-import { useContext, useEffect } from "react";
-
+import { useEffect } from "react";
 import "./EdicionProducto.css";
 import useProducto from "../hooks/useProducto.js";
+import useAviso from "../hooks/useAviso.js";
 
 const EdicionProducto = ({ producto }) => {
 
@@ -13,7 +12,7 @@ const EdicionProducto = ({ producto }) => {
         traerProductosSupabase,
         cambiarModoEdicion} = useProducto();
 
-    const { mostrarAviso } = useContext(ContextoAviso);
+    const { mostrarAviso } = useAviso();
 
     const comprobarProductoFormularioEdicion = () => {
         let formularioValido = true;

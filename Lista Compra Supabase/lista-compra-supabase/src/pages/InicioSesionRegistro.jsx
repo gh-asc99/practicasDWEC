@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import "./InicioSesionRegistro.css";
-import { ContextoAviso } from "../context/ProveedorAviso.jsx";
 import useSesion from "../hooks/useSesion.js";
+import useAviso from "../hooks/useAviso.js";
 
 const InicioSesionRegistro = () => {
 
-    const { mostrarAviso } = useContext(ContextoAviso);
+    const { mostrarAviso } = useAviso();
 
     const { actualizarDatoRegistro, 
         actualizarDatoLogin, 

@@ -1,16 +1,39 @@
-import { createContext } from "react";
+import { useState, createContext } from "react";
 import Aviso from "../components/Aviso.jsx";
-import useAviso from "../hooks/useAviso.js";
 
 const ContextoAviso = createContext();
 
 export const ProveedorAviso = ({ children }) => {
 
-    const contenidoAviso = useAviso();
-    const{aviso, ocultarAviso} = contenidoAviso;
+    const avisoInicial = {
+            visible: false,
+            tipo: "info",
+            titulo: "",
+            mensaje: ""
+        };
+        const [aviso, setAviso] = useState(avisoInicial);
+    
+        const mostrarAviso = ({ tipo = "info", titulo, mensaje }) => {
+            setAviso({
+                visible: true,
+                tipo,
+                titulo,
+                mensaje
+            });
+        };
+    
+        const ocultarAviso = () => {
+            setAviso(avisoInicial);
+        };
+    
+        const datosInsertadosContexto = {
+            aviso,
+            mostrarAviso,
+            ocultarAviso
+        }
 
     return (
-        <ContextoAviso.Provider value={contenidoAviso}>
+        <ContextoAviso.Provider value={datosInsertadosContexto}>
             {children}
 
             <Aviso

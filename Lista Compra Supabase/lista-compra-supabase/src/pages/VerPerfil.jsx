@@ -2,13 +2,15 @@ import perfil from "../assets/img/perfil.png";
 import "./VerPerfil.css";
 import usePerfil from "../hooks/usePerfil.js";
 import useSesion from "../hooks/useSesion.js";
-import { useEffect, useState, useContext } from "react";
-import { ContextoAviso } from "../context/ProveedorAviso.jsx";
-import ImagenesPerfil from "../assets/img/perfil/ImagenesPerfil.jsx";
+import useAviso from "../hooks/useAviso.js";
+import { useEffect, useState} from "react";
+import ImagenesPerfil from "../components/ImagenesPerfil.jsx";
 
 const VerPerfil = () => {
 
     const {
+        listaPerfiles,
+        traerDatosPerfilesPorId,
         traerPerfilesSupabase,
         actualizarPerfilesSupabase
     } = usePerfil();
@@ -16,7 +18,7 @@ const VerPerfil = () => {
     const {
         traerIdUsuarioLogueado
     } = useSesion();
-    const { mostrarAviso } = useContext(ContextoAviso);
+    const { mostrarAviso } = useAviso();
 
     const [perfilUsuario, setPerfilUsuario] = useState(null);
     const [nombreEditado, setNombreEditado] = useState("");
@@ -24,24 +26,38 @@ const VerPerfil = () => {
     const [modoCambiarImagen, setModoCambiarImagen] = useState(false);
 
     const cargarDatos = async () => {
-        const listaPerfiles = await traerPerfilesSupabase();
-        const id = await traerIdUsuarioLogueado();
+        await traerPerfilesSupabase();
+            const id = await traerIdUsuarioLogueado();
+            const datosPerfil = traerDatosPerfilesPorId(id);
 
-        const datosPerfil = listaPerfiles.find(registro => registro.id_usuario === id);
-
-        if (datosPerfil) {
-            setPerfilUsuario(datosPerfil);
-            setNombreEditado(datosPerfil.nombre || "");
-            setDescripcionEditada(datosPerfil.descripcion || "");
-        } else {
-            console.log("No se encontró el perfil para el id:", id);
-        }
+            if (datosPerfil) {
+                setPerfilUsuario(datosPerfil);
+                setNombreEditado(datosPerfil.nombre || "");
+                setDescripcionEditada(datosPerfil.descripcion || "");
+            }
     };
 
     useEffect(() => {
         cargarDatos();
         setModoCambiarImagen(false);
     }, []);
+
+    useEffect(() => {
+        const actualizarAvatarEnTiempoReal = async () => {
+            const id = await traerIdUsuarioLogueado();
+            const datosPerfil = traerDatosPerfilesPorId(id);
+            
+            if (datosPerfil) {
+                setPerfilUsuario(datosPerfil); 
+                setNombreEditado((prev) => prev !== "" ? prev : (datosPerfil.nombre || ""));
+                setDescripcionEditada((prev) => prev !== "" ? prev : (datosPerfil.descripcion || ""));
+            }
+        };
+
+        if (listaPerfiles.length > 0) {
+            actualizarAvatarEnTiempoReal();
+        }
+    }, [listaPerfiles]);
 
     if (!perfilUsuario) {
         return <p>Cargando perfil...</p>;

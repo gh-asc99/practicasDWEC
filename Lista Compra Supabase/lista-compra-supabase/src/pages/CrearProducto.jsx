@@ -1,7 +1,6 @@
 import useProducto from "../hooks/useProducto.js";
+import useAviso from "../hooks/useAviso.js";
 import "./CrearProducto.css";
-import { ContextoAviso } from "../context/ProveedorAviso.jsx";
-import { useContext } from "react";
 
 const CrearProducto = () => {
 
@@ -10,7 +9,7 @@ const CrearProducto = () => {
         agregarProductoSupabase, 
         erroresFormularioProducto } = useProducto();
 
-    const { mostrarAviso } = useContext(ContextoAviso);
+    const { mostrarAviso } = useAviso();
 
 
     const comprobarProductoFormulario = () => {

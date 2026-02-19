@@ -1,12 +1,12 @@
 import "./AdministrarRoles.css";
 import useSesion from "../hooks/useSesion.js";
 import useRol from "../hooks/useRol.js";
-import { useEffect, useState, useContext } from "react";
-import { ContextoAviso } from "../context/ProveedorAviso.jsx";
+import useAviso from "../hooks/useAviso.js";
+import { useEffect, useState} from "react";
 
 const AdministrarRoles = () => {
 
-  const { mostrarAviso } = useContext(ContextoAviso);
+  const { mostrarAviso } = useAviso();
 
   const {
     usuarioLogueado,

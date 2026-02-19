@@ -1,5 +1,4 @@
-import { createContext} from "react";
-import { useState } from 'react';
+import { useState, createContext } from 'react';
 import useSupabase from "../hooks/useSupabase.js";
 
 const ContextoPerfil = createContext();
@@ -36,6 +35,7 @@ const ProveedorPerfil = ({ children }) => {
     }
 
     const datosInsertadosContexto = {
+        listaPerfiles,
         traerPerfilesSupabase,
         actualizarPerfilesSupabase,
         traerDatosPerfilesPorId

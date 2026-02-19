@@ -2,10 +2,11 @@ import "./CrearListado.css";
 import { useContext } from "react";
 import { ContextoAviso } from "../context/ProveedorAviso.jsx";
 import useListado from "../hooks/useListado.js";
+import useAviso from "../hooks/useAviso.js";
 
 const CrearListado = () => {
 
-    const { mostrarAviso } = useContext(ContextoAviso);
+    const { mostrarAviso } = useAviso();
 
     const { actualizarDatoListado,
         listadoCreado,
