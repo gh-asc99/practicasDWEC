@@ -5,6 +5,7 @@ import useSesion from "../hooks/useSesion.js";
 import useAviso from "../hooks/useAviso.js";
 import { useEffect, useState} from "react";
 import ImagenesPerfil from "../components/ImagenesPerfil.jsx";
+import { supabase } from "../supabase/config.js";
 
 const VerPerfil = () => {
 
@@ -16,7 +17,8 @@ const VerPerfil = () => {
     } = usePerfil();
 
     const {
-        traerIdUsuarioLogueado
+        traerIdUsuarioLogueado,
+        comprobarSesion
     } = useSesion();
     const { mostrarAviso } = useAviso();
 
@@ -75,13 +77,13 @@ const VerPerfil = () => {
                         <img src={avatar} alt="Foto de perfíl" onClick={() => {setModoCambiarImagen(!modoCambiarImagen)}}/>
                         <div className="campoFormulario">
                             <label htmlFor="nombre">Nombre: </label>
-                            <input type="text" name="nombre" id="inputNombre" defaultValue={nombreEditado} onChange={(evento) => {
+                            <input type="text" name="nombre" id="inputNombre" value={nombreEditado} onChange={(evento) => {
                                 setNombreEditado(evento.target.value);
                             }} />
                         </div>
                         <div className="campoFormulario">
                             <label htmlFor="descripcion">Descripción: </label>
-                            <input type="text" name="descripcion" id="inputDescripcion" defaultValue={descripcionEditada} onChange={(evento) => {
+                            <input type="text" name="descripcion" id="inputDescripcion" value={descripcionEditada} onChange={(evento) => {
                                 setDescripcionEditada(evento.target.value);
                             }} />
                         </div>
@@ -94,6 +96,13 @@ const VerPerfil = () => {
                                         nombre: nombreEditado,
                                         descripcion: descripcionEditada
                                     });
+
+                                    await supabase.auth.updateUser({
+                                        data: { display_name: nombreEditado }
+                                    });
+
+                                    await comprobarSesion();
+
                                     mostrarAviso({
                                         tipo: "exito",
                                         titulo: "Perfil actualizado correctamente",
